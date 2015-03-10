@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Tag Plugins | Wiki</title>
+  <meta name="author" content="zhiyue">
+  
+  <meta name="description" content="Like the Freemind theme, you can use hexo-tag-bootstrap to fully take advantages of Bootstrap. To use these tag plugins, you need to install it first. In your blog root folder, execute the following command:
+1$ npm install hexo-tag-bootstrap --save
+
+Then you can use these tag plugins in your blog, as easily as you normally do using hexo tag plugins.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Tag Plugins"/>
+  <meta property="og:site_name" content="Wiki"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Wiki" type="application/atom+xml">
+  
+  
+    <link href="/favicon.ico" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body data-spy="scroll" data-target=".toc">
+  <div class="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">Wiki</a> - Tag Plugins</h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  <div class="col-xs-12 col-sm-12 col-md-3 toc"> 
+	<!-- toc -->
+<script type="text/javascript">
+		jQuery(document).ready(function() {
+ 		   generateWikiTOC('.note', '.toc',  2 , 2 );
+		});
+</script>
+  </div><!-- col-md-3 -->
+  
+  
+
+  
+  <div class="col-xs-12 col-sm-12 col-md-9 note">
+	
+
+	  <!-- content -->
+	  <p>Like the <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> theme, you can use <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> to fully take advantages of Bootstrap. To use these tag plugins, you need to install it first. In your blog root folder, execute the following command:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></div></pre></td></tr></table></figure>
+
+<p>Then you can use these tag plugins in your blog, as easily as you normally do using hexo tag plugins. </p>
+<a id="more"></a>
+<h2 id="Text_Color">Text Color</h2>
+<p>Convey meaning through color with a handful of emphasis utility classes. These may also be applied to links and will darken on hover just like our default link styles.</p>
+<h3 id="Syntax">Syntax</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">{% textcolor [style] <span class="variable">%}</span></div><div class="line">  <span class="keyword">text</span> <span class="keyword">string</span></div><div class="line">{% endtextcolor <span class="variable">%}</span></div></pre></td></tr></table></figure>
+
+<h3 id="Examples">Examples</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">{% textcolor muted <span class="variable">%}</span>Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.{% endtextcolor <span class="variable">%}</span></div><div class="line"></div><div class="line">{% textcolor primary <span class="variable">%}</span>Nullam id dolor id nibh ultricies vehicula ut id elit.{% endtextcolor <span class="variable">%}</span></div><div class="line"></div><div class="line">{% textcolor success <span class="variable">%}</span>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.{% endtextcolor <span class="variable">%}</span></div><div class="line"></div><div class="line">{% textcolor info <span class="variable">%}</span>Maecenas sed diam eget risus varius blandit sit amet non magna.{% endtextcolor <span class="variable">%}</span></div><div class="line"></div><div class="line">{% textcolor <span class="keyword">warning</span> <span class="variable">%}</span>Etiam porta sem malesuada magna mollis euismod.{% endtextcolor <span class="variable">%}</span></div><div class="line"></div><div class="line">{% textcolor danger <span class="variable">%}</span>Donec ullamcorper nulla non metus auctor fringilla.{% endtextcolor <span class="variable">%}</span></div></pre></td></tr></table></figure>
+
+<h3 id="Results">Results</h3>
+<p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+
+<p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+
+<p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+
+<p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+
+<p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
+
+<p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
+
+<h2 id="Buttons">Buttons</h2>
+<p>Inserts a button with target links, text and specified color.</p>
+<h3 id="Syntax-1">Syntax</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"></span><span class="template_tag">{% btn <span class="keyword">url</span> text [style] %}</span><span class="xml"></span></div></pre></td></tr></table></figure>
+
+<h3 id="Examples-1">Examples</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">{% btn http:<span class="comment">//hahack.com hahack %}</span></div><div class="line"></div><div class="line">{% btn http:<span class="comment">//hahack.com hahack primary %}</span></div><div class="line"></div><div class="line">{% btn http:<span class="comment">//hahack.com hahack success %}</span></div><div class="line"></div><div class="line">{% btn http:<span class="comment">//hahack.com hahack warning %}</span></div><div class="line"></div><div class="line">{% btn http:<span class="comment">//hahack.com hahack danger %}</span></div><div class="line"></div><div class="line">{% btn http:<span class="comment">//hahack.com hahack info %}</span></div></pre></td></tr></table></figure>
+
+<h3 id="Results-1">Results</h3>
+<a class="btn btn-default" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+
+<a class="btn btn-primary" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+
+<a class="btn btn-success" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+
+<a class="btn btn-warning" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+
+<a class="btn btn-danger" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+
+<a class="btn btn-info" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+
+<h2 id="Labels">Labels</h2>
+<p>Inserts a label with text and specified color.</p>
+<h3 id="Syntax-2">Syntax</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">{% label <span class="keyword">text</span> [style] <span class="variable">%}</span></div></pre></td></tr></table></figure>
+
+<h3 id="Examples-2">Examples</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">{% label <span class="keyword">default</span> <span class="variable">%}</span></div><div class="line"></div><div class="line">{% label warinng <span class="keyword">warning</span> <span class="variable">%}</span></div><div class="line"></div><div class="line">{% label success success <span class="variable">%}</span></div><div class="line"></div><div class="line">{% label danger danger <span class="variable">%}</span></div><div class="line"></div><div class="line">{% label primary primary <span class="variable">%}</span></div><div class="line"></div><div class="line">{% label info info <span class="variable">%}</span></div></pre></td></tr></table></figure>
+
+<h3 id="Results-2">Results</h3>
+<span class="label label-default">default</span>
+
+<span class="label label-warning">warinng</span>
+
+<span class="label label-success">success</span>
+
+<span class="label label-danger">danger</span>
+
+<span class="label label-primary">primary</span>
+
+<span class="label label-info">info</span>
+
+<h2 id="Badges">Badges</h2>
+<p>Inserts a badge with text.</p>
+<div class="alert alert-danger"><i class="fa fa-bug"></i>  <p>Badges won’t self collapse in Internet Explorer 8 because it lacks support for the <code>:empty</code> selector.</p>
+</div>
+
+<h3 id="Syntax-3">Syntax</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">{% badge <span class="keyword">text</span> <span class="variable">%}</span></div></pre></td></tr></table></figure>
+
+<h3 id="Examples-3">Examples</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tuple">{<span class="comment">% badge 42 %}</span></span></div></pre></td></tr></table></figure>
+
+<h3 id="Results-3">Results</h3>
+<span class="badge">42</span>
+
+<h2 id="Alerts">Alerts</h2>
+<p>Inserts alert messages with text and specified color.</p>
+<h3 id="Syntax-4">Syntax</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">{% alert [style] <span class="variable">%}</span></div><div class="line">   Alert <span class="keyword">string</span></div><div class="line">{% endalert <span class="variable">%}</span></div></pre></td></tr></table></figure>
+
+<h3 id="Examples-4">Examples</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">{<span class="var_expand">% alert warning %</span>}Best check yo self, you're <span class="literal">not</span> looking too good.{<span class="var_expand">% endalert %</span>}</div><div class="line"></div><div class="line">{<span class="var_expand">% alert danger %</span>}Change <span class="literal">a</span> few things up <span class="literal">and</span> try submitting again.{<span class="var_expand">% endalert %</span>}</div><div class="line"></div><div class="line">{<span class="var_expand">% alert success %</span>}You successfully read this important alert message.{<span class="var_expand">% endalert %</span>}</div><div class="line"></div><div class="line">{<span class="var_expand">% alert info %</span>}This alert needs your attention, but it's <span class="literal">not</span> super important.{<span class="var_expand">% endalert %</span>}</div></pre></td></tr></table></figure>
+
+<h3 id="Results-4">Results</h3>
+<div class="alert alert-warning"><i class="fa fa-bell"></i>  <p>Best check yo self, you’re not looking too good.</p>
+</div>
+
+<div class="alert alert-danger"><i class="fa fa-bug"></i>  <p>Change a few things up and try submitting again.</p>
+</div>
+
+<div class="alert alert-success"><i class="fa fa-lightbulb-o"></i>  <p>You successfully read this important alert message.</p>
+</div>
+
+<div class="alert alert-info"><i class="fa fa-info"></i>  <p>This alert needs your attention, but it’s not super important.</p>
+</div>
+
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+	
+		
+	
+		
+	
+		
+	
+	
+		<li class="prev"><a href="/2014/03/16/qna-cn/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2014/03/16/tag-plugins-cn/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2015 zhiyue
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+</html>
