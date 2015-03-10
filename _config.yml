@@ -69,4 +69,4 @@ theme: wixo
 deploy:
   type: github
   repository: https://github.com/zhiyue/wiki.git
-  branch: master   
+  branch: gh-pages  
