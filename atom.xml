@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-03-10T16:59:27.165Z</updated>
+  <updated>2015-03-10T17:07:08.627Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -18,8 +18,8 @@
     <title><![CDATA[Hello World]]></title>
     <link href="http://yoursite.com/2015/03/10/hello-world/"/>
     <id>http://yoursite.com/2015/03/10/hello-world/</id>
-    <published>2015-03-10T16:59:15.000Z</published>
-    <updated>2015-03-10T16:59:15.000Z</updated>
+    <published>2015-03-10T17:06:49.000Z</published>
+    <updated>2015-03-10T17:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick_Start">Quick Start</h2>
 <h3 id="Create_a_new_post">Create a new post</h3>
