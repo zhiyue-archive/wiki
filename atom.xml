@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://wiki.printf.me/"/>
-  <updated>2015-03-10T18:59:10.136Z</updated>
+  <updated>2015-03-10T19:15:23.988Z</updated>
   <id>http://wiki.printf.me/</id>
   
   <author>
@@ -18,8 +18,8 @@
     <title><![CDATA[Hello World]]></title>
     <link href="http://wiki.printf.me/2015/03/10/hello-world/"/>
     <id>http://wiki.printf.me/2015/03/10/hello-world/</id>
-    <published>2015-03-10T18:58:57.000Z</published>
-    <updated>2015-03-10T18:58:57.000Z</updated>
+    <published>2015-03-10T19:15:08.000Z</published>
+    <updated>2015-03-10T19:15:08.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick_Start">Quick Start</h2>
 <h3 id="Create_a_new_post">Create a new post</h3>
@@ -50,7 +50,7 @@
     <link href="http://wiki.printf.me/2014/03/16/qna/"/>
     <id>http://wiki.printf.me/2014/03/16/qna/</id>
     <published>2014-03-16T18:17:16.000Z</published>
-    <updated>2015-03-10T18:58:57.000Z</updated>
+    <updated>2015-03-10T19:15:08.000Z</updated>
     <content type="html"><![CDATA[<p><span class="label label-danger">Q</span> What does <code>Wixo</code> stands for?</p>
 <p><span class="label label-success">A</span> <code>Wixo</code> means A <strong>wi</strong>ki theme for he<strong>xo</strong>.</p>
 <p><span class="label label-danger">Q</span> How to generate ToC(Table of Contents) in a certain page?</p>
@@ -75,7 +75,7 @@
     <link href="http://wiki.printf.me/2014/03/16/qna-cn/"/>
     <id>http://wiki.printf.me/2014/03/16/qna-cn/</id>
     <published>2014-03-16T18:10:16.000Z</published>
-    <updated>2015-03-10T18:58:57.000Z</updated>
+    <updated>2015-03-10T19:15:08.000Z</updated>
     <content type="html"><![CDATA[<p><span class="label label-danger">Q</span> <code>Wixo</code> 这名字有何含义？</p>
 <p><span class="label label-success">A</span> <code>Wixo</code> 意思是 A <strong>wi</strong>ki theme for he<strong>xo</strong> .</p>
 <p><span class="label label-danger">Q</span> 如何指定某些页面生成 ToC(Table of Contents) ？</p>
@@ -100,7 +100,7 @@
     <link href="http://wiki.printf.me/2014/03/16/tag-plugins/"/>
     <id>http://wiki.printf.me/2014/03/16/tag-plugins/</id>
     <published>2014-03-16T10:17:16.000Z</published>
-    <updated>2015-03-10T18:58:57.000Z</updated>
+    <updated>2015-03-10T19:15:08.000Z</updated>
     <content type="html"><![CDATA[<p>Like the <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> theme, you can use <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> to fully take advantages of Bootstrap. To use these tag plugins, you need to install it first. In your blog root folder, execute the following command:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></div></pre></td></tr></table></figure>
 
@@ -223,7 +223,7 @@
     <link href="http://wiki.printf.me/2014/03/16/tag-plugins-cn/"/>
     <id>http://wiki.printf.me/2014/03/16/tag-plugins-cn/</id>
     <published>2014-03-16T10:10:16.000Z</published>
-    <updated>2015-03-10T18:58:57.000Z</updated>
+    <updated>2015-03-10T19:15:08.000Z</updated>
     <content type="html"><![CDATA[<p>和 <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> 一样，你可以使用 <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> 来充分发挥 Bootstrap 的威力。在你的 Hexo 博客目录，执行下列命令：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></div></pre></td></tr></table></figure>
 
@@ -345,7 +345,7 @@
     <link href="http://wiki.printf.me/2014/03/15/code-highlight/"/>
     <id>http://wiki.printf.me/2014/03/15/code-highlight/</id>
     <published>2014-03-15T20:17:16.000Z</published>
-    <updated>2015-03-10T18:58:57.000Z</updated>
+    <updated>2015-03-10T19:15:08.000Z</updated>
     <content type="html"><![CDATA[<h2 id="C">C</h2>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// C</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></div><div class="line"><span class="keyword">int</span> main(<span class="keyword">void</span>)</div><div class="line">{</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World\n"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
 
@@ -413,7 +413,7 @@
     <link href="http://wiki.printf.me/2014/03/15/lorem-ipsum/"/>
     <id>http://wiki.printf.me/2014/03/15/lorem-ipsum/</id>
     <published>2014-03-15T20:17:16.000Z</published>
-    <updated>2015-03-10T18:58:57.000Z</updated>
+    <updated>2015-03-10T19:15:08.000Z</updated>
     <content type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <p><img src="/hexo-theme-wixo/images/lorem-ipsum/lorem-ipsum.jpg" alt="Lorem Ipsum"></p>
 <a id="more"></a>
@@ -435,7 +435,7 @@
     <link href="http://wiki.printf.me/2013/12/25/traditional-chinese-test/"/>
     <id>http://wiki.printf.me/2013/12/25/traditional-chinese-test/</id>
     <published>2013-12-25T21:17:16.000Z</published>
-    <updated>2015-03-10T18:58:57.000Z</updated>
+    <updated>2015-03-10T19:15:08.000Z</updated>
     <content type="html"><![CDATA[<p>觀自在菩薩，行深般若波羅蜜多時，照見五蘊皆空，度一切苦厄。</p>
 <p>舍利子，色不異空，空不異色；色即是空，空即是色。受、想、行、識，亦復如是。</p>
 <p>舍利子，是諸法空相，不生不滅，不垢不淨，不增不減，是故空中無色，無受、想、行、識；無眼、耳、鼻、舌、身、意；無色、聲、香、味、觸、法；無眼界，乃至無意識界；無無明，亦無無明盡；乃至無老死，亦無老死盡。無苦、集、滅、道，無智亦無得，以無所得故。</p>
@@ -463,7 +463,7 @@
     <link href="http://wiki.printf.me/2013/12/25/simplified-chinese-test/"/>
     <id>http://wiki.printf.me/2013/12/25/simplified-chinese-test/</id>
     <published>2013-12-25T20:17:16.000Z</published>
-    <updated>2015-03-10T18:58:57.000Z</updated>
+    <updated>2015-03-10T19:15:08.000Z</updated>
     <content type="html"><![CDATA[<p>观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。</p>
 <p>舍利子，色不异空，空不异色；色即是空，空即是色。受、想、行、识，亦复如是。</p>
 <p>舍利子，是诸法空相，不生不灭，不垢不净，不增不减，是故空中无色，无受、想、行、识；无眼、耳、鼻、舌、身、意；无色、声、香、味、触、法；无眼界，乃至无意识界；无无明，亦无无明尽；乃至无老死，亦无老死尽。无苦、集、灭、道，无智亦无得，以无所得故。</p>
