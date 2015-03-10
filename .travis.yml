@@ -21,13 +21,16 @@ branches:
     - source
 
 before_install:
-- npm install -g hexo
+- npm install -g hexo@2.8.3
 
 install:
+#- npm install hexo-renderer-ejs@0.1.0 --save
+#- npm install hexo-renderer-marked@0.1.0 --save
+#- npm install hexo-renderer-stylus@0.1.0 --save
+#- npm install hexo-generator-feed@0.2.1 --save
+#- npm install hexo-generator-sitemap@0.2.0 --save
+#- npm install hexo-tag-bootstrap@0.0.6 --save
 - npm install
-- npm install hexo-generator-feed 
-- npm install hexo-generator-sitemap
-- npm install hexo-tag-bootstrap --save
 
 
 script:
