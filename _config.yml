@@ -67,4 +67,6 @@ theme: wixo
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: github
+  repository: https://github.com/zhiyue/wiki.git
+  branch: master   
