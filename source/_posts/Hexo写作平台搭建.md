@@ -2,7 +2,6 @@ title: 搭建Hexo blog写作环境
 date: 2015-3-12 14:17:16
 categories: Hexo
 toc: true
-
 ---
 
 ## 首先你得有一个GitHub的账号 或者 单独购买一个VPS
