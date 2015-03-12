@@ -1,4 +1,4 @@
-title: Hexo写作平台搭建
+title: 搭建Hexo blog写作环境
 date: 2015-3-12 14:17:16
 categories: Hexo
 toc: true
