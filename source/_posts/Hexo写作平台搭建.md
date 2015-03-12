@@ -1,6 +1,6 @@
 title: 搭建Hexo blog写作环境
 date: 2015-3-12 14:17:16
-categories: Hexo
+categories: hexo
 toc: true
 ---
 
