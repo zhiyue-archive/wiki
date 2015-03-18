@@ -2,6 +2,7 @@ title: 搭建Hexo blog写作环境
 date: 2015-3-12 14:17:16
 categories: hexo
 toc: true
+
 ---
 
 2015-3-12 更新  完成使用GitHub搭建Hexo博客的记录
