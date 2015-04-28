@@ -4,7 +4,7 @@
   <subtitle><![CDATA[整理 记录 分享]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wiki.printf.me/"/>
-  <updated>2015-04-28T14:52:36.510Z</updated>
+  <updated>2015-04-28T18:08:01.125Z</updated>
   <id>http://wiki.printf.me/</id>
   
   <author>
@@ -18,8 +18,8 @@
     <title><![CDATA[mathjax]]></title>
     <link href="http://wiki.printf.me/2015/04/28/test-mathjax/"/>
     <id>http://wiki.printf.me/2015/04/28/test-mathjax/</id>
-    <published>2015-04-28T14:26:19.000Z</published>
-    <updated>2015-04-28T14:52:36.510Z</updated>
+    <published>2015-04-28T22:26:19.000Z</published>
+    <updated>2015-04-28T18:08:01.125Z</updated>
     <content type="html"><![CDATA[<p>$$<br>\frac{\partial u}{\partial t} = h^2 \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}\right)<br>$$</p>
 ]]></content>
     <summary type="html">
@@ -34,8 +34,8 @@
     <title><![CDATA[搭建Hexo blog写作环境]]></title>
     <link href="http://wiki.printf.me/2015/03/12/Hexo%E5%86%99%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/"/>
     <id>http://wiki.printf.me/2015/03/12/Hexo写作平台搭建/</id>
-    <published>2015-03-12T06:17:16.000Z</published>
-    <updated>2015-04-28T17:39:17.673Z</updated>
+    <published>2015-03-12T14:17:16.000Z</published>
+    <updated>2015-04-28T18:08:01.125Z</updated>
     <content type="html"><![CDATA[<p>2015-3-12 更新  完成使用GitHub搭建Hexo博客的记录</p>
 <hr>
 <h3 id="GitHub_篇"><strong>GitHub 篇</strong></h3><p>使用GitHub Pages 搭建 独立博客，就是利用GitHub上对于每个单独的项目都可以设置演示与介绍的页面，简单来说就是创立 <code>gh-pages</code> 的分支。</p>
@@ -90,8 +90,8 @@
     <title><![CDATA[hexo 多标签]]></title>
     <link href="http://wiki.printf.me/2014/06/09/hexo-%E5%A4%9A%E6%A0%87%E7%AD%BE/"/>
     <id>http://wiki.printf.me/2014/06/09/hexo-多标签/</id>
-    <published>2014-06-09T08:21:56.000Z</published>
-    <updated>2015-04-28T13:49:59.779Z</updated>
+    <published>2014-06-09T16:21:56.000Z</published>
+    <updated>2015-04-28T18:08:01.125Z</updated>
     <content type="html"><![CDATA[<p>刚开始使用hexo记录一下使用过程遇到的问题.<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用多标签要在括号内<span class="keyword">*</span><span class="keyword">*</span>[,]<span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line">在括号内用逗号分隔开.</span><br></pre></td></tr></table></figure></p>
 ]]></content>
     <summary type="html">
@@ -106,8 +106,8 @@
     <title><![CDATA[Questions and Answers]]></title>
     <link href="http://wiki.printf.me/2014/03/16/qna/"/>
     <id>http://wiki.printf.me/2014/03/16/qna/</id>
-    <published>2014-03-16T10:17:16.000Z</published>
-    <updated>2015-04-07T14:43:37.000Z</updated>
+    <published>2014-03-16T18:17:16.000Z</published>
+    <updated>2015-04-28T18:08:01.125Z</updated>
     <content type="html"><![CDATA[<p><span class="label label-danger">Q</span> What does <code>Wixo</code> stands for?</p>
 <p><span class="label label-success">A</span> <code>Wixo</code> means A <strong>wi</strong>ki theme for he<strong>xo</strong>.</p>
 <p><span class="label label-danger">Q</span> How to generate ToC(Table of Contents) in a certain page?</p>
@@ -131,8 +131,8 @@
     <title><![CDATA[Questions and Answers（中文）]]></title>
     <link href="http://wiki.printf.me/2014/03/16/qna-cn/"/>
     <id>http://wiki.printf.me/2014/03/16/qna-cn/</id>
-    <published>2014-03-16T10:10:16.000Z</published>
-    <updated>2015-04-07T14:43:37.000Z</updated>
+    <published>2014-03-16T18:10:16.000Z</published>
+    <updated>2015-04-28T18:08:01.125Z</updated>
     <content type="html"><![CDATA[<p><span class="label label-danger">Q</span> <code>Wixo</code> 这名字有何含义？</p>
 <p><span class="label label-success">A</span> <code>Wixo</code> 意思是 A <strong>wi</strong>ki theme for he<strong>xo</strong> 。</p>
 <p><span class="label label-danger">Q</span> 如何指定某些页面生成 ToC(Table of Contents) ？</p>
@@ -156,8 +156,8 @@
     <title><![CDATA[Tag Plugins]]></title>
     <link href="http://wiki.printf.me/2014/03/16/tag-plugins/"/>
     <id>http://wiki.printf.me/2014/03/16/tag-plugins/</id>
-    <published>2014-03-16T02:17:16.000Z</published>
-    <updated>2015-04-07T14:43:37.000Z</updated>
+    <published>2014-03-16T10:17:16.000Z</published>
+    <updated>2015-04-28T18:08:01.125Z</updated>
     <content type="html"><![CDATA[<p>Like the <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> theme, you can use <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> to fully take advantages of Bootstrap. To use these tag plugins, you need to install it first. In your blog root folder, execute the following command:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
 <p>Then you can use these tag plugins in your blog, as easily as you normally do using hexo tag plugins. </p>
@@ -242,8 +242,8 @@ Inserts alert messages with text and specified color.
     <title><![CDATA[Tag Plugins（中文）]]></title>
     <link href="http://wiki.printf.me/2014/03/16/tag-plugins-cn/"/>
     <id>http://wiki.printf.me/2014/03/16/tag-plugins-cn/</id>
-    <published>2014-03-16T02:10:16.000Z</published>
-    <updated>2015-04-28T15:56:58.793Z</updated>
+    <published>2014-03-16T10:10:16.000Z</published>
+    <updated>2015-04-28T18:08:01.125Z</updated>
     <content type="html"><![CDATA[<p>和 <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> 一样，你可以使用 <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> 来充分发挥 Bootstrap 的威力。在你的 Hexo 博客目录，执行下列命令：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
 <p>然后就可以像使用其他 hexo tag plugins 一样使用这些 Bootstrap tag plugins 了。</p>
@@ -303,8 +303,8 @@ Inserts alert messages with text and specified color.
     <title><![CDATA[Lorem Ipsum]]></title>
     <link href="http://wiki.printf.me/2014/03/15/lorem-ipsum/"/>
     <id>http://wiki.printf.me/2014/03/15/lorem-ipsum/</id>
-    <published>2014-03-15T12:17:16.000Z</published>
-    <updated>2015-04-07T14:43:37.000Z</updated>
+    <published>2014-03-15T20:17:16.000Z</published>
+    <updated>2015-04-28T18:08:01.125Z</updated>
     <content type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <p><img src="/hexo-theme-wixo/images/lorem-ipsum/lorem-ipsum.jpg" alt="Lorem Ipsum"></p>
 <a id="more"></a>
@@ -324,8 +324,8 @@ Inserts alert messages with text and specified color.
     <title><![CDATA[Code Highlight]]></title>
     <link href="http://wiki.printf.me/2014/03/15/code-highlight/"/>
     <id>http://wiki.printf.me/2014/03/15/code-highlight/</id>
-    <published>2014-03-15T12:17:16.000Z</published>
-    <updated>2015-04-07T14:43:37.000Z</updated>
+    <published>2014-03-15T20:17:16.000Z</published>
+    <updated>2015-04-28T18:08:01.125Z</updated>
     <content type="html"><![CDATA[<h2 id="C">C</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="C++">C++</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World"</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -357,8 +357,8 @@ Inserts alert messages with text and specified color.
     <title><![CDATA[繁體中文測試]]></title>
     <link href="http://wiki.printf.me/2013/12/25/traditional-chinese-test/"/>
     <id>http://wiki.printf.me/2013/12/25/traditional-chinese-test/</id>
-    <published>2013-12-25T13:17:16.000Z</published>
-    <updated>2015-04-07T14:43:37.000Z</updated>
+    <published>2013-12-25T21:17:16.000Z</published>
+    <updated>2015-04-28T18:08:01.125Z</updated>
     <content type="html"><![CDATA[<p>觀自在菩薩，行深般若波羅蜜多時，照見五蘊皆空，度一切苦厄。</p>
 <p>舍利子，色不異空，空不異色；色即是空，空即是色。受、想、行、識，亦復如是。</p>
 <p>舍利子，是諸法空相，不生不滅，不垢不淨，不增不減，是故空中無色，無受、想、行、識；無眼、耳、鼻、舌、身、意；無色、聲、香、味、觸、法；無眼界，乃至無意識界；無無明，亦無無明盡；乃至無老死，亦無老死盡。無苦、集、滅、道，無智亦無得，以無所得故。</p>
@@ -385,8 +385,8 @@ Inserts alert messages with text and specified color.
     <title><![CDATA[简体中文测试]]></title>
     <link href="http://wiki.printf.me/2013/12/25/simplified-chinese-test/"/>
     <id>http://wiki.printf.me/2013/12/25/simplified-chinese-test/</id>
-    <published>2013-12-25T12:17:16.000Z</published>
-    <updated>2015-04-07T14:43:37.000Z</updated>
+    <published>2013-12-25T20:17:16.000Z</published>
+    <updated>2015-04-28T18:08:01.125Z</updated>
     <content type="html"><![CDATA[<p>观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。</p>
 <p>舍利子，色不异空，空不异色；色即是空，空即是色。受、想、行、识，亦复如是。</p>
 <p>舍利子，是诸法空相，不生不灭，不垢不净，不增不减，是故空中无色，无受、想、行、识；无眼、耳、鼻、舌、身、意；无色、声、香、味、触、法；无眼界，乃至无意识界；无无明，亦无无明尽；乃至无老死，亦无老死尽。无苦、集、灭、道，无智亦无得，以无所得故。</p>
