@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Wiki]]></title>
+  <subtitle><![CDATA[整理 记录 分享]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://wiki.printf.me/"/>
+  <updated>2015-04-28T14:52:36.510Z</updated>
+  <id>http://wiki.printf.me/</id>
+  
+  <author>
+    <name><![CDATA[zhiyue]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[mathjax]]></title>
+    <link href="http://wiki.printf.me/2015/04/28/test-mathjax/"/>
+    <id>http://wiki.printf.me/2015/04/28/test-mathjax/</id>
+    <published>2015-04-28T14:26:19.000Z</published>
+    <updated>2015-04-28T14:52:36.510Z</updated>
+    <content type="html"><![CDATA[<p>$$<br>\frac{\partial u}{\partial t} = h^2 \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}\right)<br>$$</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>$$<br>\frac{\partial u}{\partial t} = h^2 \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2]]>
+    </summary>
+    
+      <category term="Tests" scheme="http://wiki.printf.me/categories/Tests/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[搭建Hexo blog写作环境]]></title>
+    <link href="http://wiki.printf.me/2015/03/12/Hexo%E5%86%99%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/"/>
+    <id>http://wiki.printf.me/2015/03/12/Hexo写作平台搭建/</id>
+    <published>2015-03-12T06:17:16.000Z</published>
+    <updated>2015-04-28T17:39:17.673Z</updated>
+    <content type="html"><![CDATA[<p>2015-3-12 更新  完成使用GitHub搭建Hexo博客的记录</p>
+<hr>
+<h3 id="GitHub_篇"><strong>GitHub 篇</strong></h3><p>使用GitHub Pages 搭建 独立博客，就是利用GitHub上对于每个单独的项目都可以设置演示与介绍的页面，简单来说就是创立 <code>gh-pages</code> 的分支。</p>
+<h3 id="首先你得有一个GitHub的账号">首先你得有一个GitHub的账号</h3><ul>
+<li>前往 <a href="https://github.com" target="_blank" rel="external">GitHub 官网地址</a>  注册一个账号 <ul>
+<li>创建一个<code>repo</code></li>
+<li>创建<code>gh-pages</code> branch</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="可以使用GitHub的二级域名_或者_购买一个域名">可以使用GitHub的二级域名 或者 购买一个域名</h3><ul>
+<li><p><a href="https://www.Godaddy.com" target="_blank" rel="external">Daddy</a> 购买域名</p>
+</li>
+<li><p><a href="https://www.dnspod.cn/" target="_blank" rel="external">dnspod</a> 解析域名</p>
+</li>
+</ul>
+<hr>
+<h3 id="在本地搭建_Hexo">在本地搭建 Hexo</h3><h4 id="搭建Git环境">搭建Git环境</h4><h4 id="搭建nodejs开发环境">搭建nodejs开发环境</h4><h4 id="安装Hexo">安装Hexo</h4><h4 id="安装Hexo_的主题">安装Hexo 的主题</h4><ul>
+<li>初始化blog目录 </li>
+</ul>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS I:\GitHub\diary&gt; hexo init</span><br><span class="line">[info] Copying data</span><br><span class="line">[info] You are almost done! Don't forget <span class="keyword">to</span> <span class="command">run</span> `npm install` <span class="keyword">before</span> you start blogging <span class="keyword">with</span> Hexo!</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载<code>Hexo</code>主题</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="string">I:</span>\GitHub\diary&gt; git clone <span class="string">https:</span><span class="comment">//github.com/iissnan/hexo-theme-next themes/next</span></span><br><span class="line">Cloning into <span class="string">'themes/next'</span>...</span><br><span class="line"><span class="string">remote:</span> Counting <span class="string">objects:</span> <span class="number">2190</span>, done.</span><br><span class="line"><span class="string">remote:</span> Compressing <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">110</span>/<span class="number">110</span>), done.</span><br><span class="line"><span class="string">rRemote:</span> Total <span class="number">2190</span> (delta <span class="number">50</span>), reused <span class="number">0</span> (delta <span class="number">0</span>), pack-reused <span class="number">2073</span></span><br><span class="line"> KiB/s</span><br><span class="line">Receiving <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">2190</span><span class="regexp">/2190), 4.98 MiB | 56.00 KiB/</span>s, done.</span><br><span class="line">Resolving <span class="string">deltas:</span> <span class="number">100</span>% (<span class="number">1145</span>/<span class="number">1145</span>), done.</span><br><span class="line">Checking connectivity... done.</span><br><span class="line">PS <span class="string">I:</span>\GitHub\diary&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置 <code>Hexo</code></li>
+</ul>
+<hr>
+<h3 id="结合_travis_自动生成网页文件">结合 travis 自动生成网页文件</h3><hr>
+<h3 id="结合prose-io_在线书写">结合prose.io 在线书写</h3><hr>
+<h3 id="结合koding-com_在线编译器_在线书写">结合koding.com 在线编译器 在线书写</h3><hr>
+<h3 id="VPS_篇"><strong>VPS 篇</strong></h3><p>待续。。。</p>
+<h3 id="更多：">更多：</h3><ul>
+<li><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/" target="_blank" rel="external">如何搭建一个独立博客——简明Github Pages与Hexo教程</a></li>
+<li><a href="https://github.com/hexojs/hexo/wiki/themes" target="_blank" rel="external">Hexo 主题目录</a></li>
+<li><a href="http://hexo.io/" target="_blank" rel="external">Hexo 官网</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>2015-3-12 更新  完成使用GitHub搭建Hexo博客的记录</p>
+<hr>
+<h3 id="GitHub_篇"><strong>GitHub 篇</strong></h3><p>使用GitHub Pages 搭建 独立博客，就是利用GitHub上对于每个单独的]]>
+    </summary>
+    
+      <category term="hexo" scheme="http://wiki.printf.me/categories/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[hexo 多标签]]></title>
+    <link href="http://wiki.printf.me/2014/06/09/hexo-%E5%A4%9A%E6%A0%87%E7%AD%BE/"/>
+    <id>http://wiki.printf.me/2014/06/09/hexo-多标签/</id>
+    <published>2014-06-09T08:21:56.000Z</published>
+    <updated>2015-04-28T13:49:59.779Z</updated>
+    <content type="html"><![CDATA[<p>刚开始使用hexo记录一下使用过程遇到的问题.<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用多标签要在括号内<span class="keyword">*</span><span class="keyword">*</span>[,]<span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line">在括号内用逗号分隔开.</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>刚开始使用hexo记录一下使用过程遇到的问题.<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span clas]]>
+    </summary>
+    
+      <category term="hexo" scheme="http://wiki.printf.me/categories/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Questions and Answers]]></title>
+    <link href="http://wiki.printf.me/2014/03/16/qna/"/>
+    <id>http://wiki.printf.me/2014/03/16/qna/</id>
+    <published>2014-03-16T10:17:16.000Z</published>
+    <updated>2015-04-07T14:43:37.000Z</updated>
+    <content type="html"><![CDATA[<p><span class="label label-danger">Q</span> What does <code>Wixo</code> stands for?</p>
+<p><span class="label label-success">A</span> <code>Wixo</code> means A <strong>wi</strong>ki theme for he<strong>xo</strong>.</p>
+<p><span class="label label-danger">Q</span> How to generate ToC(Table of Contents) in a certain page?</p>
+<p><span class="label label-success">A</span> Add <code>toc: true</code> in the <a href="https://github.com/wzpan/hexo-theme-freemind#front-matter" target="_blank" rel="external">front-matter</a>.</p>
+<p><span class="label label-danger">Q</span> Where can I find your markdown source files of these docs?</p>
+<p><span class="label label-success">A</span> In the <a href="https://github.com/wzpan/hexo-theme-wixo/tree/source" target="_blank" rel="external">source</a> branch.</p>
+<p><span class="label label-danger">Q</span> Why my boostrap tags always break lines? How to avoid that?</p>
+<p><span class="label label-success">A</span> The problem is due to the markdown settings. Try to disable the <code>breaks</code> config in your root _config.yml. <em>e.g.</em></p>
+<script src="https://gist.github.com/wzpan/9967986.js"></script>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><span class="label label-danger">Q</span> What does <code>Wixo</code> stands for?</p>
+<p><span class="label label-success">A</span> <code]]>
+    </summary>
+    
+      <category term="Docs" scheme="http://wiki.printf.me/categories/Docs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Questions and Answers（中文）]]></title>
+    <link href="http://wiki.printf.me/2014/03/16/qna-cn/"/>
+    <id>http://wiki.printf.me/2014/03/16/qna-cn/</id>
+    <published>2014-03-16T10:10:16.000Z</published>
+    <updated>2015-04-07T14:43:37.000Z</updated>
+    <content type="html"><![CDATA[<p><span class="label label-danger">Q</span> <code>Wixo</code> 这名字有何含义？</p>
+<p><span class="label label-success">A</span> <code>Wixo</code> 意思是 A <strong>wi</strong>ki theme for he<strong>xo</strong> 。</p>
+<p><span class="label label-danger">Q</span> 如何指定某些页面生成 ToC(Table of Contents) ？</p>
+<p><span class="label label-success">A</span> 在<a href="https://github.com/wzpan/hexo-theme-freemind#front-matter" target="_blank" rel="external">文章头部</a>添加 <code>toc: true</code> 。</p>
+<p><span class="label label-danger">Q</span> 从哪里可以找到你的这几篇文档的 Markdown 源码？</p>
+<p><span class="label label-success">A</span> 在项目的 <a href="https://github.com/wzpan/hexo-theme-wixo/tree/source" target="_blank" rel="external">source</a> 分支。</p>
+<p><span class="label label-danger">Q</span> 为啥我在插入 bootstrap 插件后总是自动折行？</p>
+<p><span class="label label-success">A</span> 这个问题是你的 Markdown 设置引起的。解决办法是在你的 Hexo 的 _config.yml 文件中禁用 Markdown 的 <code>breaks</code> 选项：</p>
+<script src="https://gist.github.com/wzpan/9967986.js"></script>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><span class="label label-danger">Q</span> <code>Wixo</code> 这名字有何含义？</p>
+<p><span class="label label-success">A</span> <code>Wixo</code> ]]>
+    </summary>
+    
+      <category term="Docs" scheme="http://wiki.printf.me/categories/Docs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Tag Plugins]]></title>
+    <link href="http://wiki.printf.me/2014/03/16/tag-plugins/"/>
+    <id>http://wiki.printf.me/2014/03/16/tag-plugins/</id>
+    <published>2014-03-16T02:17:16.000Z</published>
+    <updated>2015-04-07T14:43:37.000Z</updated>
+    <content type="html"><![CDATA[<p>Like the <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> theme, you can use <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> to fully take advantages of Bootstrap. To use these tag plugins, you need to install it first. In your blog root folder, execute the following command:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
+<p>Then you can use these tag plugins in your blog, as easily as you normally do using hexo tag plugins. </p>
+<a id="more"></a>
+<h2 id="Text_Color">Text Color</h2><p>Convey meaning through color with a handful of emphasis utility classes. These may also be applied to links and will darken on hover just like our default link styles.</p>
+<h3 id="Syntax">Syntax</h3><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% textcolor [style] <span class="variable">%&#125;</span></span><br><span class="line">  <span class="keyword">text</span> <span class="keyword">string</span></span><br><span class="line">&#123;% endtextcolor <span class="variable">%&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Examples">Examples</h3><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% textcolor muted <span class="variable">%&#125;</span>Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.&#123;% endtextcolor <span class="variable">%&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% textcolor primary <span class="variable">%&#125;</span>Nullam id dolor id nibh ultricies vehicula ut id elit.&#123;% endtextcolor <span class="variable">%&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% textcolor success <span class="variable">%&#125;</span>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.&#123;% endtextcolor <span class="variable">%&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% textcolor info <span class="variable">%&#125;</span>Maecenas sed diam eget risus varius blandit sit amet non magna.&#123;% endtextcolor <span class="variable">%&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% textcolor <span class="keyword">warning</span> <span class="variable">%&#125;</span>Etiam porta sem malesuada magna mollis euismod.&#123;% endtextcolor <span class="variable">%&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% textcolor danger <span class="variable">%&#125;</span>Donec ullamcorper nulla non metus auctor fringilla.&#123;% endtextcolor <span class="variable">%&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Results">Results</h3><p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+
+<p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+<p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+
+<p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+<p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
+
+<p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
+<h2 id="Buttons">Buttons</h2><p>Inserts a button with target links, text and specified color.</p>
+<h3 id="Syntax-1">Syntax</h3><figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">&#123;% btn url text <span class="collection">[style]</span> %&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Examples-1">Examples</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% btn <span class="string">http:</span><span class="comment">//hahack.com hahack %&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn <span class="string">http:</span><span class="comment">//hahack.com hahack primary %&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn <span class="string">http:</span><span class="comment">//hahack.com hahack success %&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn <span class="string">http:</span><span class="comment">//hahack.com hahack warning %&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn <span class="string">http:</span><span class="comment">//hahack.com hahack danger %&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn <span class="string">http:</span><span class="comment">//hahack.com hahack info %&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Results-1">Results</h3><a class="btn btn-default" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+<a class="btn btn-primary" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+<a class="btn btn-success" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+<a class="btn btn-warning" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+<a class="btn btn-danger" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+<a class="btn btn-info" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+<h2 id="Labels">Labels</h2><p>Inserts a label with text and specified color.</p>
+<h3 id="Syntax-2">Syntax</h3><figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">&#123;% label text <span class="collection">[style]</span> %&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Examples-2">Examples</h3><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="built_in">label</span> default <span class="envvar">%&#125;</span><br><span class="line"></span><br><span class="line">&#123;%</span> <span class="built_in">label</span> warinng warning <span class="envvar">%&#125;</span><br><span class="line"></span><br><span class="line">&#123;%</span> <span class="built_in">label</span> success success <span class="envvar">%&#125;</span><br><span class="line"></span><br><span class="line">&#123;%</span> <span class="built_in">label</span> danger danger <span class="envvar">%&#125;</span><br><span class="line"></span><br><span class="line">&#123;%</span> <span class="built_in">label</span> primary primary <span class="envvar">%&#125;</span><br><span class="line"></span><br><span class="line">&#123;%</span> <span class="built_in">label</span> info info %&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Results-2">Results</h3><span class="label label-default">default</span>
+<span class="label label-warning">warinng</span>
+<span class="label label-success">success</span>
+<span class="label label-danger">danger</span>
+<span class="label label-primary">primary</span>
+<span class="label label-info">info</span>
+<h2 id="Badges">Badges</h2><p>Inserts a badge with text.</p>
+<div class="alert alert-danger"><i class="fa fa-bug"></i>  Badges won't self collapse in Internet Explorer 8 because it lacks support for the `:empty` selector.</div>
+
+### Syntax ###
+
+<!--￼7-->
+
+### Examples ###
+
+<!--￼8-->
+
+### Results ###
+
+<span class="badge">42</span>
+
+## Alerts ##
+
+Inserts alert messages with text and specified color.
+
+### Syntax ###
+
+<!--￼9-->
+
+### Examples ###
+
+<!--￼10-->
+
+### Results ###
+
+<div class="alert alert-warning"><i class="fa fa-bell"></i>  Best check yo self, you're not looking too good.</div>
+<div class="alert alert-danger"><i class="fa fa-bug"></i>  Change a few things up and try submitting again.</div>
+
+<div class="alert alert-success"><i class="fa fa-lightbulb-o"></i>  You successfully read this important alert message.</div>
+<div class="alert alert-info"><i class="fa fa-info"></i>  This alert needs your attention, but it's not super important.</div>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Like the <a href="http://github.com/wzpan/hexo-theme-freemind">Freemind</a> theme, you can use <a href="https://github.com/wzpan/hexo-tag-bootstrap">hexo-tag-bootstrap</a> to fully take advantages of Bootstrap. To use these tag plugins, you need to install it first. In your blog root folder, execute the following command:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
+<p>Then you can use these tag plugins in your blog, as easily as you normally do using hexo tag plugins. </p>]]>
+    
+    </summary>
+    
+      <category term="Docs" scheme="http://wiki.printf.me/categories/Docs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Tag Plugins（中文）]]></title>
+    <link href="http://wiki.printf.me/2014/03/16/tag-plugins-cn/"/>
+    <id>http://wiki.printf.me/2014/03/16/tag-plugins-cn/</id>
+    <published>2014-03-16T02:10:16.000Z</published>
+    <updated>2015-04-28T15:56:58.793Z</updated>
+    <content type="html"><![CDATA[<p>和 <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> 一样，你可以使用 <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> 来充分发挥 Bootstrap 的威力。在你的 Hexo 博客目录，执行下列命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
+<p>然后就可以像使用其他 hexo tag plugins 一样使用这些 Bootstrap tag plugins 了。</p>
+<h2 id="文本颜色">文本颜色</h2><p>插入一段文本，并用特殊的颜色高亮它。</p>
+<h3 id="语法">语法</h3><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% textcolor [style] <span class="variable">%&#125;</span></span><br><span class="line">  <span class="keyword">text</span> <span class="keyword">string</span></span><br><span class="line">&#123;% endtextcolor <span class="variable">%&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="示例">示例</h3><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% textcolor muted <span class="variable">%&#125;</span>Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.&#123;% endtextcolor <span class="variable">%&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% textcolor primary <span class="variable">%&#125;</span>Nullam id dolor id nibh ultricies vehicula ut id elit.&#123;% endtextcolor <span class="variable">%&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% textcolor success <span class="variable">%&#125;</span>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.&#123;% endtextcolor <span class="variable">%&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% textcolor info <span class="variable">%&#125;</span>Maecenas sed diam eget risus varius blandit sit amet non magna.&#123;% endtextcolor <span class="variable">%&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% textcolor <span class="keyword">warning</span> <span class="variable">%&#125;</span>Etiam porta sem malesuada magna mollis euismod.&#123;% endtextcolor <span class="variable">%&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% textcolor danger <span class="variable">%&#125;</span>Donec ullamcorper nulla non metus auctor fringilla.&#123;% endtextcolor <span class="variable">%&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="结果">结果</h3><p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+
+<p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+<p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+
+<p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+<p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
+
+<p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
+<h2 id="按钮（Buttons）">按钮（Buttons）</h2><p>插入一个按钮，按钮可以带有链接、文本，并可以指定样式。</p>
+<h3 id="语法-1">语法</h3><figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">&#123;% btn url text <span class="collection">[style]</span> %&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="示例-1">示例</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% btn <span class="string">http:</span><span class="comment">//hahack.com hahack %&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn <span class="string">http:</span><span class="comment">//hahack.com hahack primary %&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn <span class="string">http:</span><span class="comment">//hahack.com hahack success %&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn <span class="string">http:</span><span class="comment">//hahack.com hahack warning %&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn <span class="string">http:</span><span class="comment">//hahack.com hahack danger %&#125;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn <span class="string">http:</span><span class="comment">//hahack.com hahack info %&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="结果-1">结果</h3><a class="btn btn-default" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+<a class="btn btn-primary" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+<a class="btn btn-success" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+<a class="btn btn-warning" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+<a class="btn btn-danger" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+<a class="btn btn-info" href="http://hahack.com" target="_blank" rel="external">hahack</a>
+<h2 id="标签（Labels）">标签（Labels）</h2><p>插入一个标签，并为其指定文本和样式。</p>
+<h3 id="语法-2">语法</h3><figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">&#123;% label text <span class="collection">[style]</span> %&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="示例-2">示例</h3><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="built_in">label</span> default <span class="envvar">%&#125;</span><br><span class="line"></span><br><span class="line">&#123;%</span> <span class="built_in">label</span> warinng warning <span class="envvar">%&#125;</span><br><span class="line"></span><br><span class="line">&#123;%</span> <span class="built_in">label</span> success success <span class="envvar">%&#125;</span><br><span class="line"></span><br><span class="line">&#123;%</span> <span class="built_in">label</span> danger danger <span class="envvar">%&#125;</span><br><span class="line"></span><br><span class="line">&#123;%</span> <span class="built_in">label</span> primary primary <span class="envvar">%&#125;</span><br><span class="line"></span><br><span class="line">&#123;%</span> <span class="built_in">label</span> info info %&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="结果-2">结果</h3><span class="label label-default">default</span>
+<span class="label label-warning">warinng</span>
+<span class="label label-success">success</span>
+<span class="label label-danger">danger</span>
+<span class="label label-primary">primary</span>
+<span class="label label-info">info</span>
+<h2 id="徽章（Badges）">徽章（Badges）</h2><p>插入一个徽章，并为其指定文本。</p>
+<h3 id="语法-3">语法</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="preprocessor">%</span> badge text <span class="preprocessor">%</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="示例-3">示例</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="preprocessor">%</span> badge <span class="number">42</span> <span class="preprocessor">%</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="结果-3">结果</h3><span class="badge">42</span>
+<h2 id="警报（Alerts）">警报（Alerts）</h2><p>插入一段警报文本信息，并为其指定样式。</p>
+<h3 id="语法-4">语法</h3><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% alert [style] <span class="variable">%&#125;</span></span><br><span class="line">   Alert <span class="keyword">string</span></span><br><span class="line">&#123;% endalert <span class="variable">%&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="示例-4">示例</h3><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;% alert warning %&#125;Best<span class="instruction"> check </span>yo self, you're<span class="instruction"> not </span>looking too good.&#123;% endalert %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% alert danger %&#125;Change a few things up<span class="instruction"> and </span>try submitting again.&#123;% endalert %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% alert success %&#125;You successfully read this important alert message.&#123;% endalert %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% alert info %&#125;This alert needs your attention, but it's<span class="instruction"> not </span>super important.&#123;% endalert %&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="结果-4">结果</h3><div class="alert alert-warning"><i class="fa fa-bell"></i>  Best check yo self, you're not looking too good.</div>
+
+<div class="alert alert-danger"><i class="fa fa-bug"></i>  Change a few things up and try submitting again.</div>
+<div class="alert alert-success"><i class="fa fa-lightbulb-o"></i>  You successfully read this important alert message.</div>
+
+<div class="alert alert-info"><i class="fa fa-info"></i>  This alert needs your attention, but it's not super important.</div>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>和 <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> 一样，你可以使用 <a href="https://github.com/]]>
+    </summary>
+    
+      <category term="Docs" scheme="http://wiki.printf.me/categories/Docs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Lorem Ipsum]]></title>
+    <link href="http://wiki.printf.me/2014/03/15/lorem-ipsum/"/>
+    <id>http://wiki.printf.me/2014/03/15/lorem-ipsum/</id>
+    <published>2014-03-15T12:17:16.000Z</published>
+    <updated>2015-04-07T14:43:37.000Z</updated>
+    <content type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p><img src="/hexo-theme-wixo/images/lorem-ipsum/lorem-ipsum.jpg" alt="Lorem Ipsum"></p>
+<a id="more"></a>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p><img src="/hexo-theme-wixo/images/lorem-ipsum/lorem-ipsum.jpg" alt="Lorem Ipsum"></p>]]>
+    
+    </summary>
+    
+      <category term="Tests" scheme="http://wiki.printf.me/categories/Tests/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Code Highlight]]></title>
+    <link href="http://wiki.printf.me/2014/03/15/code-highlight/"/>
+    <id>http://wiki.printf.me/2014/03/15/code-highlight/</id>
+    <published>2014-03-15T12:17:16.000Z</published>
+    <updated>2015-04-07T14:43:37.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="C">C</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="C++">C++</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World"</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="JAVA">JAVA</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">helloWorld</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello World"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Assembler">Assembler</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include &#60;stdio.h&#62;&#10;&#10;char format[] = &#34;%s %s\n&#34;;&#10;char hello[] = &#34;Hello&#34;;&#10;char world[] = &#34;world&#34;;&#10;void main( void )&#10;&#123;&#10;   __asm&#10;   &#123;&#10;      mov  eax, offset world&#10;      push eax&#10;      mov  eax, offset hello&#10;      push eax&#10;      mov  eax, offset format&#10;      push eax&#10;      call printf&#10;      pop  ebx&#10;      pop  ebx&#10;      pop  ebx&#10;   &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="C#">C#</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// Hello World .NET&#10;&#10;#using &#60;mscorlib.dll&#62;&#10;using namespace System;&#10;&#10;int _tmain()&#10;&#123;&#10;    Console::WriteLine(S&#34;Hello World&#34;);&#10;    return 0;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Erlang">Erlang</h2><figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="pp"><span class="keyword">-module</span><span class="params">(hello)</span></span>.</span><br><span class="line"><span class="pp"><span class="keyword">-export</span><span class="params">([world/<span class="number">0</span>])</span></span>.</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">world</span><span class="params">()</span> -&gt;</span> <span class="function_name">io:format</span>(<span class="string">"Hello World"</span>).</span><br></pre></td></tr></table></figure>
+<h2 id="Ruby">Ruby</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/local/bin/ruby -w</span></span><br><span class="line">puts <span class="string">"Hello World"</span></span><br></pre></td></tr></table></figure>
+<h2 id="BASIC">BASIC</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// Texas Instruments TI-81 BASIC&#10;Prgm1:HELLO...&#10;:Disp &#34;HELLO WORLD&#34;</span><br></pre></td></tr></table></figure>
+<h2 id="Perl">Perl</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin perl -w  </span></span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Hello World"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="Python">Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/python</span></span><br><span class="line">print(<span class="string">"Hello World"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Bash">Bash</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Hello World"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Brainfuck">Brainfuck</h2><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span><span class="title">]</span>&lt;<span class="string">.</span>&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span><span class="title">]</span>&lt;<span class="literal">+</span><span class="string">.</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="string">.</span><span class="string">.</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="string">.</span><span class="title">[</span><span class="literal">-</span><span class="title">]</span></span><br><span class="line">&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span><span class="title">]</span> &lt;<span class="string">.</span>&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span><span class="title">]</span>&lt;<span class="literal">-</span><span class="string">.</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="string">.</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span></span><br><span class="line"><span class="string">.</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="string">.</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="string">.</span><span class="title">[</span><span class="literal">-</span><span class="title">]</span>&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span> <span class="title">]</span>&lt;<span class="literal">+</span><span class="string">.</span><span class="title">[</span><span class="literal">-</span><span class="title">]</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="string">.</span></span><br></pre></td></tr></table></figure>
+<h2 id="php">php</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?</span>=<span class="string">"Hello world\n"</span> <span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Pascal">Pascal</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Program HelloWorld;&#10;&#10;Begin&#10;  Writeln (&#39;Hello World!&#39;);&#10;End.</span><br></pre></td></tr></table></figure>
+<h2 id="Delphi">Delphi</h2><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Delphi, thanks to C0derr</span></span><br><span class="line"><span class="keyword">program</span> Project1;</span><br><span class="line"><span class="keyword">uses</span></span><br><span class="line">  qdialogs;</span><br><span class="line"><span class="keyword">const</span></span><br><span class="line">  s=<span class="string">'Hello, World!'</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  showmessage(s);</span><br><span class="line"><span class="keyword">end</span>.</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="C">C</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="C++">C++</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World"</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]>
+    
+    </summary>
+    
+      <category term="Tests" scheme="http://wiki.printf.me/categories/Tests/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[繁體中文測試]]></title>
+    <link href="http://wiki.printf.me/2013/12/25/traditional-chinese-test/"/>
+    <id>http://wiki.printf.me/2013/12/25/traditional-chinese-test/</id>
+    <published>2013-12-25T13:17:16.000Z</published>
+    <updated>2015-04-07T14:43:37.000Z</updated>
+    <content type="html"><![CDATA[<p>觀自在菩薩，行深般若波羅蜜多時，照見五蘊皆空，度一切苦厄。</p>
+<p>舍利子，色不異空，空不異色；色即是空，空即是色。受、想、行、識，亦復如是。</p>
+<p>舍利子，是諸法空相，不生不滅，不垢不淨，不增不減，是故空中無色，無受、想、行、識；無眼、耳、鼻、舌、身、意；無色、聲、香、味、觸、法；無眼界，乃至無意識界；無無明，亦無無明盡；乃至無老死，亦無老死盡。無苦、集、滅、道，無智亦無得，以無所得故。</p>
+<p>菩提薩埵(<code>duǒ</code>)，依般若波羅蜜多故，心無罣礙(<code>guà ài</code>)。無罣礙，故無有恐怖，遠離顛倒夢想，究竟涅槃。三世諸佛，依般若波羅蜜多故，得阿耨多羅三藐三菩提。<a id="more"></a></p>
+<p>故知般若波羅蜜多，是大神咒，是大明咒，是無上咒，是無等等咒，能除一切苦，真實不虛。</p>
+<p>故說般若波羅蜜多咒，即說咒曰：</p>
+<blockquote>
+<p>揭諦、揭諦，波羅揭諦，波羅僧揭諦，菩提薩婆訶。</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>觀自在菩薩，行深般若波羅蜜多時，照見五蘊皆空，度一切苦厄。</p>
+<p>舍利子，色不異空，空不異色；色即是空，空即是色。受、想、行、識，亦復如是。</p>
+<p>舍利子，是諸法空相，不生不滅，不垢不淨，不增不減，是故空中無色，無受、想、行、識；無眼、耳、鼻、舌、身、意；無色、聲、香、味、觸、法；無眼界，乃至無意識界；無無明，亦無無明盡；乃至無老死，亦無老死盡。無苦、集、滅、道，無智亦無得，以無所得故。</p>
+<p>菩提薩埵(<code>duǒ</code>)，依般若波羅蜜多故，心無罣礙(<code>guà ài</code>)。無罣礙，故無有恐怖，遠離顛倒夢想，究竟涅槃。三世諸佛，依般若波羅蜜多故，得阿耨多羅三藐三菩提。]]>
+    
+    </summary>
+    
+      <category term="Tests" scheme="http://wiki.printf.me/categories/Tests/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[简体中文测试]]></title>
+    <link href="http://wiki.printf.me/2013/12/25/simplified-chinese-test/"/>
+    <id>http://wiki.printf.me/2013/12/25/simplified-chinese-test/</id>
+    <published>2013-12-25T12:17:16.000Z</published>
+    <updated>2015-04-07T14:43:37.000Z</updated>
+    <content type="html"><![CDATA[<p>观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。</p>
+<p>舍利子，色不异空，空不异色；色即是空，空即是色。受、想、行、识，亦复如是。</p>
+<p>舍利子，是诸法空相，不生不灭，不垢不净，不增不减，是故空中无色，无受、想、行、识；无眼、耳、鼻、舌、身、意；无色、声、香、味、触、法；无眼界，乃至无意识界；无无明，亦无无明尽；乃至无老死，亦无老死尽。无苦、集、灭、道，无智亦无得，以无所得故。</p>
+<p>菩提萨埵(<code>duǒ</code>)，依般若波罗蜜多故，心无罣碍(<code>guà ài</code>)。无罣碍，故无有恐怖，远离颠倒梦想，究竟涅盘。三世诸佛，依般若波罗蜜多故，得阿耨多罗三藐三菩提。<a id="more"></a></p>
+<p>故知般若波罗蜜多，大神咒，是大明咒，是无上咒，是无等等咒，能除一切苦，真实不虚。</p>
+<p>故说般若波罗蜜多咒， 即说咒曰，</p>
+<blockquote>
+<p>揭谛揭谛 波罗揭谛 波罗僧揭谛 菩提萨婆诃</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。</p>
+<p>舍利子，色不异空，空不异色；色即是空，空即是色。受、想、行、识，亦复如是。</p>
+<p>舍利子，是诸法空相，不生不灭，不垢不净，不增不减，是故空中无色，无受、想、行、识；无眼、耳、鼻、舌、身、意；无色、声、香、味、触、法；无眼界，乃至无意识界；无无明，亦无无明尽；乃至无老死，亦无老死尽。无苦、集、灭、道，无智亦无得，以无所得故。</p>
+<p>菩提萨埵(<code>duǒ</code>)，依般若波罗蜜多故，心无罣碍(<code>guà ài</code>)。无罣碍，故无有恐怖，远离颠倒梦想，究竟涅盘。三世诸佛，依般若波罗蜜多故，得阿耨多罗三藐三菩提。]]>
+    
+    </summary>
+    
+      <category term="Tests" scheme="http://wiki.printf.me/categories/Tests/"/>
+    
+  </entry>
+  
+</feed>

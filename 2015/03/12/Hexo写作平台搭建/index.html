@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>搭建Hexo blog写作环境 | Wiki</title>
+  <meta name="author" content="zhiyue">
+  
+  <meta name="description" content="整理 记录 分享">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="搭建Hexo blog写作环境"/>
+  <meta property="og:site_name" content="Wiki"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Wiki" type="application/atom+xml">
+  
+  
+    <link href="/favicon.ico" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">Wiki</a><span class="split"></span><span class="title">搭建Hexo blog写作环境</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2015-03-12</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  <div class="col-xs-12 col-sm-3 col-md-3 toc"> 
+	<!-- toc -->
+<script type="text/javascript">
+		jQuery(document).ready(function() {
+ 		   generateWikiTOC('.note', '.toc',  2 , 2 );
+		});
+</script>
+  </div><!-- col-md-3 -->
+  
+  
+
+  
+  <div class="col-xs-12 col-sm-9 col-md-9 note">
+	
+
+	  <!-- content -->
+	  <p>2015-3-12 更新  完成使用GitHub搭建Hexo博客的记录</p>
+<hr>
+<h3 id="GitHub_篇"><strong>GitHub 篇</strong></h3><p>使用GitHub Pages 搭建 独立博客，就是利用GitHub上对于每个单独的项目都可以设置演示与介绍的页面，简单来说就是创立 <code>gh-pages</code> 的分支。</p>
+<h3 id="首先你得有一个GitHub的账号">首先你得有一个GitHub的账号</h3><ul>
+<li>前往 <a href="https://github.com" target="_blank" rel="external">GitHub 官网地址</a>  注册一个账号 <ul>
+<li>创建一个<code>repo</code></li>
+<li>创建<code>gh-pages</code> branch</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="可以使用GitHub的二级域名_或者_购买一个域名">可以使用GitHub的二级域名 或者 购买一个域名</h3><ul>
+<li><p><a href="https://www.Godaddy.com" target="_blank" rel="external">Daddy</a> 购买域名</p>
+</li>
+<li><p><a href="https://www.dnspod.cn/" target="_blank" rel="external">dnspod</a> 解析域名</p>
+</li>
+</ul>
+<hr>
+<h3 id="在本地搭建_Hexo">在本地搭建 Hexo</h3><h4 id="搭建Git环境">搭建Git环境</h4><h4 id="搭建nodejs开发环境">搭建nodejs开发环境</h4><h4 id="安装Hexo">安装Hexo</h4><h4 id="安装Hexo_的主题">安装Hexo 的主题</h4><ul>
+<li>初始化blog目录 </li>
+</ul>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS I:\GitHub\diary&gt; hexo init</span><br><span class="line">[info] Copying data</span><br><span class="line">[info] You are almost done! Don't forget <span class="keyword">to</span> <span class="command">run</span> `npm install` <span class="keyword">before</span> you start blogging <span class="keyword">with</span> Hexo!</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载<code>Hexo</code>主题</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="string">I:</span>\GitHub\diary&gt; git clone <span class="string">https:</span><span class="comment">//github.com/iissnan/hexo-theme-next themes/next</span></span><br><span class="line">Cloning into <span class="string">'themes/next'</span>...</span><br><span class="line"><span class="string">remote:</span> Counting <span class="string">objects:</span> <span class="number">2190</span>, done.</span><br><span class="line"><span class="string">remote:</span> Compressing <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">110</span>/<span class="number">110</span>), done.</span><br><span class="line"><span class="string">rRemote:</span> Total <span class="number">2190</span> (delta <span class="number">50</span>), reused <span class="number">0</span> (delta <span class="number">0</span>), pack-reused <span class="number">2073</span></span><br><span class="line"> KiB/s</span><br><span class="line">Receiving <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">2190</span><span class="regexp">/2190), 4.98 MiB | 56.00 KiB/</span>s, done.</span><br><span class="line">Resolving <span class="string">deltas:</span> <span class="number">100</span>% (<span class="number">1145</span>/<span class="number">1145</span>), done.</span><br><span class="line">Checking connectivity... done.</span><br><span class="line">PS <span class="string">I:</span>\GitHub\diary&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置 <code>Hexo</code></li>
+</ul>
+<hr>
+<h3 id="结合_travis_自动生成网页文件">结合 travis 自动生成网页文件</h3><hr>
+<h3 id="结合prose-io_在线书写">结合prose.io 在线书写</h3><hr>
+<h3 id="结合koding-com_在线编译器_在线书写">结合koding.com 在线编译器 在线书写</h3><hr>
+<h3 id="VPS_篇"><strong>VPS 篇</strong></h3><p>待续。。。</p>
+<h3 id="更多：">更多：</h3><ul>
+<li><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/" target="_blank" rel="external">如何搭建一个独立博客——简明Github Pages与Hexo教程</a></li>
+<li><a href="https://github.com/hexojs/hexo/wiki/themes" target="_blank" rel="external">Hexo 主题目录</a></li>
+<li><a href="http://hexo.io/" target="_blank" rel="external">Hexo 官网</a></li>
+</ul>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+		<li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2014/06/09/hexo-多标签/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2015 zhiyue
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
