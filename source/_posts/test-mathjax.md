@@ -1,4 +1,4 @@
-title: test_mathjax
+title: mathjax
 date: 2015-04-28 22:26:19
 categories: Tests
 ---
