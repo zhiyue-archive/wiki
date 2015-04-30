@@ -1,6 +1,6 @@
-title: 'hexo 多标签'
+title: 'Hexo 多标签'
 date: 2014-06-09 16:21:56
-categories: hexo
+categories: Hexo
 ---
 
 刚开始使用hexo记录一下使用过程遇到的问题.
