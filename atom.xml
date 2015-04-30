@@ -4,7 +4,7 @@
   <subtitle><![CDATA[整理 记录 分享]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wiki.printf.me/"/>
-  <updated>2015-04-28T18:08:01.125Z</updated>
+  <updated>2015-04-30T16:27:41.460Z</updated>
   <id>http://wiki.printf.me/</id>
   
   <author>
@@ -15,11 +15,244 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Hexo搭建Wiki]]></title>
+    <link href="http://wiki.printf.me/2015/04/30/Hexo%E6%90%AD%E5%BB%BAWiki/"/>
+    <id>http://wiki.printf.me/2015/04/30/Hexo搭建Wiki/</id>
+    <published>2015-04-30T04:09:41.000Z</published>
+    <updated>2015-04-30T16:27:41.460Z</updated>
+    <content type="html"><![CDATA[<ul>
+<li>2015-4-30 第一次编写</li>
+</ul>
+<hr>
+<p><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/Hexo.png" alt="此处输入图片的描述"></p>
+<h2 id="0x01准备：">0x01准备：</h2><ol>
+<li><a href="http://twitter.com/tommy351" target="_blank" rel="external">tommy351</a>编写的静态博客框架<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>（目前版本是3.0.x）</li>
+<li><a href="https://github.com/wzpan/hexo-theme-wixo/" target="_blank" rel="external">Wixo</a>的主题</li>
+<li>GitHub的repos的gh-pages 分支放置wiki，托管于GitHub的Pages服务上</li>
+<li>源码放置在Github同一个repos下的source分支下进行版本管理</li>
+<li><a href="https://travis-ci.org/" target="_blank" rel="external">Travis CI</a>自动化测试框架自动编译网站</li>
+</ol>
+<a id="more"></a>
+<h2 id="0x02过程：">0x02过程：</h2><h3 id="安装NodeJs">安装NodeJs</h3><p><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/NodeJs.png" alt="此处输入图片的描述"><br>因为Hexo是使用Nodejs编写的，所以需要部署NodeJs的环境</p>
+<ul>
+<li><a href="https://nodejs.org/" target="_blank" rel="external">下载nodejs</a></li>
+</ul>
+<p>Windows 可以直接下载到安装包安装即可，其它系统稍后补充</p>
+<h3 id="安装Hexo(3-x以上)">安装Hexo(3.x以上)</h3><h4 id="安装hexo-cli">安装hexo-cli</h4><pre><code>$ npm install hexo-<span class="keyword">cli</span> -<span class="keyword">g</span>
+</code></pre><p>3.x以上版本相比2.x以下版本使用上有差别，3.x版本模块化程度较高，你可以不用经常更新hexo-cli，但是多个hexo版本可以共存</p>
+<h4 id="初始化目录">初始化目录</h4><pre><code><span class="variable">$ </span>hexo init <span class="constant">Wiki</span>
+</code></pre><blockquote>
+<p>PS I:> hexo init Wiki<br>    INFO  Copying data to I:\Wiki<br>    INFO  You are almost done! Don’t forget to run ‘npm install’ before you start blogging with Hexo!</p>
+</blockquote>
+<p>这样就会建立一个Wiki的文件夹，在文件夹里已经做了一些初始化的工作:</p>
+<ul>
+<li>目录结构：<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">-</span><span class="literal">-</span> <span class="comment">wiki</span></span><br><span class="line">    <span class="comment">|</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">scaffolds</span>           <span class="comment">#工具模板</span></span><br><span class="line">    <span class="comment">|</span>       <span class="comment">|</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">draft</span><span class="string">.</span><span class="comment">md</span></span><br><span class="line">    <span class="comment">|</span>       <span class="comment">|</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">page</span><span class="string">.</span><span class="comment">md</span></span><br><span class="line">    <span class="comment">|</span>       <span class="comment">|</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">post</span><span class="string">.</span><span class="comment">md</span></span><br><span class="line">    <span class="comment">|</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">source</span></span><br><span class="line">    <span class="comment">|</span>   <span class="comment">|</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">_posts</span>          <span class="comment">#文章文件夹</span></span><br><span class="line">    <span class="comment">|</span>         <span class="comment">|</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">hello</span><span class="literal">-</span><span class="comment">world</span><span class="string">.</span><span class="comment">md</span></span><br><span class="line">    <span class="comment">|</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">themes</span>              <span class="comment">#主题文件夹</span></span><br><span class="line">    <span class="comment">|</span>     <span class="comment">|</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">landscape</span>     <span class="comment">#</span> <span class="comment">默认主题文件夹</span></span><br><span class="line">    <span class="comment">|</span><span class="literal">-</span><span class="literal">-</span> <span class="string">.</span><span class="comment">gitignore</span></span><br><span class="line">    <span class="comment">|</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">_config</span><span class="string">.</span><span class="comment">yml</span>         <span class="comment">#全局配置文件</span></span><br><span class="line">    <span class="comment">|</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">package</span><span class="string">.</span><span class="comment">json</span>        <span class="comment">#插件的配置，使用npm</span> <span class="comment">install</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">save</span> <span class="comment">会写入这里</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>另外还有<code>source/_drafts</code>存放的是草稿</p>
+<h4 id="安装_Hexo">安装 Hexo</h4><p>切到Wiki目录下，然后安装指定版本的Hexo &gt; 3.0</p>
+<pre><code>$ npm <span class="operator"><span class="keyword">install</span> hexo <span class="comment">--save</span></span>
+</code></pre><p><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/hexo_install.png" alt="此处输入图片的描述"><br>然后，安装相关默认的npm插件</p>
+<pre><code>$ npm <span class="keyword">install</span> 
+</code></pre><p><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/npm_install.png" alt="此处输入图片的描述"></p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">hexo-<span class="keyword">renderer</span>-ejs<span class="variable">@0</span>.1.0 node_modules\hexo-<span class="keyword">renderer</span>-ejs</span><br><span class="line">├── ejs<span class="variable">@1</span>.0.0</span><br><span class="line">└── lodash<span class="variable">@2</span>.4.2</span><br><span class="line"></span><br><span class="line">hexo-generator-index<span class="variable">@0</span>.1.1 node_modules\hexo-generator-index</span><br><span class="line">├── object-assign<span class="variable">@2</span>.0.0</span><br><span class="line">└── hexo-pagination<span class="variable">@0</span>.0.2 (utils-merge<span class="variable">@1</span>.0.0)</span><br><span class="line"></span><br><span class="line">hexo-generator-tag<span class="variable">@0</span>.1.1 node_modules\hexo-generator-tag</span><br><span class="line">├── object-assign<span class="variable">@2</span>.0.0</span><br><span class="line">└── hexo-pagination<span class="variable">@0</span>.0.2 (utils-merge<span class="variable">@1</span>.0.0)</span><br><span class="line"></span><br><span class="line">hexo-generator-category<span class="variable">@0</span>.1.2 node_modules\hexo-generator-category</span><br><span class="line">├── object-assign<span class="variable">@2</span>.0.0</span><br><span class="line">└── hexo-pagination<span class="variable">@0</span>.0.2 (utils-merge<span class="variable">@1</span>.0.0)</span><br><span class="line"></span><br><span class="line">hexo-generator-archive<span class="variable">@0</span>.1.2 node_modules\hexo-generator-archive</span><br><span class="line">├── object-assign<span class="variable">@2</span>.0.0</span><br><span class="line">└── hexo-pagination<span class="variable">@0</span>.0.2 (utils-merge<span class="variable">@1</span>.0.0)</span><br><span class="line"></span><br><span class="line">hexo-<span class="keyword">renderer</span>-marked<span class="variable">@0</span>.2.5 node_modules\hexo-<span class="keyword">renderer</span>-marked</span><br><span class="line">├── object-assign<span class="variable">@2</span>.0.0</span><br><span class="line">├── marked<span class="variable">@0</span>.3.3</span><br><span class="line">├── <span class="keyword">strip</span>-indent<span class="variable">@1</span>.0.1 (get-stdin<span class="variable">@4</span>.0.1)</span><br><span class="line">└── hexo-util<span class="variable">@0</span>.1.6 (ent<span class="variable">@2</span>.2.0, bluebird<span class="variable">@2</span>.9.25, highlight.js<span class="variable">@8</span>.5.0)</span><br><span class="line"></span><br><span class="line">hexo-<span class="keyword">renderer</span>-stylus<span class="variable">@0</span>.2.3 node_modules\hexo-<span class="keyword">renderer</span>-stylus</span><br><span class="line">├── stylus<span class="variable">@0</span>.50.0 (css-parse<span class="variable">@1</span>.7.0, mkdirp<span class="variable">@0</span>.3.5, sax<span class="variable">@0</span>.5.8, <span class="keyword">source</span>-map<span class="variable">@0</span>.1.43, debug<span class="variable">@2</span>.1.3, glob<span class="variable">@3</span>.2.11)</span><br><span class="line">└── nib<span class="variable">@1</span>.1.0 (stylus<span class="variable">@0</span>.49.3)</span><br><span class="line"></span><br><span class="line">hexo-server<span class="variable">@0</span>.1.2 node_modules\hexo-server</span><br><span class="line">├── object-assign<span class="variable">@2</span>.0.0</span><br><span class="line">├── open<span class="variable">@0</span>.0.5</span><br><span class="line">├── mime<span class="variable">@1</span>.3.4</span><br><span class="line">├── bluebird<span class="variable">@2</span>.9.25</span><br><span class="line">├── chalk<span class="variable">@0</span>.5.1 (ansi-styles<span class="variable">@1</span>.1.0, escape-<span class="keyword">string</span>-regexp<span class="variable">@1</span>.0.3, supports-<span class="keyword">color</span><span class="variable">@0</span>.2.0, <span class="keyword">strip</span>-ansi<span class="variable">@0</span>.3.0, has-ansi<span class="variable">@0</span>.1.0)</span><br><span class="line">├── compression<span class="variable">@1</span>.4.3 (vary<span class="variable">@1</span>.0.0, on-headers<span class="variable">@1</span>.0.0, bytes<span class="variable">@1</span>.0.0, debug<span class="variable">@2</span>.1.3, compressible<span class="variable">@2</span>.0.2, accepts<span class="variable">@1</span>.2.5)</span><br><span class="line">├── morgan<span class="variable">@1</span>.5.2 (basic-auth<span class="variable">@1</span>.0.0, depd<span class="variable">@1</span>.0.1, debug<span class="variable">@2</span>.1.3, on-finished<span class="variable">@2</span>.2.1)</span><br><span class="line">├── connect<span class="variable">@3</span>.3.5 (utils-merge<span class="variable">@1</span>.0.0, parseurl<span class="variable">@1</span>.3.0, debug<span class="variable">@2</span>.1.3, finalhandler<span class="variable">@0</span>.3.4)</span><br><span class="line">└── serve-static<span class="variable">@1</span>.9.2 (utils-merge<span class="variable">@1</span>.0.0, escape-html<span class="variable">@1</span>.0.1, parseurl<span class="variable">@1</span>.3.0, send<span class="variable">@0</span>.12.2)</span><br></pre></td></tr></table></figure>
+<p>默认安装了：</p>
+<ul>
+<li><a href="https://github.com/hexojs/hexo-renderer-ejs" target="_blank" rel="external">hexo-renderer-ejs</a>   <a href="https://github.com/tj/ejs" target="_blank" rel="external">EJS</a>渲染器</li>
+<li><a href="https://github.com/hexojs/hexo-generator-index" target="_blank" rel="external">hexo-generator-index</a>   用来配置每页展示文章的数目</li>
+<li><a href="https://github.com/hexojs/hexo-generator-tagtps://github.com/hexojs/hexo-generator-index" target="_blank" rel="external">hexo-generator-tag</a> 标签生成</li>
+<li><a href="https://github.com/hexojs/hexo-generator-categoryr-tagtps://github.com/hexojs/hexo-generator-index" target="_blank" rel="external">hexo-generator-category</a> 目录生成</li>
+<li><a href="https://github.com/hexojs/hexo-generator-archive" target="_blank" rel="external">hexo-generator-archive</a> 文章生成</li>
+<li><a href="https://github.com/hexojs/hexo-renderer-marked" target="_blank" rel="external">hexo-renderer-marked</a> markdown 渲染器</li>
+<li><a href="https://github.com/hexojs/hexo-renderer-stylus" target="_blank" rel="external">hexo-renderer-stylus</a> CSS渲染器</li>
+<li><a href="https://github.com/hexojs/hexo-server" target="_blank" rel="external">hexo-server</a> Server module for Hexo</li>
+</ul>
+<p>安装其他常用的插件：</p>
+<pre><code>$ npm <span class="operator"><span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span>
+$ npm <span class="keyword">install</span> hexo-generator-feed@<span class="number">1</span> <span class="comment">--save</span>
+$ npm <span class="keyword">install</span> hexo-generator-sitemap@<span class="number">1</span> <span class="comment">--save</span>
+$ npm <span class="keyword">install</span> hexo-fs <span class="comment">--save</span>
+$ npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="comment">--save</span></span>
+</code></pre><ul>
+<li><p><a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="external">hexo-deployer-git</a> </p>
+<blockquote>
+<p>Git deployer plugin for Hexo.</p>
+</blockquote>
+</li>
+<li><p><a href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="external">hexo-generator-feed</a></p>
+<blockquote>
+<p>Feed generator for Hexo.</p>
+</blockquote>
+</li>
+<li><p><a href="https://github.com/hexojs/hexo-generator-sitemap" target="_blank" rel="external">hexo-generator-sitemap</a></p>
+<blockquote>
+<p>Sitemap generator for Hexo</p>
+</blockquote>
+</li>
+<li><p><a href="https://github.com/hexojs/hexo-fs" target="_blank" rel="external">hexo-fs</a></p>
+<blockquote>
+<p>文件 IO 为了要使用mathjax模块</p>
+</blockquote>
+</li>
+<li><p><a href="https://github.com/phoenixcw/hexo-renderer-mathjax" target="_blank" rel="external">hexo-renderer-mathjax</a></p>
+<blockquote>
+<p>Add support of MathJax for Hexo.</p>
+</blockquote>
+</li>
+</ul>
+<p>更多的插件参见<a href="http://hexo.io/plugins/" target="_blank" rel="external">官网插件列表</a> 或者 <a href="https://github.com/hexojs/hexo/wiki/Plugins" target="_blank" rel="external">Github上的列表</a></p>
+<h3 id="配置_Hexo">配置 Hexo</h3><p> 初始化目录</p>
+<pre><code><span class="variable">$ </span>git init
+</code></pre><p>创建<code>source</code>分支</p>
+<pre><code>$ git checkout -<span class="tag">b</span> source
+</code></pre><h4 id="安装与配置主题">　安装与配置主题</h4><ul>
+<li>fork 主题</li>
+</ul>
+<p>从<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">主题列表</a> 挑选自己喜欢的主题,然后fork到自己的repos，这里使用的是Wiki主题Wixo</p>
+<blockquote>
+<p>wiki for hexo </p>
+</blockquote>
+<p>选取 w i x o</p>
+<ul>
+<li>修改主题配置文件</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd .. <span class="comment">#切换到上级目录</span></span><br><span class="line"><span class="variable">$ </span>git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/zhiyue</span><span class="regexp">/hexo-theme-wixo themes/wixo</span></span><br></pre></td></tr></table></figure>
+<p>修改完成后再push上GitHub上</p>
+<ul>
+<li>下载主题</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd <span class="constant">Wiki </span>    <span class="comment">#切换到Wiki目录</span></span><br><span class="line"><span class="variable">$ </span>git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/zhiyue</span><span class="regexp">/hexo-theme-wixo themes/wixo</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>使用主题<br>去全局配置文件 <code>_config.yml</code> 修改参数</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## <span class="string">Plugins:</span> <span class="string">http:</span><span class="comment">//hexo.io/plugins/</span></span><br><span class="line">## <span class="string">Themes:</span> <span class="string">http:</span><span class="comment">//hexo.io/themes/</span></span><br><span class="line"><span class="string">theme:</span> wixo #这里修改为主题的名字</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置主题<br><code>wixo</code>主题配置：</p>
+</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">rss</span>: <span class="string">atom.xml</span></span><br><span class="line"><span class="attribute">fancybox</span>: <span class="string">true</span></span><br><span class="line"><span class="attribute">favicon</span>: <span class="string">favicon.ico</span></span><br><span class="line"><span class="attribute">fold</span>: <span class="string">true</span></span><br><span class="line"><span class="attribute">google_analytics:</span></span><br></pre></td></tr></table></figure>
+<p>这个不同的主题配置会很不一样，下面这个是<code>modernist</code>主题的配置<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">menu</span>:</span><br><span class="line">  <span class="attribute">Home</span>: /</span><br><span class="line">  <span class="attribute">Archives</span>: /archives</span><br><span class="line"><span class="attribute">rss</span>: /atom.xml</span><br><span class="line"></span><br><span class="line"><span class="attribute">archive_date_format</span>: MMM DD</span><br><span class="line"><span class="attribute">fancybox</span>: true</span><br><span class="line"></span><br><span class="line"><span class="attribute">duoshuo_shortname</span>: zhiyue</span><br><span class="line"></span><br><span class="line"><span class="attribute">google_analytics</span>:</span><br><span class="line"><span class="attribute">favicon</span>: /favicon.ico</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>使用子模块管理主题</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git submodule add <span class="symbol">https:</span>/<span class="regexp">/github.com/zhiyue</span><span class="regexp">/hexo-theme-wixo.git themes/wixo</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/git_submodule.png" alt="此处输入图片的描述"></p>
+<ul>
+<li>主题的更新<br>如果fork的主题作者有更新，可以在GitHub上pull过来然后再合并，然后在自己的blog的目录下要注意一下子模块的更新模式</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git submodule init </span><br><span class="line"><span class="variable">$ </span>git submodule update</span><br><span class="line"><span class="variable">$ </span>cd themes/wixo</span><br><span class="line"><span class="variable">$ </span>git checkout <span class="constant">HEAD </span> <span class="comment">#切换到最新的head</span></span><br><span class="line"><span class="variable">$ </span>cd -</span><br><span class="line"><span class="variable">$ </span>git add.</span><br><span class="line"><span class="variable">$ </span>git commit -m <span class="string">"update submodule "</span> <span class="comment">#更新submodule的标记</span></span><br></pre></td></tr></table></figure>
+<h4 id="全局配置">　全局配置</h4><p>修改_config.yml 文件只需修改几个，通常需要修改的地方:</p>
+<ul>
+<li>站点名称</li>
+<li>URL格式</li>
+<li>归档设置</li>
+<li>disqus评论用户名</li>
+<li>部署配置</li>
+</ul>
+<blockquote>
+<p>注意冒号后面添加一个半角空格 再设置参数</p>
+</blockquote>
+<p>下面是我的<code>_config.yml</code>的配置<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># Hexo Configuration</span></span><br><span class="line"><span class="preprocessor">## Docs: http://hexo.io/docs/configuration.html</span></span><br><span class="line"><span class="preprocessor">## Source: https://github.com/hexojs/hexo/</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># Site</span></span><br><span class="line"><span class="label">title:</span> zhiyue   <span class="preprocessor">## 网站标题</span></span><br><span class="line"><span class="label">subtitle:</span>       <span class="preprocessor">## 网站副标题</span></span><br><span class="line"><span class="label">description:</span>    <span class="preprocessor">## 网站描述</span></span><br><span class="line"><span class="label">author:</span> zhiyue  <span class="preprocessor">## 您的名字</span></span><br><span class="line"><span class="label">language:</span> zh_CN <span class="preprocessor">## 网站使用的语言</span></span><br><span class="line"><span class="label">timezone:</span>       <span class="preprocessor">## 网站时区。Hexo 预设使用您电脑的时区</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># URL</span></span><br><span class="line"><span class="preprocessor">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="preprocessor">##如果您的网站存放在子目录中，例如 http://yoursite.com/blog，则请将您的 url 设为 http://yoursite.com/blog 并把 ##root 设为 /blog/。</span></span><br><span class="line"><span class="label">url:</span> http://blog.printf.me              <span class="preprocessor">## 网址</span></span><br><span class="line"><span class="label">root:</span> /                                 <span class="preprocessor">## 网站根目录</span></span><br><span class="line"><span class="label">permalink:</span> :year/:month/:day/:title/    <span class="preprocessor">## 文章的 永久链接 格式</span></span><br><span class="line"><span class="label">permalink_defaults:</span>                     <span class="preprocessor">## 永久链接中各部分的默认值 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># Directory</span></span><br><span class="line"><span class="label">source_dir:</span> source          <span class="preprocessor">## 资源文件夹，这个文件夹用来存放内容。</span></span><br><span class="line"><span class="label">public_dir:</span> public          <span class="preprocessor">## 公共文件夹，这个文件夹用于存放生成的站点文件。</span></span><br><span class="line"><span class="label">tag_dir:</span> tags               <span class="preprocessor">## 标签文件夹</span></span><br><span class="line"><span class="label">archive_dir:</span> archives       <span class="preprocessor">## 归档文件夹</span></span><br><span class="line"><span class="label">category_dir:</span> categories    <span class="preprocessor">## 分类文件夹</span></span><br><span class="line"><span class="label">code_dir:</span> downloads/code    <span class="preprocessor">## Include code 文件夹</span></span><br><span class="line"><span class="label">i18n_dir:</span> :lang             <span class="preprocessor">## 国际化（i18n）文件夹</span></span><br><span class="line"><span class="label">skip_render:</span>                <span class="preprocessor">## 跳过指定文件的渲染，您可使用 glob 来配置路径。</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># Writing</span></span><br><span class="line"><span class="label">new_post_name:</span> :title.md                <span class="preprocessor">## File name of new posts</span></span><br><span class="line"><span class="label">default_layout:</span> post                    <span class="preprocessor">## 预设布局</span></span><br><span class="line"><span class="label">titlecase:</span> false                        <span class="preprocessor">## Transform title into titlecase</span></span><br><span class="line"><span class="label">external_link:</span> true                     <span class="preprocessor">## Open external links in new tab</span></span><br><span class="line"><span class="label">filename_case:</span> <span class="number">0</span>                        <span class="preprocessor">## 把文件名称转换为 (1) 小写或 (2) 大写</span></span><br><span class="line"><span class="label">render_drafts:</span> false                    <span class="preprocessor">## 显示草稿</span></span><br><span class="line"><span class="label">post_asset_folder:</span> false                <span class="preprocessor">## 启动 Asset 文件夹</span></span><br><span class="line"><span class="label">relative_link:</span> false                    <span class="preprocessor">## 把链接改为与根目录的相对位址</span></span><br><span class="line"><span class="label">future:</span> true                            <span class="preprocessor">## 显示未来的文章</span></span><br><span class="line"><span class="label">highlight:</span>                              <span class="preprocessor">## 代码块的设置</span></span><br><span class="line">  enable: true                          <span class="preprocessor">## 启用</span></span><br><span class="line">  line_number: true                     <span class="preprocessor">## 行号</span></span><br><span class="line">  tab_replace: true                     <span class="preprocessor">## tab 替换</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># Category &amp; Tag</span></span><br><span class="line"><span class="label">default_category:</span> uncategorized         <span class="preprocessor">## 默认分类</span></span><br><span class="line"><span class="label">category_map:</span>                           <span class="preprocessor">## 分类别名</span></span><br><span class="line"><span class="label">tag_map:</span>                                <span class="preprocessor">## 标签别名</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># Date / Time format</span></span><br><span class="line"><span class="preprocessor">## Hexo uses Moment.js to parse and display date</span></span><br><span class="line"><span class="preprocessor">## You can customize the date format as defined in</span></span><br><span class="line"><span class="preprocessor">## http://momentjs.com/docs/#/displaying/format/</span></span><br><span class="line"><span class="label">date_format:</span> YYYY-MM-DD                 <span class="preprocessor">## 日期格式</span></span><br><span class="line"><span class="label">time_format:</span> HH:mm:ss                   <span class="preprocessor">## 时间格式</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># Pagination</span></span><br><span class="line"><span class="preprocessor">## Set per_page to 0 to disable pagination</span></span><br><span class="line"><span class="label">per_page:</span> <span class="number">10</span>                            <span class="preprocessor">## 每页显示的文章量 (0 = 关闭分页功能)</span></span><br><span class="line"><span class="label">pagination_dir:</span> page                    <span class="preprocessor">## 分页目录</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># Extensions</span></span><br><span class="line"><span class="preprocessor">## Plugins: http://hexo.io/plugins/</span></span><br><span class="line"><span class="preprocessor">## Themes: http://hexo.io/themes/</span></span><br><span class="line"><span class="label">theme:</span> modernist                        <span class="preprocessor">## 当前主题名称</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># Deployment</span></span><br><span class="line"><span class="preprocessor">## Docs: http://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="label">deploy:</span>                                 <span class="preprocessor">##部署</span></span><br><span class="line">  type:</span><br></pre></td></tr></table></figure></p>
+<h3 id="写文章">写文章</h3><pre><code>$ hexo <span class="built_in">new</span> <span class="built_in">post</span> <span class="string">"tiltle"</span>
+</code></pre><p>这样就会在<code>source/_post/</code>下创建一个<code>tiltle.md</code><br>Hexo使用markdown语法的纯文本存放文章 后缀为.md 你可以在_post文件夹里面新建这个后缀的.md文件使用的全是UTF-8编码</p>
+<p>格式如下：</p>
+<pre><code><span class="label">title:</span> title <span class="preprocessor">#文章标题</span>
+<span class="label">date:</span> <span class="number">2015</span>-<span class="number">02</span>-<span class="number">05</span> <span class="number">12</span>:<span class="number">47</span>:<span class="number">44</span> <span class="preprocessor">#文章生成时间</span>
+<span class="label">categories:</span> <span class="preprocessor">#文章分类目录 可以省略</span>
+<span class="label">tags:</span> <span class="preprocessor">#文章标签 可以省略</span>
+<span class="label">description:</span> <span class="preprocessor">#你对本页的描述 可以省略</span>
+</code></pre><p>多标签注意语法格式 如下:<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tags:</span><br><span class="line">  -<span class="ruby"> 标签<span class="number">1</span></span><br><span class="line"></span>  -<span class="ruby"> 标签<span class="number">2</span></span><br><span class="line"></span>  -<span class="ruby"> 标签<span class="number">3</span></span><br><span class="line"></span>  -<span class="ruby"> etc...</span></span><br></pre></td></tr></table></figure></p>
+<p>正文中可以使用<!--more-->设置文章摘要 如下:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">以上是文章摘要</span><br><span class="line">  <span class="comment">&lt;!--more--&gt;</span></span><br><span class="line">  以下是余下全文</span><br></pre></td></tr></table></figure></p>
+<h3 id="生成与部署">生成与部署</h3><ul>
+<li>生成blog静态文件：</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo g</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/hexo_g.png" alt="此处输入图片的描述"></p>
+<ul>
+<li>在本地环境测试：</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo s</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/preview.png" alt="此处输入图片的描述"></p>
+<h4 id="GitHub_配置">GitHub 配置</h4><ul>
+<li>创建gh-pages分支<br>如果要部署在github上，必须名称叫gh-pages。所以先创建一个叫gh-pages的分支</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git checkout --orphan gh-pages</span><br><span class="line"><span class="variable">$ </span>git rm -rf .    <span class="comment"># 砍掉所有档案重來</span></span><br><span class="line"><span class="comment"># 加新档案</span></span><br><span class="line"><span class="comment">## git add .</span></span><br><span class="line"><span class="variable">$ </span>git commit -m <span class="string">'create new branch'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>提交到GitHub<br>在GitHub创建一个新的repos，然后再本地使用以下命令：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git remote add origin <span class="symbol">https:</span>/<span class="regexp">/github.com/</span>(github用户名)/(项目名称).git  <span class="comment">##添加远程仓库</span></span><br><span class="line"><span class="variable">$ </span>git push --all origin                           <span class="comment">##push</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自定义域名设置<br>在<code>source</code>文件夹下创建<code>CNAME</code>文件 写入你的自定义域名</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blog<span class="class">.printf</span><span class="class">.me</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置dnspod<br>添加<code>CNAME</code>记录 记录值<code>zhiyue.github.io.</code><br><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/dnspod.png" alt="此处输入图片的描述"></p>
+</li>
+<li><p>404 页面 和 favicon.ico<br>在<code>source</code>文件夹下 创建<code>404.html</code> 和 把<code>favicon.ico</code> 放置至此</p>
+</li>
+<li><p>deploy 配置<br>修改_config.yml文件</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## <span class="string">Docs:</span> <span class="string">http:</span><span class="comment">//hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="string">deploy:</span></span><br><span class="line"><span class="label">  type:</span> git</span><br><span class="line"><span class="label">  message:</span> update</span><br><span class="line"><span class="label">  repo:</span> <span class="string">https:</span><span class="comment">//github.com/zhiyue/blog.git</span></span><br><span class="line"><span class="label">  branch:</span> gh-pages</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="配置travis_ci">配置travis ci</h3><ul>
+<li><p>生成<code>Personal access tokens</code><br>在<a href="https://github.com/settings/tokens" target="_blank" rel="external">GitHub token 生成页面</a>按照以下步骤生成一个可以让第三方访问的<code>token</code>，它具有可以写<code>repos</code>的权限。这样就可以在生成网站的时候通过这个<code>token</code>提交到<code>repos</code>上了。<br><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/generate_token.png" alt="generate token"></p>
+</li>
+<li><p>启用<code>travis ci</code><br>登陆<a href="https://travis-ci.org" target="_blank" rel="external">travis ci</a>绑定GitHub的账户，<code>travis ci</code>会同步<code>repos</code>的列表，选择你想启用自动化测试的<code>repos</code><br><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/travis.png" alt="travis ci "></p>
+</li>
+<li><p>编写<code>.travis.yml</code><br><code>travis ci</code>会依据<code>.travis.yml</code>进行一些环境的设置安装以及后续的测试。下面的<code>.travis.yml</code>是参考网上的yml编写的</p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"># Deploy hexo site by travis-ci</span><br><span class="line"># https://github.com/jkeylu/deploy-hexo-site-by-travis-ci</span><br><span class="line"># LICENSE: MIT</span><br><span class="line">#</span><br><span class="line"># 1. Copy this file to the root of your repository, then rename it to '.travis.yml'</span><br><span class="line"># 2. Replace 'YOUR NAME' and 'YOUR EMAIL' at line 29</span><br><span class="line"># 3. Add an Environment Variable 'DEPLOY_REPO'</span><br><span class="line">#     1. Generate github access token on https://github.com/settings/applications#personal-access-tokens</span><br><span class="line">#     2. Add an Environment Variable on https://travis-ci.org/&#123;github username&#125;/&#123;repository name&#125;/settings/env_vars</span><br><span class="line">#         Variable Name: DEPLOY_REPO</span><br><span class="line">#         Variable Value: https://&#123;githb access token&#125;@github.com/&#123;github username&#125;/&#123;repository name&#125;.git </span><br><span class="line">#         Example: DEPLOY_REPO=https://6b75cfe9836f56e6d21187622730889874476c23@github.com/jkeylu/test-hexo-on-travis-ci.git</span><br><span class="line"></span><br><span class="line">language: node_js</span><br><span class="line"></span><br><span class="line">node_js:</span><br><span class="line">  -<span class="ruby"> <span class="string">"0.12"</span>  <span class="comment">#设置node_js的版本</span></span><br><span class="line"></span></span><br><span class="line">branches:</span><br><span class="line">  only:</span><br><span class="line">    -<span class="ruby"> source    <span class="comment">#检测的分支，一旦分支有新的提交就会触发脚本</span></span><br><span class="line"></span></span><br><span class="line">before_install: #安装前的工作</span><br><span class="line">-<span class="ruby"> npm install -g hexo-cli</span><br><span class="line"></span></span><br><span class="line">install:</span><br><span class="line">#- npm install hexo-renderer-ejs@0.1.0 --save</span><br><span class="line">#- npm install hexo-renderer-marked@0.1.0 --save</span><br><span class="line">#- npm install hexo-renderer-stylus@0.1.0 --save</span><br><span class="line">#- npm install hexo-generator-feed@0.2.1 --save</span><br><span class="line">#- npm install hexo-generator-sitemap@0.2.0 --save</span><br><span class="line">#- npm install hexo-tag-bootstrap@0.0.6 --save</span><br><span class="line">-<span class="ruby"> npm install</span><br><span class="line"></span></span><br><span class="line"></span><br><span class="line">script:                         #运行的测试脚本</span><br><span class="line">  -<span class="ruby"> <span class="string">"git submodule init"</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"git submodule update"</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"hexo generate "</span></span><br><span class="line"></span>  </span><br><span class="line">after_success:                      #push到github上</span><br><span class="line">  -<span class="ruby"> <span class="string">"git clone $DEPLOY_REPO git_deploy"</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"cd git_deploy"</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"git checkout gh-pages"</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"cd .."</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"rm -r git_deploy/*"</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"cp -r public/* git_deploy"</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"cd git_deploy"</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"git config --global push.default simple"</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"git config --global user.name 'zhiyue'"</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"git config --global user.email cszhiyue@gmail.com"</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"git add -A"</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"git commit -m 'Site updated'"</span></span><br><span class="line"></span>  -<span class="ruby"> <span class="string">"git push -q"</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置环境变量<code>DEPLOY_REPO</code><br> <code>.travis.yml</code>中用到的<code>DEPLOY_REPO</code>可以按照图片的步骤设置</p>
+</li>
+</ul>
+<p><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/create_var.png" alt="genertare var"></p>
+<ul>
+<li>travis ci 自动化生成与部署</li>
+</ul>
+<p><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/test.png" alt="此处输入图片的描述"></p>
+<ul>
+<li>网站截图：</li>
+</ul>
+<p><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/wiki_2.png" alt="此处输入图片的描述"></p>
+<h2 id="0x03_参考：">0x03 参考：</h2><ul>
+<li><a href="http://ippotsuko.com/build-your-hexo-blog-3/" target="_blank" rel="external">Hexo 3.0 靜態博客使用指南</a></li>
+<li><a href="http://segmentfault.com/a/1190000000406019" target="_blank" rel="external">使用Jekyll在Github上搭建个人博客（将本地博客上传至github）</a></li>
+<li><a href="https://ihower.tw/blog/archives/5691" target="_blank" rel="external">如何建立一個沒有 Parent 的獨立 Git branch</a></li>
+<li><a href="http://blog.csdn.net/u010520912/article/details/18993001" target="_blank" rel="external">使用Git将本地代码上传到GitHub</a></li>
+</ul>
+<hr>
+<p>todo:</p>
+<ul>
+<li>补充其他系统的详细情况</li>
+<li>补充多说插件和谷歌analyse</li>
+<li><del>详细补充配置文件</del></li>
+<li><del>加配图</del></li>
+</ul>
+<hr>
+]]></content>
+    <summary type="html">
+    <![CDATA[<ul>
+<li>2015-4-30 第一次编写</li>
+</ul>
+<hr>
+<p><img src="http://7xilqm.com1.z0.glb.clouddn.com/Hexo_wiki/Hexo.png" alt="此处输入图片的描述"></p>
+<h2 id="0x01准备：">0x01准备：</h2><ol>
+<li><a href="http://twitter.com/tommy351">tommy351</a>编写的静态博客框架<a href="http://hexo.io/">Hexo</a>（目前版本是3.0.x）</li>
+<li><a href="https://github.com/wzpan/hexo-theme-wixo/">Wixo</a>的主题</li>
+<li>GitHub的repos的gh-pages 分支放置wiki，托管于GitHub的Pages服务上</li>
+<li>源码放置在Github同一个repos下的source分支下进行版本管理</li>
+<li><a href="https://travis-ci.org/">Travis CI</a>自动化测试框架自动编译网站</li>
+</ol>]]>
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://wiki.printf.me/categories/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[mathjax]]></title>
     <link href="http://wiki.printf.me/2015/04/28/test-mathjax/"/>
     <id>http://wiki.printf.me/2015/04/28/test-mathjax/</id>
     <published>2015-04-28T22:26:19.000Z</published>
-    <updated>2015-04-28T18:08:01.125Z</updated>
+    <updated>2015-04-30T16:27:41.460Z</updated>
     <content type="html"><![CDATA[<p>$$<br>\frac{\partial u}{\partial t} = h^2 \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}\right)<br>$$</p>
 ]]></content>
     <summary type="html">
@@ -35,7 +268,7 @@
     <link href="http://wiki.printf.me/2015/03/12/Hexo%E5%86%99%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/"/>
     <id>http://wiki.printf.me/2015/03/12/Hexo写作平台搭建/</id>
     <published>2015-03-12T14:17:16.000Z</published>
-    <updated>2015-04-28T18:08:01.125Z</updated>
+    <updated>2015-04-30T16:27:41.460Z</updated>
     <content type="html"><![CDATA[<p>2015-3-12 更新  完成使用GitHub搭建Hexo博客的记录</p>
 <hr>
 <h3 id="GitHub_篇"><strong>GitHub 篇</strong></h3><p>使用GitHub Pages 搭建 独立博客，就是利用GitHub上对于每个单独的项目都可以设置演示与介绍的页面，简单来说就是创立 <code>gh-pages</code> 的分支。</p>
@@ -82,23 +315,23 @@
 <h3 id="GitHub_篇"><strong>GitHub 篇</strong></h3><p>使用GitHub Pages 搭建 独立博客，就是利用GitHub上对于每个单独的]]>
     </summary>
     
-      <category term="hexo" scheme="http://wiki.printf.me/categories/hexo/"/>
+      <category term="Hexo" scheme="http://wiki.printf.me/categories/Hexo/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[hexo 多标签]]></title>
+    <title><![CDATA[Hexo 多标签]]></title>
     <link href="http://wiki.printf.me/2014/06/09/hexo-%E5%A4%9A%E6%A0%87%E7%AD%BE/"/>
     <id>http://wiki.printf.me/2014/06/09/hexo-多标签/</id>
     <published>2014-06-09T16:21:56.000Z</published>
-    <updated>2015-04-28T18:08:01.125Z</updated>
+    <updated>2015-04-30T16:27:41.460Z</updated>
     <content type="html"><![CDATA[<p>刚开始使用hexo记录一下使用过程遇到的问题.<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用多标签要在括号内<span class="keyword">*</span><span class="keyword">*</span>[,]<span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line">在括号内用逗号分隔开.</span><br></pre></td></tr></table></figure></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>刚开始使用hexo记录一下使用过程遇到的问题.<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span clas]]>
     </summary>
     
-      <category term="hexo" scheme="http://wiki.printf.me/categories/hexo/"/>
+      <category term="Hexo" scheme="http://wiki.printf.me/categories/Hexo/"/>
     
   </entry>
   
@@ -107,7 +340,7 @@
     <link href="http://wiki.printf.me/2014/03/16/qna/"/>
     <id>http://wiki.printf.me/2014/03/16/qna/</id>
     <published>2014-03-16T18:17:16.000Z</published>
-    <updated>2015-04-28T18:08:01.125Z</updated>
+    <updated>2015-04-30T16:27:41.460Z</updated>
     <content type="html"><![CDATA[<p><span class="label label-danger">Q</span> What does <code>Wixo</code> stands for?</p>
 <p><span class="label label-success">A</span> <code>Wixo</code> means A <strong>wi</strong>ki theme for he<strong>xo</strong>.</p>
 <p><span class="label label-danger">Q</span> How to generate ToC(Table of Contents) in a certain page?</p>
@@ -132,7 +365,7 @@
     <link href="http://wiki.printf.me/2014/03/16/qna-cn/"/>
     <id>http://wiki.printf.me/2014/03/16/qna-cn/</id>
     <published>2014-03-16T18:10:16.000Z</published>
-    <updated>2015-04-28T18:08:01.125Z</updated>
+    <updated>2015-04-30T16:27:41.460Z</updated>
     <content type="html"><![CDATA[<p><span class="label label-danger">Q</span> <code>Wixo</code> 这名字有何含义？</p>
 <p><span class="label label-success">A</span> <code>Wixo</code> 意思是 A <strong>wi</strong>ki theme for he<strong>xo</strong> 。</p>
 <p><span class="label label-danger">Q</span> 如何指定某些页面生成 ToC(Table of Contents) ？</p>
@@ -157,7 +390,7 @@
     <link href="http://wiki.printf.me/2014/03/16/tag-plugins/"/>
     <id>http://wiki.printf.me/2014/03/16/tag-plugins/</id>
     <published>2014-03-16T10:17:16.000Z</published>
-    <updated>2015-04-28T18:08:01.125Z</updated>
+    <updated>2015-04-30T16:27:41.460Z</updated>
     <content type="html"><![CDATA[<p>Like the <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> theme, you can use <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> to fully take advantages of Bootstrap. To use these tag plugins, you need to install it first. In your blog root folder, execute the following command:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
 <p>Then you can use these tag plugins in your blog, as easily as you normally do using hexo tag plugins. </p>
@@ -243,7 +476,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2014/03/16/tag-plugins-cn/"/>
     <id>http://wiki.printf.me/2014/03/16/tag-plugins-cn/</id>
     <published>2014-03-16T10:10:16.000Z</published>
-    <updated>2015-04-28T18:08:01.125Z</updated>
+    <updated>2015-04-30T16:27:41.460Z</updated>
     <content type="html"><![CDATA[<p>和 <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> 一样，你可以使用 <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> 来充分发挥 Bootstrap 的威力。在你的 Hexo 博客目录，执行下列命令：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
 <p>然后就可以像使用其他 hexo tag plugins 一样使用这些 Bootstrap tag plugins 了。</p>
@@ -304,7 +537,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2014/03/15/lorem-ipsum/"/>
     <id>http://wiki.printf.me/2014/03/15/lorem-ipsum/</id>
     <published>2014-03-15T20:17:16.000Z</published>
-    <updated>2015-04-28T18:08:01.125Z</updated>
+    <updated>2015-04-30T16:27:41.460Z</updated>
     <content type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <p><img src="/hexo-theme-wixo/images/lorem-ipsum/lorem-ipsum.jpg" alt="Lorem Ipsum"></p>
 <a id="more"></a>
@@ -325,7 +558,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2014/03/15/code-highlight/"/>
     <id>http://wiki.printf.me/2014/03/15/code-highlight/</id>
     <published>2014-03-15T20:17:16.000Z</published>
-    <updated>2015-04-28T18:08:01.125Z</updated>
+    <updated>2015-04-30T16:27:41.460Z</updated>
     <content type="html"><![CDATA[<h2 id="C">C</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="C++">C++</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World"</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -358,7 +591,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2013/12/25/traditional-chinese-test/"/>
     <id>http://wiki.printf.me/2013/12/25/traditional-chinese-test/</id>
     <published>2013-12-25T21:17:16.000Z</published>
-    <updated>2015-04-28T18:08:01.125Z</updated>
+    <updated>2015-04-30T16:27:41.464Z</updated>
     <content type="html"><![CDATA[<p>觀自在菩薩，行深般若波羅蜜多時，照見五蘊皆空，度一切苦厄。</p>
 <p>舍利子，色不異空，空不異色；色即是空，空即是色。受、想、行、識，亦復如是。</p>
 <p>舍利子，是諸法空相，不生不滅，不垢不淨，不增不減，是故空中無色，無受、想、行、識；無眼、耳、鼻、舌、身、意；無色、聲、香、味、觸、法；無眼界，乃至無意識界；無無明，亦無無明盡；乃至無老死，亦無老死盡。無苦、集、滅、道，無智亦無得，以無所得故。</p>
@@ -386,7 +619,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2013/12/25/simplified-chinese-test/"/>
     <id>http://wiki.printf.me/2013/12/25/simplified-chinese-test/</id>
     <published>2013-12-25T20:17:16.000Z</published>
-    <updated>2015-04-28T18:08:01.125Z</updated>
+    <updated>2015-04-30T16:27:41.460Z</updated>
     <content type="html"><![CDATA[<p>观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。</p>
 <p>舍利子，色不异空，空不异色；色即是空，空即是色。受、想、行、识，亦复如是。</p>
 <p>舍利子，是诸法空相，不生不灭，不垢不净，不增不减，是故空中无色，无受、想、行、识；无眼、耳、鼻、舌、身、意；无色、声、香、味、触、法；无眼界，乃至无意识界；无无明，亦无无明尽；乃至无老死，亦无老死尽。无苦、集、灭、道，无智亦无得，以无所得故。</p>
