@@ -4,7 +4,7 @@
   <subtitle><![CDATA[整理 记录 分享]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wiki.printf.me/"/>
-  <updated>2015-04-30T16:27:41.460Z</updated>
+  <updated>2015-05-01T08:21:53.410Z</updated>
   <id>http://wiki.printf.me/</id>
   
   <author>
@@ -15,11 +15,429 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Google Python 风格指南]]></title>
+    <link href="http://wiki.printf.me/2015/05/01/google-python-styleguide/"/>
+    <id>http://wiki.printf.me/2015/05/01/google-python-styleguide/</id>
+    <published>2015-05-01T01:36:25.000Z</published>
+    <updated>2015-05-01T08:21:53.410Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li><p>Python是一种对代码风格很重视的语言，从缩进就能看出这一点，Python强调易于理解。最近在负责代码重构的工作，为了统一大家的代码风格，制订规范，学习了一下网上这份Google的Python风格指南。</p>
+</li>
+<li><p>原文地址： <a href="http://google-styleguide.googlecode.com/svn/trunk/pyguide.html" target="_blank" rel="external">http://google-styleguide.googlecode.com/svn/trunk/pyguide.html</a></p>
+</li>
+</ul>
+</blockquote>
+<h2 id="背景">背景</h2><p>Python 是 Google主要的脚本语言。这本风格指南主要包含的是针对python的编程准则。<br>为帮助读者能够将代码准确格式化，我们提供了针对 Vim的配置文件 。对于Emacs用户，保持默认设置即可。</p>
+<h2 id="Python语言规范">Python语言规范</h2><h3 id="pylint">pylint</h3><blockquote>
+<p>Tip<br>对你的代码运行pylint</p>
+</blockquote>
+<p><strong>定义:</strong><br>pylint是一个在Python源代码中查找bug的工具. 对于C和C++这样的不那么动态的(译者注: 原文是less dynamic)语言, 这些bug通常由编译器来捕获. 由于Python的动态特性, 有些警告可能不对. 不过伪告警应该很少.<br><strong>优点:</strong><br>可以捕获容易忽视的错误, 例如输入错误, 使用未赋值的变量等.<br><strong>缺点:</strong><br>pylint不完美. 要利用其优势, 我们有时侯需要: a) 围绕着它来写代码 b) 抑制其告警 c) 改进它, 或者d) 忽略它.<br><strong>结论:</strong><br>确保对你的代码运行pylint.抑制不准确的警告,以便能够将其他警告暴露出来。<br>你可以通过设置一个行注释来抑制告警. 例如:</p>
+<pre><code><span class="title">dict</span> = <span class="string">'something awful'</span>  <span class="comment"># Bad Idea... pylint: disable=redefined-builtin</span>
+</code></pre><p>pylint警告是以一个数字编号(如 <code>C0112</code> )和一个符号名(如 <code>empty-docstring</code> )来标识的. 在编写新代码或更新已有代码时对告警进行医治, 推荐使用符号名来标识.</p>
+<p>如果警告的符号名不够见名知意，那么请对其增加一个详细解释。</p>
+<p>采用这种抑制方式的好处是我们可以轻松查找抑制并回顾它们.</p>
+<p>你可以使用命令 <code>pylint --list-msgs</code> 来获取pylint告警列表. 你可以使用命令 <code>pylint --help-msg=C6409</code> , 以获取关于特定消息的更多信息.</p>
+<p>相比较于之前使用的 <code>pylint: disable-msg</code> , 本文推荐使用 <code>pylint: disable .</code></p>
+<p>要抑制”参数未使用”告警, 你可以用”<em>”作为参数标识符, 或者在参数名前加”unused</em>”. 遇到不能改变参数名的情况, 你可以通过在函数开头”提到”它们来消除告警. 例如:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(a, unused_b, unused_c, d=None, e=None)</span>:</span></span><br><span class="line">    _ = d, e</span><br><span class="line">    <span class="keyword">return</span> a</span><br></pre></td></tr></table></figure></p>
+<h3 id="导入">导入</h3><blockquote>
+<p>Tip<br>仅对包和模块使用导入</p>
+</blockquote>
+<p><strong>定义:</strong><br>模块间共享代码的重用机制.<br><strong>优点:</strong><br>命名空间管理约定十分简单. 每个标识符的源都用一种一致的方式指示. x.Obj表示Obj对象定义在模块x中.<br><strong>缺点:</strong><br>模块名仍可能冲突. 有些模块名太长, 不太方便.<br><strong>结论:</strong><br>使用 <code>import x</code> 来导入包和模块.</p>
+<p>使用 <code>from x import y</code> , 其中x是包前缀, y是不带前缀的模块名.</p>
+<p>使用 <code>from x import y as z</code>, 如果两个要导入的模块都叫做z或者y太长了.</p>
+<p>例如, 模块 s<code>ound.effects.echo</code> 可以用如下方式导入:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sound.effects <span class="keyword">import</span> echo</span><br><span class="line">...</span><br><span class="line">echo.EchoFilter(input, output, delay=<span class="number">0.7</span>, atten=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p>导入时不要使用相对名称. 即使模块在同一个包中, 也要使用完整包名. 这能帮助你避免无意间导入一个包两次.</p>
+<h3 id="包">包</h3><blockquote>
+<p>Tip<br>使用模块的全路径名来导入每个模块</p>
+</blockquote>
+<p><strong>优点:</strong><br>避免模块名冲突. 查找包更容易.<br><strong>缺点:</strong><br>部署代码变难, 因为你必须复制包层次.<br><strong>结论:</strong><br>所有的新代码都应该用完整包名来导入每个模块.</p>
+<p>应该像下面这样导入:<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">Reference</span> <span class="keyword">in</span> code <span class="keyword">with</span> complete name.</span><br><span class="line">import sound.effects.echo</span><br><span class="line"></span><br><span class="line"># <span class="keyword">Reference</span> <span class="keyword">in</span> code <span class="keyword">with</span> just <span class="keyword">module</span> name (preferred).</span><br><span class="line"><span class="keyword">from</span> sound.effects import echo</span><br></pre></td></tr></table></figure></p>
+<h3 id="异常">异常</h3><blockquote>
+<p>Tip<br>允许使用异常, 但必须小心</p>
+</blockquote>
+<p><strong>定义:</strong><br>异常是一种跳出代码块的正常控制流来处理错误或者其它异常条件的方式.<br><strong>优点:</strong><br>正常操作代码的控制流不会和错误处理代码混在一起. 当某种条件发生时, 它也允许控制流跳过多个框架. 例如, 一步跳出N个嵌套的函数, 而不必继续执行错误的代码.<br><strong>缺点:</strong><br>可能会导致让人困惑的控制流. 调用库时容易错过错误情况.<br><strong>结论:</strong><br>异常必须遵守特定条件:</p>
+<ol>
+<li><p>像这样触发异常: <code>raise MyException(&quot;Error message&quot;)</code> 或者 <code>raise MyException</code> . 不要使用两个参数的形式( <code>raise MyException, &quot;Error message&quot;</code> )或者过时的字符串异常( <code>raise &quot;Error message&quot;</code> ).</p>
+</li>
+<li><p>模块或包应该定义自己的特定域的异常基类, 这个基类应该从内建的Exception类继承. 模块的异常基类应该叫做”Error”.</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Error</span><span class="params">(Exception)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>永远不要使用 <code>except:</code> 语句来捕获所有异常, 也不要捕获 <code>Exception</code> 或者 <code>StandardError</code> , 除非你打算重新触发该异常, 或者你已经在当前线程的最外层(记得还是要打印一条错误消息). 在异常这方面, Python非常宽容, <code>except:</code> 真的会捕获包括Python语法错误在内的任何错误. 使用 <code>except:</code> 很容易隐藏真正的bug.</p>
+</li>
+<li><p>尽量减少try/except块中的代码量. try块的体积越大, 期望之外的异常就越容易被触发. 这种情况下, try/except块将隐藏真正的错误.</p>
+</li>
+<li><p>使用finally子句来执行那些无论try块中有没有异常都应该被执行的代码. 这对于清理资源常常很有用, 例如关闭文件.<br>当捕获异常时, 使用 as 而不要用逗号. 例如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">raise</span> Error</span><br><span class="line"><span class="keyword">except</span> Error <span class="keyword">as</span> error:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="全局变量">全局变量</h3><blockquote>
+<p>Tip<br>避免全局变量</p>
+</blockquote>
+<p><strong>定义:</strong><br>定义在模块级的变量.<br><strong>优点:</strong><br>偶尔有用.<br><strong>缺点:</strong><br>导入时可能改变模块行为, 因为导入模块时会对模块级变量赋值.<br>结论:<br>避免使用全局变量, 用类变量来代替. 但也有一些例外:</p>
+<ol>
+<li>脚本的默认选项.</li>
+<li>模块级常量. 例如:　PI = 3.14159. 常量应该全大写, 用下划线连接.</li>
+<li>有时候用全局变量来缓存值或者作为函数返回值很有用.</li>
+<li>如果需要, 全局变量应该仅在模块内部可用, 并通过模块级的公共函数来访问.</li>
+</ol>
+<h3 id="嵌套_局部_内部类或函数">嵌套 局部 内部类或函数</h3><blockquote>
+<p>Tip<br>鼓励使用嵌套/本地/内部类或函数</p>
+</blockquote>
+<p><strong>定义:</strong><br>类可以定义在方法, 函数或者类中. 函数可以定义在方法或函数中. 封闭区间中定义的变量对嵌套函数是只读的.<br><strong>优点:</strong><br>允许定义仅用于有效范围的工具类和函数.<br><strong>缺点:</strong><br>嵌套类或局部类的实例不能序列化(pickled).<br><strong>结论:</strong><br>推荐使用.</p>
+<h3 id="列表推导_List_Comprehensions">列表推导 List Comprehensions</h3><blockquote>
+<p>Tip<br>可以在简单情况下使用</p>
+</blockquote>
+<p><strong>定义:</strong><br>列表推导(list comprehensions)与生成器表达式(generator expression)提供了一种简洁高效的方式来创建列表和迭代器, 而不必借助map(), filter(), 或者lambda.<br><strong>优点:</strong><br>简单的列表推导可以比其它的列表创建方法更加清晰简单. 生成器表达式可以十分高效, 因为它们避免了创建整个列表.<br><strong>缺点:</strong><br>复杂的列表推导或者生成器表达式可能难以阅读.<br><strong>结论:</strong><br>适用于简单情况. 每个部分应该单独置于一行: 映射表达式, for语句, 过滤器表达式. 禁止多重for语句或过滤器表达式. 复杂情况下还是使用循环.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Yes:</span><br><span class="line">  result = []</span><br><span class="line">  <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">      <span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">          <span class="keyword">if</span> x * y &gt; <span class="number">10</span>:</span><br><span class="line">              result.append((x, y))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">5</span>):</span><br><span class="line">      <span class="keyword">for</span> y <span class="keyword">in</span> xrange(<span class="number">5</span>):</span><br><span class="line">          <span class="keyword">if</span> x != y:</span><br><span class="line">              <span class="keyword">for</span> z <span class="keyword">in</span> xrange(<span class="number">5</span>):</span><br><span class="line">                  <span class="keyword">if</span> y != z:</span><br><span class="line">                      <span class="keyword">yield</span> (x, y, z)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ((x, complicated_transform(x))</span><br><span class="line">          <span class="keyword">for</span> x <span class="keyword">in</span> long_generator_function(parameter)</span><br><span class="line">          <span class="keyword">if</span> x <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>)</span><br><span class="line"></span><br><span class="line">  squares = [x * x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line"></span><br><span class="line">  eat(jelly_bean <span class="keyword">for</span> jelly_bean <span class="keyword">in</span> jelly_beans</span><br><span class="line">      <span class="keyword">if</span> jelly_bean.color == <span class="string">'black'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">No</span>:</span><br><span class="line">  <span class="literal">result</span> = [(x, y) <span class="keyword">for</span> x <span class="keyword">in</span> <span class="type">range</span>(<span class="number">10</span>) <span class="keyword">for</span> y <span class="keyword">in</span> <span class="type">range</span>(<span class="number">5</span>) <span class="keyword">if</span> x * y &gt; <span class="number">10</span>]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ((x, y, z)</span><br><span class="line">          <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">5</span>)</span><br><span class="line">          <span class="keyword">for</span> y <span class="keyword">in</span> xrange(<span class="number">5</span>)</span><br><span class="line">          <span class="keyword">if</span> x != y</span><br><span class="line">          <span class="keyword">for</span> z <span class="keyword">in</span> xrange(<span class="number">5</span>)</span><br><span class="line">          <span class="keyword">if</span> y != z)</span><br></pre></td></tr></table></figure>
+<h3 id="默认迭代器和操作符">默认迭代器和操作符</h3><blockquote>
+<p>Tip<br>如果类型支持, 就使用默认迭代器和操作符. 比如列表, 字典及文件等.</p>
+</blockquote>
+<p><strong>定义:</strong><br>容器类型, 像字典和列表, 定义了默认的迭代器和关系测试操作符(in和not in)<br><strong>优点:</strong><br>默认操作符和迭代器简单高效, 它们直接表达了操作, 没有额外的方法调用. 使用默认操作符的函数是通用的. 它可以用于支持该操作的任何类型.<br><strong>缺点:</strong><br>你没法通过阅读方法名来区分对象的类型(例如, has_key()意味着字典). 不过这也是优点.<br><strong>结论:</strong><br>如果类型支持, 就使用默认迭代器和操作符, 例如列表, 字典和文件. 内建类型也定义了迭代器方法. 优先考虑这些方法, 而不是那些返回列表的方法. 当然，这样遍历容器时，你将不能修改容器.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Yes:  <span class="keyword">for</span> key <span class="keyword">in</span> adict: ...</span><br><span class="line">      <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> adict: ...</span><br><span class="line">      <span class="keyword">if</span> obj <span class="keyword">in</span> alist: ...</span><br><span class="line">      <span class="keyword">for</span> line <span class="keyword">in</span> afile: ...</span><br><span class="line">      <span class="keyword">for</span> k, v <span class="keyword">in</span> dict.iteritems(): ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">No:   <span class="keyword">for</span> key <span class="keyword">in</span> adict.<span class="function"><span class="title">keys</span><span class="params">()</span></span>: ...</span><br><span class="line">      <span class="keyword">if</span> not adict.<span class="function"><span class="title">has_key</span><span class="params">(key)</span></span>: ...</span><br><span class="line">      <span class="keyword">for</span> line <span class="keyword">in</span> afile.<span class="function"><span class="title">readlines</span><span class="params">()</span></span>: ...</span><br></pre></td></tr></table></figure>
+<h3 id="生成器">生成器</h3><blockquote>
+<p>Tip<br>按需使用生成器.</p>
+</blockquote>
+<p><strong>定义:</strong><br>所谓生成器函数, 就是每当它执行一次生成(yield)语句, 它就返回一个迭代器, 这个迭代器生成一个值. 生成值后, 生成器函数的运行状态将被挂起, 直到下一次生成.<br><strong>优点:</strong><br>简化代码, 因为每次调用时, 局部变量和控制流的状态都会被保存. 比起一次创建一系列值的函数, 生成器使用的内存更少.<br><strong>缺点:</strong><br>没有.<br><strong>结论:</strong><br>鼓励使用. 注意在生成器函数的文档字符串中使用”Yields:”而不是”Returns:”.<br>(译者注: 参看 <a href="http://zh-google-styleguide.readthedocs.org/en/latest/google-python-styleguide/python_style_rules/#comments" target="_blank" rel="external">注释</a> )</p>
+<h3 id="Lambda函数">Lambda函数</h3><blockquote>
+<p>Tip<br>适用于单行函数</p>
+</blockquote>
+<p><strong>定义:</strong><br>与语句相反, lambda在一个表达式中定义匿名函数. 常用于为 <code>map()</code> 和 <code>filter()</code> 之类的高阶函数定义回调函数或者操作符.<br><strong>优点:</strong><br>方便.<br><strong>缺点:</strong><br>比本地函数更难阅读和调试. 没有函数名意味着堆栈跟踪更难理解. 由于lambda函数通常只包含一个表达式, 因此其表达能力有限.<br><strong>结论:</strong><br>适用于单行函数. 如果代码超过60-80个字符, 最好还是定义成常规(嵌套)函数.</p>
+<p>对于常见的操作符，例如乘法操作符，使用 <code>operator</code> 模块中的函数以代替lambda函数. 例如, 推荐使用 <code>operator.mul</code> , 而不是 <code>lambda x, y: x * y</code> .</p>
+<h3 id="条件表达式">条件表达式</h3><blockquote>
+<p>Tip<br>适用于单行函数</p>
+</blockquote>
+<p><strong>定义:</strong><br>条件表达式是对于if语句的一种更为简短的句法规则. 例如: <code>x = 1 if cond else 2</code> .<br><strong>优点:</strong><br>比if语句更加简短和方便.<br><strong>缺点:</strong><br>比if语句难于阅读. 如果表达式很长， 难于定位条件.<br><strong>结论:</strong><br>适用于单行函数. 在其他情况下，推荐使用完整的if语句.</p>
+<h3 id="默认参数值">默认参数值</h3><blockquote>
+<p>Tip<br>适用于大部分情况.</p>
+</blockquote>
+<p><strong>定义:</strong><br>你可以在函数参数列表的最后指定变量的值, 例如, <code>def foo(a, b = 0):</code> . 如果调用foo时只带一个参数, 则b被设为0. 如果带两个参数, 则b的值等于第二个参数.<br><strong>优点:</strong><br>你经常会碰到一些使用大量默认值的函数, 但偶尔(比较少见)你想要覆盖这些默认值. 默认参数值提供了一种简单的方法来完成这件事, 你不需要为这些罕见的例外定义大量函数. 同时, Python也不支持重载方法和函数, 默认参数是一种”仿造”重载行为的简单方式.<br><strong>缺点:</strong><br>默认参数只在模块加载时求值一次. 如果参数是列表或字典之类的可变类型, 这可能会导致问题. 如果函数修改了对象(例如向列表追加项), 默认值就被修改了.<br><strong>结论:</strong><br>鼓励使用, 不过有如下注意事项:</p>
+<p>不要在函数或方法定义中使用可变对象作为默认值.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Yes: <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(a, b=None)</span>:</span></span><br><span class="line">         <span class="keyword">if</span> b <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">             b = []</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">No:  <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(a, b=[])</span>:</span></span><br><span class="line">         ...</span><br><span class="line">No:  <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(a, b=time.time<span class="params">()</span>)</span>:</span>  <span class="comment"># The time the module was loaded???</span></span><br><span class="line">         ...</span><br><span class="line">No:  <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(a, b=FLAGS.my_thing)</span>:</span>  <span class="comment"># sys.argv has not yet been parsed...</span></span><br><span class="line">         ...</span><br></pre></td></tr></table></figure>
+<h3 id="属性_properties">属性 properties</h3><blockquote>
+<p>Tip<br>访问和设置数据成员时, 你通常会使用简单, 轻量级的访问和设置函数. 建议用属性（properties）来代替它们.</p>
+</blockquote>
+<p><strong>定义:</strong><br>一种用于包装方法调用的方式. 当运算量不大, 它是获取和设置属性(attribute)的标准方式.<br><strong>优点:</strong><br>通过消除简单的属性(attribute)访问时显式的get和set方法调用, 可读性提高了. 允许懒惰的计算. 用Pythonic的方式来维护类的接口. 就性能而言, 当直接访问变量是合理的, 添加访问方法就显得琐碎而无意义. 使用属性(properties)可以绕过这个问题. 将来也可以在不破坏接口的情况下将访问方法加上.<br><strong>缺点:</strong><br>属性(properties)是在get和set方法声明后指定, 这需要使用者在接下来的代码中注意: set和get是用于属性(properties)的(除了用 <code>@property</code> 装饰器创建的只读属性). 必须继承自object类. 可能隐藏比如操作符重载之类的副作用. 继承时可能会让人困惑.<br><strong>结论:</strong><br>你通常习惯于使用访问或设置方法来访问或设置数据, 它们简单而轻量. 不过我们建议你在新的代码中使用属性. 只读属性应该用 <code>@propert</code>y 装饰器 来创建.</p>
+<p>如果子类没有覆盖属性, 那么属性的继承可能看上去不明显. 因此使用者必须确保访问方法间接被调用, 以保证子类中的重载方法被属性调用(使用模板方法设计模式).</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">Yes: <span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">     <span class="class"><span class="keyword">class</span> <span class="title">Square</span><span class="params">(object)</span>:</span></span><br><span class="line">         <span class="string">"""A square with two properties: a writable area and a read-only perimeter.</span><br><span class="line"></span><br><span class="line">         To use:</span><br><span class="line">         &gt;&gt;&gt; sq = Square(3)</span><br><span class="line">         &gt;&gt;&gt; sq.area</span><br><span class="line">         9</span><br><span class="line">         &gt;&gt;&gt; sq.perimeter</span><br><span class="line">         12</span><br><span class="line">         &gt;&gt;&gt; sq.area = 16</span><br><span class="line">         &gt;&gt;&gt; sq.side</span><br><span class="line">         4</span><br><span class="line">         &gt;&gt;&gt; sq.perimeter</span><br><span class="line">         16</span><br><span class="line">         """</span></span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, side)</span>:</span></span><br><span class="line">             self.side = side</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">def</span> <span class="title">__get_area</span><span class="params">(self)</span>:</span></span><br><span class="line">             <span class="string">"""Calculates the 'area' property."""</span></span><br><span class="line">             <span class="keyword">return</span> self.side ** <span class="number">2</span></span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">def</span> <span class="title">___get_area</span><span class="params">(self)</span>:</span></span><br><span class="line">             <span class="string">"""Indirect accessor for 'area' property."""</span></span><br><span class="line">             <span class="keyword">return</span> self.__get_area()</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">def</span> <span class="title">__set_area</span><span class="params">(self, area)</span>:</span></span><br><span class="line">             <span class="string">"""Sets the 'area' property."""</span></span><br><span class="line">             self.side = math.sqrt(area)</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">def</span> <span class="title">___set_area</span><span class="params">(self, area)</span>:</span></span><br><span class="line">             <span class="string">"""Indirect setter for 'area' property."""</span></span><br><span class="line">             self._SetArea(area)</span><br><span class="line"></span><br><span class="line">         area = property(___get_area, ___set_area,</span><br><span class="line">                         doc=<span class="string">"""Gets or sets the area of the square."""</span>)</span><br><span class="line"></span><br><span class="line">         <span class="decorator">@property</span></span><br><span class="line">         <span class="function"><span class="keyword">def</span> <span class="title">perimeter</span><span class="params">(self)</span>:</span></span><br><span class="line">             <span class="keyword">return</span> self.side * <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<p>(译者注: 老实说, 我觉得这段示例代码很不恰当, 有必要这么蛋疼吗?)</p>
+<h3 id="True_or_False的求值">True or False的求值</h3><blockquote>
+<p>Tip<br>尽可能使用隐式false</p>
+</blockquote>
+<p><strong>定义:</strong><br>Python在布尔上下文中会将某些值求值为false. 按简单的直觉来讲, 就是所有的”空”值都被认为是false. 因此0， None, [], {}, “” 都被认为是false.<br><strong>优点:</strong><br>使用Python布尔值的条件语句更易读也更不易犯错. 大部分情况下, 也更快.<br><strong>缺点:</strong><br>对C/C++开发人员来说, 可能看起来有点怪.<br><strong>结论:</strong><br>尽可能使用隐式的false, 例如: 使用 <code>if foo:</code> 而不是 <code>if foo != []:</code> . 不过还是有一些注意事项需要你铭记在心:</p>
+<ol>
+<li><p>永远不要用==或者!=来比较单件, 比如None. 使用is或者is not.</p>
+</li>
+<li><p>注意: 当你写下 <code>if x:</code> 时, 你其实表示的是 <code>if x is not None</code> . 例如: 当你要测试一个默认值是None的变量或参数是否被设为其它值. 这个值在布尔语义下可能是false!</p>
+</li>
+<li><p>永远不要用==将一个布尔量与false相比较. 使用 <code>if not x:</code> 代替. 如果你需要区分false和None, 你应该用像 <code>if not x and x is not None:</code> 这样的语句.</p>
+</li>
+<li><p>对于序列(字符串, 列表, 元组), 要注意空序列是false. 因此 <code>if not seq:</code> 或者 <code>if seq:</code> 比 <code>if len(seq):</code> 或 <code>if not len(seq):</code> 要更好.</p>
+</li>
+<li><p>处理整数时, 使用隐式false可能会得不偿失(即不小心将None当做0来处理). 你可以将一个已知是整型(且不是len()的返回结果)的值与0比较.</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Yes: <span class="keyword">if</span> <span class="keyword">not</span> users:</span><br><span class="line">         <span class="keyword">print</span> <span class="string">'no users'</span></span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> foo == <span class="number">0</span>:</span><br><span class="line">         self.handle_zero()</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> i % <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">         self.handle_multiple_of_ten()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">No:  <span class="keyword">if</span> len(users) == <span class="number">0</span>:</span><br><span class="line">         <span class="keyword">print</span> <span class="string">'no users'</span></span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> foo <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">and</span> <span class="keyword">not</span> foo:</span><br><span class="line">         self.handle_zero()</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> <span class="keyword">not</span> i % <span class="number">10</span>:</span><br><span class="line">         self.handle_multiple_of_ten()</span><br></pre></td></tr></table></figure>
+<ol>
+<li>注意‘0’(字符串)会被当做true.</li>
+</ol>
+<h3 id="过时的语言特性">过时的语言特性</h3><blockquote>
+<p>Tip<br>尽可能使用字符串方法取代字符串模块. 使用函数调用语法取代apply(). 使用列表推导, for循环取代filter(),map()以及reduce().</p>
+</blockquote>
+<p><strong>定义:</strong><br>当前版本的Python提供了大家通常更喜欢的替代品.<br><strong>结论:</strong><br>我们不使用不支持这些特性的Python版本, 所以没理由不用新的方式.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Yes: words = foo.split(<span class="string">':'</span>)</span><br><span class="line"></span><br><span class="line">     [x[<span class="number">1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> my_list <span class="keyword">if</span> x[<span class="number">2</span>] == <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">     map(math.sqrt, data)    <span class="comment"># Ok. No inlined lambda expression.</span></span><br><span class="line"></span><br><span class="line">     fn(*args, **kwargs)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">No:  words = string.split(foo, <span class="string">':'</span>)</span><br><span class="line"></span><br><span class="line">     map(<span class="keyword">lambda</span> x: x[<span class="number">1</span>], filter(<span class="keyword">lambda</span> x: x[<span class="number">2</span>] == <span class="number">5</span>, my_list))</span><br><span class="line"></span><br><span class="line">     apply(fn, args, kwargs)</span><br></pre></td></tr></table></figure>
+<h3 id="词法作用域_Lexical_Scoping">词法作用域 Lexical Scoping</h3><blockquote>
+<p>Tip<br>推荐使用</p>
+</blockquote>
+<p><strong>定义:</strong><br>嵌套的Python函数可以引用外层函数中定义的变量, 但是不能够对它们赋值. 变量绑定的解析是使用词法作用域, 也就是基于静态的程序文本. 对一个块中的某个名称的任何赋值都会导致Python将对该名称的全部引用当做局部变量, 甚至是赋值前的处理. 如果碰到global声明, 该名称就会被视作全局变量.</p>
+<p>一个使用这个特性的例子:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_adder</span><span class="params">(summand1)</span>:</span></span><br><span class="line">    <span class="string">"""Returns a function that adds numbers to a given number."""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">adder</span><span class="params">(summand2)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> summand1 + summand2</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> adder</span><br></pre></td></tr></table></figure></p>
+<p>(译者注: 这个例子有点诡异, 你应该这样使用这个函数: <code>sum = get_adder(summand1)(summand2)</code> )<br><strong>优点:</strong><br>通常可以带来更加清晰, 优雅的代码. 尤其会让有经验的Lisp和Scheme(还有Haskell, ML等)程序员感到欣慰.<br><strong>缺点:</strong><br>可能导致让人迷惑的bug. 例如下面这个依据 <a href="http://www.python.org/dev/peps/pep-0227/" target="_blank" rel="external">PEP-0227</a> 的例子:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">4</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">print</span> i,</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="comment"># A bunch of code here</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> x:  <span class="comment"># Ah, i *is* local to Foo, so this is what Bar sees</span></span><br><span class="line">        <span class="keyword">print</span> i,</span><br><span class="line">    bar()</span><br></pre></td></tr></table></figure>
+<p>因此 <code>foo([1, 2, 3])</code> 会打印 <code>1 2 3 3</code> , 不是 <code>1 2 3 4</code> .</p>
+<p>(译者注: x是一个列表, for循环其实是将x中的值依次赋给i.这样对i的赋值就隐式的发生了, 整个foo函数体中的i都会被当做局部变量, 包括bar()中的那个. 这一点与C++之类的静态语言还是有很大差别的.)<br><strong>结论:</strong><br>鼓励使用.</p>
+<h3 id="函数与方法装饰器">函数与方法装饰器</h3><blockquote>
+<p>Tip<br>如果好处很显然, 就明智而谨慎的使用装饰器</p>
+</blockquote>
+<p><strong>定义:</strong><br><a href="http://www.python.org/doc/2.4.3/whatsnew/node6.html" target="_blank" rel="external">用于函数及方法的装饰器</a> (也就是@标记). 最常见的装饰器是@classmethod 和@staticmethod, 用于将常规函数转换成类方法或静态方法. 不过, 装饰器语法也允许用户自定义装饰器. 特别地, 对于某个函数 <code>my_decorator</code> , 下面的两段代码是等效的:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(object)</span>:</span></span><br><span class="line">   <span class="decorator">@my_decorator</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">       <span class="comment"># method body ...</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># method body ...</span></span><br><span class="line">    method = my_decorator(method)</span><br></pre></td></tr></table></figure>
+<p><strong>优点:</strong><br>优雅的在函数上指定一些转换. 该转换可能减少一些重复代码, 保持已有函数不变(enforce invariants), 等.<br><strong>缺点:</strong><br>装饰器可以在函数的参数或返回值上执行任何操作, 这可能导致让人惊异的隐藏行为. 而且, 装饰器在导入时执行. 从装饰器代码的失败中恢复更加不可能.<br><strong>结论:</strong><br>如果好处很显然, 就明智而谨慎的使用装饰器. 装饰器应该遵守和函数一样的导入和命名规则. 装饰器的python文档应该清晰的说明该函数是一个装饰器. 请为装饰器编写单元测试.</p>
+<p>避免装饰器自身对外界的依赖(即不要依赖于文件, socket, 数据库连接等), 因为装饰器运行时这些资源可能不可用(由 pydoc 或其它工具导入). 应该保证一个用有效参数调用的装饰器在所有情况下都是成功的.</p>
+<p>装饰器是一种特殊形式的”顶级代码”. 参考后面关于 Main 的话题.</p>
+<h3 id="线程">线程</h3><blockquote>
+<p>Tip<br>不要依赖内建类型的原子性.</p>
+</blockquote>
+<p>虽然Python的内建类型例如字典看上去拥有原子操作, 但是在某些情形下它们仍然不是原子的(即: 如果<code>__hash__</code>或<code>__eq__</code>被实现为Python方法)且它们的原子性是靠不住的. 你也不能指望原子变量赋值(因为这个反过来依赖字典).</p>
+<p>优先使用Queue模块的 <code>Queue</code> 数据类型作为线程间的数据通信方式. 另外, 使用threading模块及其锁原语(locking primitives). 了解条件变量的合适使用方式, 这样你就可以使用 <code>threading.Condition</code> 来取代低级别的锁了.</p>
+<h3 id="威力过大的特性">威力过大的特性</h3><blockquote>
+<p>Tip<br>避免使用这些特性</p>
+</blockquote>
+<p><strong>定义:</strong><br>Python是一种异常灵活的语言, 它为你提供了很多花哨的特性, 诸如元类(metaclasses), 字节码访问, 任意编译(on-the-fly compilation), 动态继承, 对象父类重定义(object reparenting), 导入黑客(import hacks), 反射, 系统内修改(modification of system internals), 等等.<br><strong>优点:</strong><br>强大的语言特性, 能让你的代码更紧凑.<br><strong>缺点:</strong><br>使用这些很”酷”的特性十分诱人, 但不是绝对必要. 使用奇技淫巧的代码将更加难以阅读和调试. 开始可能还好(对原作者而言), 但当你回顾代码, 它们可能会比那些稍长一点但是很直接的代码更加难以理解.<br><strong>结论:</strong><br>在你的代码中避免这些特性.</p>
+<h2 id="Python风格规范">Python风格规范</h2><h3 id="分号">分号</h3><blockquote>
+<p>Tip<br>不要在行尾加分号, 也不要用分号将两条命令放在同一行.</p>
+</blockquote>
+<h3 id="行长度">行长度</h3><blockquote>
+<p>Tip<br>每行不超过80个字符</p>
+</blockquote>
+<p>例外:</p>
+<ol>
+<li>长的导入模块语句</li>
+<li>注释里的URL</li>
+</ol>
+<p>不要使用反斜杠连接行.</p>
+<p>Python会将 <a href="http://docs.python.org/2/reference/lexical_analysis.html#implicit-line-joining" target="_blank" rel="external">圆括号, 中括号和花括号中的行隐式的连接起来</a> , 你可以利用这个特点. 如果需要, 你可以在表达式外围增加一对额外的圆括号.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Yes: foo_bar(self, width, height, color=<span class="string">'black'</span>, design=<span class="keyword">None</span>, x=<span class="string">'foo'</span>,</span><br><span class="line">             emphasis=<span class="keyword">None</span>, highlight=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (width == <span class="number">0</span> <span class="keyword">and</span> height == <span class="number">0</span> <span class="keyword">and</span></span><br><span class="line">         color == <span class="string">'red'</span> <span class="keyword">and</span> emphasis == <span class="string">'strong'</span>):</span><br></pre></td></tr></table></figure>
+<p>如果一个文本字符串在一行放不下, 可以使用圆括号来实现隐式行连接:<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x =<span class="function"> (</span>'This will build a very<span class="instruction"> long </span>long '</span><br><span class="line">     'long<span class="instruction"> long </span>long<span class="instruction"> long </span>long<span class="instruction"> long </span>string'<span class="function">)</span></span><br></pre></td></tr></table></figure></p>
+<p>在注释中，如果必要，将长的URL放在一行上。<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">Yes:</span>  <span class="preprocessor"># See details at</span></span><br><span class="line">      <span class="preprocessor"># http://www.example.com/us/developer/documentation/api/content/v2.0/csv_file_name_extension_full_specification.html</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">No:</span>  <span class="preprocessor"># See details at</span></span><br><span class="line">     <span class="preprocessor"># http://www.example.com/us/developer/documentation/api/content/\</span></span><br><span class="line">     <span class="preprocessor"># v2.0/csv_file_name_extension_full_specification.html</span></span><br></pre></td></tr></table></figure>
+<p>注意上面例子中的元素缩进; 你可以在本文的 <code>缩进</code> 部分找到解释.</p>
+<h3 id="括号">括号</h3><blockquote>
+<p>Tip<br>宁缺毋滥的使用括号</p>
+</blockquote>
+<p>除非是用于实现行连接, 否则不要在返回语句或条件语句中使用括号. 不过在元组两边使用括号是可以的.<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Yes: <span class="keyword">if</span> foo:</span><br><span class="line">         <span class="function"><span class="title">bar</span><span class="params">()</span></span></span><br><span class="line">     while x:</span><br><span class="line">         x = <span class="function"><span class="title">bar</span><span class="params">()</span></span></span><br><span class="line">     <span class="keyword">if</span> x and y:</span><br><span class="line">         <span class="function"><span class="title">bar</span><span class="params">()</span></span></span><br><span class="line">     <span class="keyword">if</span> not x:</span><br><span class="line">         <span class="function"><span class="title">bar</span><span class="params">()</span></span></span><br><span class="line">     return foo</span><br><span class="line">     <span class="keyword">for</span> (x, y) <span class="keyword">in</span> dict.<span class="function"><span class="title">items</span><span class="params">()</span></span>: ...</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">No:  <span class="keyword">if</span> (x):</span><br><span class="line">         <span class="function"><span class="title">bar</span><span class="params">()</span></span></span><br><span class="line">     <span class="keyword">if</span> <span class="function"><span class="title">not</span><span class="params">(x)</span></span>:</span><br><span class="line">         <span class="function"><span class="title">bar</span><span class="params">()</span></span></span><br><span class="line">     return (foo)</span><br></pre></td></tr></table></figure>
+<h3 id="缩进">缩进</h3><blockquote>
+<p>Tip<br>用4个空格来缩进代码</p>
+</blockquote>
+<p>绝对不要用tab, 也不要tab和空格混用. 对于行连接的情况, 你应该要么垂直对齐换行的元素(见 <code>行长度</code> 部分的示例), 或者使用4空格的悬挂式缩进(这时第一行不应该有参数):<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Yes:   <span class="comment"># Aligned with opening delimiter</span></span><br><span class="line">       <span class="variable">foo =</span> long_function_name(var_one, var_two,</span><br><span class="line">                                var_three, var_four)</span><br><span class="line"></span><br><span class="line">       <span class="comment"># Aligned with opening delimiter in a dictionary</span></span><br><span class="line">       <span class="variable">foo =</span> &#123;</span><br><span class="line">           long_dictionary_key: value1 +</span><br><span class="line">                                value2,</span><br><span class="line">           ...</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment"># 4-space hanging indent; nothing on first line</span></span><br><span class="line">       <span class="variable">foo =</span> long_function_name(</span><br><span class="line">           var_one, var_two, var_three,</span><br><span class="line">           var_four)</span><br><span class="line"></span><br><span class="line">       <span class="comment"># 4-space hanging indent in a dictionary</span></span><br><span class="line">       <span class="variable">foo =</span> &#123;</span><br><span class="line">           long_dictionary_key:</span><br><span class="line">               long_dictionary_value,</span><br><span class="line">           ...</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">No:    <span class="comment"># Stuff on first line forbidden</span></span><br><span class="line">      <span class="variable">foo =</span> long_function_name(var_one, var_two,</span><br><span class="line">          var_three, var_four)</span><br><span class="line"></span><br><span class="line">      <span class="comment"># 2-space hanging indent forbidden</span></span><br><span class="line">      <span class="variable">foo =</span> long_function_name(</span><br><span class="line">        var_one, var_two, var_three,</span><br><span class="line">        var_four)</span><br><span class="line"></span><br><span class="line">      <span class="comment"># No hanging indent in a dictionary</span></span><br><span class="line">      <span class="variable">foo =</span> &#123;</span><br><span class="line">          long_dictionary_key:</span><br><span class="line">              long_dictionary_value,</span><br><span class="line">              ...</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="空行">空行</h3><blockquote>
+<p>Tip<br>顶级定义之间空两行, 方法定义之间空一行</p>
+</blockquote>
+<p>顶级定义之间空两行, 比如函数或者类定义. 方法定义, 类定义与第一个方法之间, 都应该空一行. 函数或方法中, 某些地方要是你觉得合适, 就空一行.</p>
+<h3 id="空格">空格</h3><blockquote>
+<p>Tip<br>按照标准的排版规范来使用标点两边的空格</p>
+</blockquote>
+<p>括号内不要有空格.<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">Yes</span>: <span class="tag">spam</span>(ham[<span class="number">1</span>], &#123;<span class="attribute">eggs</span>: <span class="number">2</span>&#125;, [])</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">No</span>:  <span class="tag">spam</span>( ham[ <span class="number">1</span> ], &#123; <span class="attribute">eggs</span>: <span class="number">2</span> &#125;, [ ] )</span><br></pre></td></tr></table></figure>
+<p>不要在逗号, 分号, 冒号前面加空格, 但应该在它们后面加(除了在行尾).</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Yes: <span class="keyword">if</span> <span class="variable">x =</span>= <span class="number">4</span>:</span><br><span class="line">         print x, y</span><br><span class="line">     x, <span class="variable">y =</span> y, x</span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">No</span>:  <span class="keyword">if</span> x == 4 :</span><br><span class="line">         <span class="keyword">print</span> x , <span class="literal">y</span></span><br><span class="line">     x , y = y , x</span><br></pre></td></tr></table></figure>
+<p>参数列表, 索引或切片的左括号前不应加空格.<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Yes: <span class="function"><span class="title">spam</span><span class="params">(<span class="number">1</span>)</span></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">no</span>: <span class="string">spam (1)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ye<span class="variable">s:</span> dict[<span class="string">'key'</span>] = <span class="keyword">list</span>[<span class="built_in">index</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="name">No</span>:  <span class="atom">dict</span> [<span class="string">'key'</span>] = <span class="atom">list</span> [<span class="atom">index</span>]</span><br></pre></td></tr></table></figure>
+<p>在二元操作符两边都加上一个空格, 比如赋值(=), 比较(==, &lt;, &gt;, !=, &lt;&gt;, &lt;=, &gt;=, in, not in, is, is not), 布尔(and, or, not). 至于算术操作符两边的空格该如何使用, 需要你自己好好判断. 不过两侧务必要保持一致.<br><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Yes</span>: <span class="string">x == 1</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">No</span>: <span class="string"> x&lt;1</span></span><br></pre></td></tr></table></figure>
+<p>当’=’用于指示关键字参数或默认参数值时, 不要在其两侧使用空格.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Yes: <span class="function"><span class="keyword">def</span> <span class="title">complex</span><span class="params">(real, imag=<span class="number">0.0</span>)</span>:</span> <span class="keyword">return</span> magic(r=real, i=imag)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">No:  <span class="function"><span class="keyword">def</span> <span class="title">complex</span><span class="params">(real, imag = <span class="number">0.0</span>)</span>:</span> <span class="keyword">return</span> magic(r = real, i = imag)</span><br></pre></td></tr></table></figure>
+<p>不要用空格来垂直对齐多行间的标记, 因为这会成为维护的负担(适用于:, #, =等):</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Yes:</span><br><span class="line">     <span class="variable">foo =</span> <span class="number">1000</span>  <span class="comment"># comment</span></span><br><span class="line">     <span class="variable">long_name =</span> <span class="number">2</span>  <span class="comment"># comment that should not be aligned</span></span><br><span class="line"></span><br><span class="line">     <span class="variable">dictionary =</span> &#123;</span><br><span class="line">         <span class="string">"foo"</span>: <span class="number">1</span>,</span><br><span class="line">         <span class="string">"long_name"</span>: <span class="number">2</span>,</span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">No:</span><br><span class="line">     <span class="variable">foo       =</span> <span class="number">1000</span>  <span class="comment"># comment</span></span><br><span class="line">     <span class="variable">long_name =</span> <span class="number">2</span>     <span class="comment"># comment that should not be aligned</span></span><br><span class="line"></span><br><span class="line">     <span class="variable">dictionary =</span> &#123;</span><br><span class="line">         <span class="string">"foo"</span>      : <span class="number">1</span>,</span><br><span class="line">         <span class="string">"long_name"</span>: <span class="number">2</span>,</span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Python_解析器">Python 解析器</h3><blockquote>
+<p>Tip<br>大部分.py文件不必以#!作为文件的开始. 根据 <a href="http://www.python.org/dev/peps/pep-0394/" target="_blank" rel="external">PEP-394</a> , 程序的main文件应该以#!/usr/bin/python2或者 #!/usr/bin/python3开始.</p>
+</blockquote>
+<p>(译者注: 在计算机科学中, <a href="http://en.wikipedia.org/wiki/Shebang_%28Unix%29" target="_blank" rel="external">Shebang</a> (也称为Hashbang)是一个由井号和叹号构成的字符串行(#!), 其出现在文本文件的第一行的前两个字符. 在文件中存在Shebang的情况下, 类Unix操作系统的程序载入器会分析Shebang后的内容, 将这些内容作为解释器指令, 并调用该指令, 并将载有Shebang的文件路径作为该解释器的参数. 例如, 以指令#!/bin/sh开头的文件在执行时会实际调用/bin/sh程序.)<br>#!先用于帮助内核找到Python解释器, 但是在导入模块时, 将会被忽略. 因此只有被直接执行的文件中才有必要加入#!.</p>
+<h3 id="注释">注释</h3><blockquote>
+<p>Tip<br>确保对模块, 函数, 方法和行内注释使用正确的风格 文档字符串</p>
+</blockquote>
+<p>Python有一种独一无二的的注释方式: 使用文档字符串. 文档字符串是包, 模块, 类或函数里的第一个语句. 这些字符串可以通过对象的<strong>doc</strong>成员被自动提取, 并且被pydoc所用. (你可以在你的模块上运行pydoc试一把, 看看它长什么样). 我们对文档字符串的惯例是使用三重双引号”“”( <a href="http://www.python.org/dev/peps/pep-0257/" target="_blank" rel="external">PEP-257</a> ). 一个文档字符串应该这样组织: 首先是一行以句号, 问号或惊叹号结尾的概述(或者该文档字符串单纯只有一行). 接着是一个空行. 接着是文档字符串剩下的部分, 它应该与文档字符串的第一行的第一个引号对齐. 下面有更多文档字符串的格式化规范.<br><strong>模块</strong></p>
+<p>每个文件应该包含一个许可样板. 根据项目使用的许可(例如, Apache 2.0, BSD, LGPL, GPL), 选择合适的样板.<br><strong>函数和方法</strong></p>
+<p>下文所指的函数,包括函数, 方法, 以及生成器.</p>
+<p>一个函数必须要有文档字符串, 除非它满足以下条件:</p>
+<ol>
+<li>外部不可见</li>
+<li>非常短小</li>
+<li>简单明了</li>
+</ol>
+<p>文档字符串应该包含函数做什么, 以及输入和输出的详细描述. 通常, 不应该描述”怎么做”, 除非是一些复杂的算法. 文档字符串应该提供足够的信息, 当别人编写代码调用该函数时, 他不需要看一行代码, 只要看文档字符串就可以了. 对于复杂的代码, 在代码旁边加注释会比使用文档字符串更有意义.</p>
+<p>关于函数的几个方面应该在特定的小节中进行描述记录， 这几个方面如下文所述. 每节应该以一个标题行开始. 标题行以冒号结尾. 除标题行外, 节的其他内容应被缩进2个空格.</p>
+<p><code>Args:</code><br>列出每个参数的名字, 并在名字后使用一个冒号和一个空格, 分隔对该参数的描述.如果描述太长超过了单行80字符,使用2或者4个空格的悬挂缩进(与文件其他部分保持一致). 描述应该包括所需的类型和含义. 如果一个函数接受<em>foo(可变长度参数列表)或者**bar (任意关键字参数), 应该详细列出</em>foo和**bar.</p>
+<p><code>Returns:</code> (或者 Yields: 用于生成器)<br>描述返回值的类型和语义. 如果函数返回None, 这一部分可以省略.</p>
+<p><code>Raises:</code><br>列出与接口有关的所有异常.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch_bigtable_rows</span><span class="params">(big_table, keys, other_silly_variable=None)</span>:</span></span><br><span class="line">    <span class="string">"""Fetches rows from a Bigtable.</span><br><span class="line"></span><br><span class="line">    Retrieves rows pertaining to the given keys from the Table instance</span><br><span class="line">    represented by big_table.  Silly things may happen if</span><br><span class="line">    other_silly_variable is not None.</span><br><span class="line"></span><br><span class="line">    Args:</span><br><span class="line">        big_table: An open Bigtable Table instance.</span><br><span class="line">        keys: A sequence of strings representing the key of each table row</span><br><span class="line">            to fetch.</span><br><span class="line">        other_silly_variable: Another optional variable, that has a much</span><br><span class="line">            longer name than the other args, and which does nothing.</span><br><span class="line"></span><br><span class="line">    Returns:</span><br><span class="line">        A dict mapping keys to the corresponding table row data</span><br><span class="line">        fetched. Each row is represented as a tuple of strings. For</span><br><span class="line">        example:</span><br><span class="line"></span><br><span class="line">        &#123;'Serak': ('Rigel VII', 'Preparer'),</span><br><span class="line">         'Zim': ('Irk', 'Invader'),</span><br><span class="line">         'Lrrr': ('Omicron Persei 8', 'Emperor')&#125;</span><br><span class="line"></span><br><span class="line">        If a key from the keys argument is missing from the dictionary,</span><br><span class="line">        then that row was not found in the table.</span><br><span class="line"></span><br><span class="line">    Raises:</span><br><span class="line">        IOError: An error occurred accessing the bigtable.Table object.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>类</strong></p>
+<p>类应该在其定义下有一个用于描述该类的文档字符串. 如果你的类有公共属性(Attributes), 那么文档中应该有一个属性(Attributes)段. 并且应该遵守和函数参数相同的格式.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SampleClass</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""Summary of class here.</span><br><span class="line"></span><br><span class="line">    Longer class information....</span><br><span class="line">    Longer class information....</span><br><span class="line"></span><br><span class="line">    Attributes:</span><br><span class="line">        likes_spam: A boolean indicating if we like SPAM or not.</span><br><span class="line">        eggs: An integer count of the eggs we have laid.</span><br><span class="line">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, likes_spam=False)</span>:</span></span><br><span class="line">        <span class="string">"""Inits SampleClass with blah."""</span></span><br><span class="line">        self.likes_spam = likes_spam</span><br><span class="line">        self.eggs = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">public_method</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""Performs operation blah."""</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>块注释和行注释</strong></p>
+<p>最需要写注释的是代码中那些技巧性的部分. 如果你在下次 <a href="http://en.wikipedia.org/wiki/Code_review" target="_blank" rel="external">代码审查</a> 的时候必须解释一下, 那么你应该现在就给它写注释. 对于复杂的操作, 应该在其操作开始前写上若干行注释. 对于不是一目了然的代码, 应在其行尾添加注释.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># We <span class="operator"><span class="keyword">use</span> a weighted dictionary search <span class="keyword">to</span> find out <span class="keyword">where</span> i <span class="keyword">is</span> <span class="keyword">in</span></span><br><span class="line"># the <span class="built_in">array</span>.  We extrapolate <span class="keyword">position</span> based <span class="keyword">on</span> the largest num</span><br><span class="line"># <span class="keyword">in</span> the <span class="built_in">array</span> <span class="keyword">and</span> the <span class="built_in">array</span> <span class="keyword">size</span> <span class="keyword">and</span> <span class="keyword">then</span> <span class="keyword">do</span> <span class="built_in">binary</span> search <span class="keyword">to</span></span><br><span class="line"># <span class="keyword">get</span> the exact <span class="built_in">number</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> i &amp; (i-<span class="number">1</span>) == <span class="number">0</span>:        # <span class="literal">true</span> iff i <span class="keyword">is</span> a <span class="keyword">power</span> <span class="keyword">of</span> <span class="number">2</span></span></span><br></pre></td></tr></table></figure>
+<p>为了提高可读性, 注释应该至少离开代码2个空格.</p>
+<p>另一方面, <strong>绝不要描述代码</strong>. 假设阅读代码的人比你更懂Python, 他只是不知道你的代码要做什么.</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># BAD COMMENT: Now go through the b array and make sure whenever i occurs</span></span><br><span class="line"><span class="comment"># the next element is i+1</span></span><br></pre></td></tr></table></figure>
+<h3 id="类">类</h3><blockquote>
+<p>Tip<br>如果一个类不继承自其它类, 就显式的从object继承. 嵌套类也一样.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Yes: <span class="class"><span class="keyword">class</span> <span class="title">SampleClass</span><span class="params">(object)</span>:</span></span><br><span class="line">         <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="class"><span class="keyword">class</span> <span class="title">OuterClass</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">         <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span><span class="params">(object)</span>:</span></span><br><span class="line">             <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="class"><span class="keyword">class</span> <span class="title">ChildClass</span><span class="params">(ParentClass)</span>:</span></span><br><span class="line">         <span class="string">"""Explicitly inherits from another class already."""</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">No</span>: <span class="keyword"><span class="keyword">class</span> <span class="title">SampleClass</span>:</span></span><br><span class="line">        <span class="literal">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword"><span class="keyword">class</span> <span class="title">OuterClass</span>:</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword"><span class="keyword">class</span> <span class="title">InnerClass</span>:</span></span><br><span class="line">            <span class="literal">pass</span></span><br></pre></td></tr></table></figure>
+<p>继承自 <code>object</code> 是为了使属性(properties)正常工作, 并且这样可以保护你的代码, 使其不受Python 3000的一个特殊的潜在不兼容性影响. 这样做也定义了一些特殊的方法, 这些方法实现了对象的默认语义, 包括 <code>__new__, __init__, __delattr__, __getattribute__, __setattr__, __hash__, __repr__, and __str__</code> .</p>
+<h3 id="字符串">字符串</h3><blockquote>
+<p>Tip<br>即使参数都是字符串, 使用%操作符或者格式化方法格式化字符串. 不过也不能一概而论, 你需要在+和%之间好好判定.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Yes: x = a + b</span><br><span class="line">     x = <span class="string">'%s, %s!'</span> % (imperative, expletive)</span><br><span class="line">     x = <span class="string">'&#123;&#125;, &#123;&#125;!'</span>.format(imperative, expletive)</span><br><span class="line">     x = <span class="string">'name: %s; score: %d'</span> % (name, n)</span><br><span class="line">     x = <span class="string">'name: &#123;&#125;; score: &#123;&#125;'</span>.format(name, n)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">No: x = <span class="string">'%s%s'</span> % (a, b)  <span class="comment"># use + in this case</span></span><br><span class="line">    x = <span class="string">'&#123;&#125;&#123;&#125;'</span>.format(a, b)  <span class="comment"># use + in this case</span></span><br><span class="line">    x = imperative + <span class="string">', '</span> + expletive + <span class="string">'!'</span></span><br><span class="line">    x = <span class="string">'name: '</span> + name + <span class="string">'; score: '</span> + str(n)</span><br></pre></td></tr></table></figure>
+<p>避免在循环中用+和+=操作符来累加字符串. 由于字符串是不可变的, 这样做会创建不必要的临时对象, 并且导致二次方而不是线性的运行时间. 作为替代方案, 你可以将每个子串加入列表, 然后在循环结束后用 <code>.join</code> 连接列表. (也可以将每个子串写入一个 <code>cStringIO.StringIO</code> 缓存中.)<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Yes: items = [<span class="string">'&lt;table&gt;'</span>]</span><br><span class="line">     <span class="keyword">for</span> last_name, first_name <span class="keyword">in</span> employee_list:</span><br><span class="line">         items.<span class="function"><span class="title">append</span><span class="params">(<span class="string">'&lt;tr&gt;&lt;td&gt;%s, %s&lt;/td&gt;&lt;/tr&gt;'</span> % (last_name, first_name)</span></span>)</span><br><span class="line">     items.<span class="function"><span class="title">append</span><span class="params">(<span class="string">'&lt;/table&gt;'</span>)</span></span></span><br><span class="line">     employee_table = <span class="string">''</span>.<span class="function"><span class="title">join</span><span class="params">(items)</span></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">No: employee_table = <span class="comment">'<span class="xmlDocTag">&lt;table&gt;</span>'</span></span><br><span class="line">    <span class="keyword">for</span> last_name, first_name <span class="keyword">in</span> employee_list:</span><br><span class="line">        employee_table += <span class="comment">'<span class="xmlDocTag">&lt;tr&gt;</span><span class="xmlDocTag">&lt;td&gt;</span>%s, %s<span class="xmlDocTag">&lt;/td&gt;</span><span class="xmlDocTag">&lt;/tr&gt;</span>' % (last_name, first_name)</span></span><br><span class="line">    employee_table += <span class="comment">'<span class="xmlDocTag">&lt;/table&gt;</span>'</span></span><br></pre></td></tr></table></figure>
+<p>在同一个文件中, 保持使用字符串引号的一致性. 使用单引号’或者双引号”之一用以引用字符串, 并在同一文件中沿用. 在字符串内可以使用另外一种引号, 以避免在字符串中使用. GPyLint已经加入了这一检查.</p>
+<p>(译者注:GPyLint疑为笔误, 应为PyLint.)</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Yes:</span><br><span class="line">     <span class="function"><span class="title">Python</span><span class="params">(<span class="string">'Why are you hiding your eyes?'</span>)</span></span></span><br><span class="line">     <span class="function"><span class="title">Gollum</span><span class="params">(<span class="string">"I'm scared of lint errors."</span>)</span></span></span><br><span class="line">     <span class="function"><span class="title">Narrator</span><span class="params">(<span class="string">'"Good!" thought a happy Python reviewer.'</span>)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">No:</span><br><span class="line">     <span class="function"><span class="title">Python</span><span class="params">(<span class="string">"Why are you hiding your eyes?"</span>)</span></span></span><br><span class="line">     <span class="function"><span class="title">Gollum</span><span class="params">(<span class="string">'The lint. It burns. It burns us.'</span>)</span></span></span><br><span class="line">     <span class="function"><span class="title">Gollum</span><span class="params">(<span class="string">"Always the great lint. Watching. Watching."</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>为多行字符串使用三重双引号”“”而非三重单引号’‘’. 当且仅当项目中使用单引号’来引用字符串时, 才可能会使用三重’‘’为非文档字符串的多行字符串来标识引用. 文档字符串必须使用三重双引号”“”. 不过要注意, 通常用隐式行连接更清晰, 因为多行字符串与程序其他部分的缩进方式不一致.</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Ye<span class="variable">s:</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"This is much nicer.\n"</span></span><br><span class="line">           <span class="string">"Do it this way.\n"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">No:</span><br><span class="line">      <span class="keyword">print</span> <span class="string">"""This is pretty ugly.</span><br><span class="line">  Don't do this.</span><br><span class="line">  """</span></span><br></pre></td></tr></table></figure>
+<h3 id="文件和sockets">文件和sockets</h3><blockquote>
+<p>Tip<br>在文件和sockets结束时, 显式的关闭它.</p>
+</blockquote>
+<p>除文件外, sockets或其他类似文件的对象在没有必要的情况下打开, 会有许多副作用, 例如:</p>
+<ol>
+<li>它们可能会消耗有限的系统资源,如文件描述符.如果这些资源在使用后没有及时归还系统,那么用于处理这些对象的代码会将资源消耗殆尽.</li>
+<li>持有文件将会阻止对于文件的其他诸如移动、删除之类的操作.</li>
+<li>仅仅是从逻辑上关闭文件和sockets,那么它们仍然可能会被其共享的程序在无意中进行读或者写操作.只有当它们真正被关闭后,对于它们尝试进行读或者写操作将会跑出异常,并使得问题快速显现出来.</li>
+</ol>
+<p>而且,幻想当文件对象析构时,文件和sockets会自动关闭,试图将文件对象的生命周期和文件的状态绑定在一起的想法,都是不现实的. 因为有如下原因:</p>
+<ol>
+<li>没有任何方法可以确保运行环境会真正的执行文件的析构.不同的Python实现采用不同的内存管理技术,比如延时垃圾处理机制. 延时垃圾处理机制可能会导致对象生命周期被任意无限制的延长.</li>
+<li>对于文件意外的引用,会导致对于文件的持有时间超出预期(比如对于异常的跟踪, 包含有全局变量等).</li>
+</ol>
+<p>推荐使用<a href="http://docs.python.org/reference/compound_stmts.html#the-with-statement" target="_blank" rel="external">“with”语句</a> 以管理文件:<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">with</span> <span class="built_in">open</span>(<span class="string">"hello.txt"</span>) <span class="keyword">as</span> hello_file:</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">line</span> <span class="operator">in</span> hello_file:</span><br><span class="line">        print <span class="built_in">line</span></span><br></pre></td></tr></table></figure></p>
+<p>对于不支持使用”with”语句的类似文件的对象,使用 <code>contextlib.closing()</code>:<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">import</span> contextlib</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> contextlib.closing(urllib.urlopen(<span class="string">"http://www.python.org/"</span>)) <span class="literal">as</span> front_page:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> front_page:</span><br><span class="line">        <span class="built_in">print</span> line</span><br></pre></td></tr></table></figure></p>
+<p>Legacy AppEngine 中Python 2.5的代码如使用”with”语句, 需要添加 <code>“from __future__ import with_statement”</code>.</p>
+<h3 id="TODO注释">TODO注释</h3><blockquote>
+<p>Tip<br>为临时代码使用TODO注释, 它是一种短期解决方案. 不算完美, 但够好了.</p>
+</blockquote>
+<p>TODO注释应该在所有开头处包含”TODO”字符串, 紧跟着是用括号括起来的你的名字, email地址或其它标识符. 然后是一个可选的冒号. 接着必须有一行注释, 解释要做什么. 主要目的是为了有一个统一的TODO格式, 这样添加注释的人就可以搜索到(并可以按需提供更多细节). 写了TODO注释并不保证写的人会亲自解决问题. 当你写了一个TODO, 请注上你的名字.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># TODO(kl@gmail.com): <span class="operator"><span class="keyword">Use</span> a <span class="string">"*"</span> here <span class="keyword">for</span> <span class="keyword">string</span> repetition.</span><br><span class="line"># TODO(Zeke) <span class="keyword">Change</span> this <span class="keyword">to</span> <span class="keyword">use</span> relations.</span></span><br></pre></td></tr></table></figure></p>
+<p>如果你的TODO是”将来做某事”的形式, 那么请确保你包含了一个指定的日期(“2009年11月解决”)或者一个特定的事件(“等到所有的客户都可以处理XML请求就移除这些代码”).</p>
+<h3 id="导入格式">导入格式</h3><blockquote>
+<p>Tip<br>每个导入应该独占一行<br><figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Yes: <span class="preprocessor"><span class="keyword">import</span> os</span></span><br><span class="line">     <span class="preprocessor"><span class="keyword">import</span> sys</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">No:</span>  <span class="keyword">import</span> os, sys</span><br></pre></td></tr></table></figure>
+<p>导入总应该放在文件顶部, 位于模块注释和文档字符串之后, 模块全局变量和常量之前. 导入应该按照从最通用到最不通用的顺序分组:</p>
+<ol>
+<li>标准库导入</li>
+<li>第三方库导入</li>
+<li>应用程序指定导入</li>
+</ol>
+<p>每种分组中, 应该根据每个模块的完整包路径按字典序排序, 忽略大小写.<br><figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"><span class="keyword">import</span> foo</span></span><br><span class="line">from foo <span class="preprocessor"><span class="keyword">import</span> bar</span></span><br><span class="line">from foo.bar <span class="preprocessor"><span class="keyword">import</span> baz</span></span><br><span class="line">from foo.bar <span class="preprocessor"><span class="keyword">import</span> Quux</span></span><br><span class="line">from Foob <span class="preprocessor"><span class="keyword">import</span> ar</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="语句">语句</h3><blockquote>
+<p>Tip<br>通常每个语句应该独占一行</p>
+</blockquote>
+<p>不过, 如果测试结果与测试语句在一行放得下, 你也可以将它们放在同一行. 如果是if语句, 只有在没有else时才能这样做. 特别地, 绝不要对 <code>try/except</code> 这样做, 因为try和except不能放在同一行.<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Yes:</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> foo: <span class="function"><span class="title">bar</span><span class="params">(foo)</span></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">No:</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> foo: <span class="function"><span class="title">bar</span><span class="params">(foo)</span></span></span><br><span class="line">  <span class="keyword">else</span>:   <span class="function"><span class="title">baz</span><span class="params">(foo)</span></span></span><br><span class="line"></span><br><span class="line">  try:               <span class="function"><span class="title">bar</span><span class="params">(foo)</span></span></span><br><span class="line">  except ValueError: <span class="function"><span class="title">baz</span><span class="params">(foo)</span></span></span><br><span class="line">  </span><br><span class="line">  try:</span><br><span class="line">      <span class="function"><span class="title">bar</span><span class="params">(foo)</span></span></span><br><span class="line">  except ValueError: <span class="function"><span class="title">baz</span><span class="params">(foo)</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="访问控制">访问控制</h3><blockquote>
+<p>Tip<br>在Python中, 对于琐碎又不太重要的访问函数,你应该直接使用公有变量来取代它们,这样可以避免额外的函数调用开销.当添加更多功能时, 你可以用属性(property)来保持语法的一致性.</p>
+<p>(译者注: 重视封装的面向对象程序员看到这个可能会很反感, 因为他们一直被教育: 所有成员变量都必须是私有的! 其实, 那真的是有点麻烦啊.试着去接受Pythonic哲学吧)</p>
+</blockquote>
+<p>另一方面, 如果访问更复杂, 或者变量的访问开销很显著, 那么你应该使用像 <code>get_foo()</code> 和 <code>set_foo()</code> 这样的函数调用. 如果之前的代码行为允许通过属性(property)访问 , 那么就不要将新的访问函数与属性绑定. 这样, 任何试图通过老方法访问变量的代码就没法运行, 使用者也就会意识到复杂性发生了变化.</p>
+<h3 id="命名">命名</h3><blockquote>
+<p>Tip<br>module_name, package_name, ClassName, method_name, ExceptionName,function_name, GLOBAL_VAR_NAME, instance_var_name, function_parameter_name, local_var_name.</p>
+</blockquote>
+<p><strong>应该避免的名称</strong></p>
+<ol>
+<li>单字符名称, 除了计数器和迭代器.</li>
+<li>包/模块名中的连字符(-)</li>
+<li>双下划线开头并结尾的名称(Python保留, 例如<strong>init</strong>)</li>
+</ol>
+<p><strong>命名约定</strong></p>
+<ol>
+<li>所谓”内部(Internal)”表示仅模块内可用, 或者, 在类内是保护或私有的.</li>
+<li>用单下划线(_)开头表示模块变量或函数是protected的(使用import * from时不会包含).</li>
+<li>用双下划线(__)开头的实例变量或方法表示类内私有.</li>
+<li>将相关的类和顶级函数放在同一个模块里. 不像Java, 没必要限制一个类一个模块.</li>
+<li>对类名使用大写字母开头的单词(如CapWords,即Pascal风格),但是模块名应该用小写加下划线的方式(如lower_with_under.py). 尽管已经有很多现存的模块使用类似于CapWords.py这样的命名,但现在已经不鼓励这样做,因为如果模块名碰巧和类一致, 这会让人困扰.</li>
+</ol>
+<p><strong>Python之父Guido推荐的规范</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th style="text-align:left">Public</th>
+<th style="text-align:left">Internal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Modules</td>
+<td style="text-align:left">lower_with_under</td>
+<td style="text-align:left">_lower_with_under</td>
+</tr>
+<tr>
+<td>Packages</td>
+<td style="text-align:left">lower_with_under</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>Classes</td>
+<td style="text-align:left">CapWords</td>
+<td style="text-align:left">_CapWords</td>
+</tr>
+<tr>
+<td>Exceptions</td>
+<td style="text-align:left">CapWords</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>Functions</td>
+<td style="text-align:left">lower_with_under()</td>
+<td style="text-align:left">lower_with_under()</td>
+</tr>
+<tr>
+<td>Global/Class Constants</td>
+<td style="text-align:left">CAPS_WITH_UNDER</td>
+<td style="text-align:left">CAPS_WITH_UNDER</td>
+</tr>
+<tr>
+<td>Global/Class Variables</td>
+<td style="text-align:left">lower_with_under</td>
+<td style="text-align:left">lower_with_under</td>
+</tr>
+<tr>
+<td>Instance Variables</td>
+<td style="text-align:left">lower_with_under</td>
+<td style="text-align:left">_lower_with_under (protected) or __lower_with_under (private)</td>
+</tr>
+<tr>
+<td>Method Names</td>
+<td style="text-align:left">lower_with_under()</td>
+<td style="text-align:left">_lower_with_under() (protected) or __lower_with_under() (private)</td>
+</tr>
+<tr>
+<td>Function/Method Parameters</td>
+<td style="text-align:left">lower_with_under</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>Local Variables</td>
+<td style="text-align:left">lower_with_under</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Main">Main</h3><blockquote>
+<p>Tip<br>即使是一个打算被用作脚本的文件,也应该是可导入的.并且简单的导入不应该导致这个脚本的主功能(mainfunctionality)被执行, 这是一种副作用. 主功能应该放在一个main()函数中.</p>
+</blockquote>
+<p>在Python中, pydoc以及单元测试要求模块必须是可导入的. 你的代码应该在执行主程序前总是检查 <code>if __name__ == &#39;__main__&#39;</code> , 这样当模块被导入时主程序就不会被执行.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">      ...</span><br><span class="line">      </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>所有的顶级代码在模块导入时都会被执行. 要小心不要去调用函数, 创建对象或者执行那些不应该在使用pydoc时执行的操作.</p>
+<h2 id="临别赠言">临别赠言</h2><p><strong>请务必保持代码的一致性</strong></p>
+<p>如果你正在编辑代码, 花几分钟看一下周边代码,然后决定风格.如果它们在所有的算术操作符两边都使用空格,那么你也应该这样做. 如果它们的注释都用标记包围起来, 那么你的注释也要这样.</p>
+<p>制定风格指南的目的在于让代码有规可循,这样人们就可以专注于”你在说什么”,而不是”你在怎么说”.我们在这里给出的是全局的规范, 但是本地的规范同样重要.如果你加到一个文件里的代码和原有代码大相径庭,它会让读者不知所措.避免这种情况.</p>
+<h2 id="参考：">参考：</h2><ul>
+<li><a href="http://zh-google-styleguide.readthedocs.org/en/latest/google-python-styleguide/" target="_blank" rel="external">Google Python 风格指南 - 中文版</a></li>
+<li><a href="https://github.com/zh-google-styleguide/zh-google-styleguide" target="_blank" rel="external">zh-google-styleguide</a></li>
+<li><a href="http://www.yeolar.com/note/2013/01/10/python-style-guide/" target="_blank" rel="external">Google Python风格指南</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<ul>
+<li><p>Python是一种对代码风格很重视的语言，从缩进就能看出这一点，Python强调易于理解。最近在负责代码重构的工作，为了统一大家的代码风格，制订规范，学习了一下网上这份Google的Python风格指南。</p>
+</li>
+<l]]>
+    </summary>
+    
+      <category term="Python" scheme="http://wiki.printf.me/categories/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Hexo搭建Wiki]]></title>
     <link href="http://wiki.printf.me/2015/04/30/Hexo%E6%90%AD%E5%BB%BAWiki/"/>
     <id>http://wiki.printf.me/2015/04/30/Hexo搭建Wiki/</id>
     <published>2015-04-30T04:09:41.000Z</published>
-    <updated>2015-04-30T16:27:41.460Z</updated>
+    <updated>2015-05-01T08:21:53.410Z</updated>
     <content type="html"><![CDATA[<ul>
 <li>2015-4-30 第一次编写</li>
 </ul>
@@ -252,7 +670,7 @@ $ npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="co
     <link href="http://wiki.printf.me/2015/04/28/test-mathjax/"/>
     <id>http://wiki.printf.me/2015/04/28/test-mathjax/</id>
     <published>2015-04-28T22:26:19.000Z</published>
-    <updated>2015-04-30T16:27:41.460Z</updated>
+    <updated>2015-05-01T08:21:53.410Z</updated>
     <content type="html"><![CDATA[<p>$$<br>\frac{\partial u}{\partial t} = h^2 \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}\right)<br>$$</p>
 ]]></content>
     <summary type="html">
@@ -268,7 +686,7 @@ $ npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="co
     <link href="http://wiki.printf.me/2015/03/12/Hexo%E5%86%99%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/"/>
     <id>http://wiki.printf.me/2015/03/12/Hexo写作平台搭建/</id>
     <published>2015-03-12T14:17:16.000Z</published>
-    <updated>2015-04-30T16:27:41.460Z</updated>
+    <updated>2015-05-01T08:21:53.410Z</updated>
     <content type="html"><![CDATA[<p>2015-3-12 更新  完成使用GitHub搭建Hexo博客的记录</p>
 <hr>
 <h3 id="GitHub_篇"><strong>GitHub 篇</strong></h3><p>使用GitHub Pages 搭建 独立博客，就是利用GitHub上对于每个单独的项目都可以设置演示与介绍的页面，简单来说就是创立 <code>gh-pages</code> 的分支。</p>
@@ -324,7 +742,7 @@ $ npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="co
     <link href="http://wiki.printf.me/2014/06/09/hexo-%E5%A4%9A%E6%A0%87%E7%AD%BE/"/>
     <id>http://wiki.printf.me/2014/06/09/hexo-多标签/</id>
     <published>2014-06-09T16:21:56.000Z</published>
-    <updated>2015-04-30T16:27:41.460Z</updated>
+    <updated>2015-05-01T08:21:53.410Z</updated>
     <content type="html"><![CDATA[<p>刚开始使用hexo记录一下使用过程遇到的问题.<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用多标签要在括号内<span class="keyword">*</span><span class="keyword">*</span>[,]<span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line">在括号内用逗号分隔开.</span><br></pre></td></tr></table></figure></p>
 ]]></content>
     <summary type="html">
@@ -340,7 +758,7 @@ $ npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="co
     <link href="http://wiki.printf.me/2014/03/16/qna/"/>
     <id>http://wiki.printf.me/2014/03/16/qna/</id>
     <published>2014-03-16T18:17:16.000Z</published>
-    <updated>2015-04-30T16:27:41.460Z</updated>
+    <updated>2015-05-01T08:21:53.410Z</updated>
     <content type="html"><![CDATA[<p><span class="label label-danger">Q</span> What does <code>Wixo</code> stands for?</p>
 <p><span class="label label-success">A</span> <code>Wixo</code> means A <strong>wi</strong>ki theme for he<strong>xo</strong>.</p>
 <p><span class="label label-danger">Q</span> How to generate ToC(Table of Contents) in a certain page?</p>
@@ -365,7 +783,7 @@ $ npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="co
     <link href="http://wiki.printf.me/2014/03/16/qna-cn/"/>
     <id>http://wiki.printf.me/2014/03/16/qna-cn/</id>
     <published>2014-03-16T18:10:16.000Z</published>
-    <updated>2015-04-30T16:27:41.460Z</updated>
+    <updated>2015-05-01T08:21:53.410Z</updated>
     <content type="html"><![CDATA[<p><span class="label label-danger">Q</span> <code>Wixo</code> 这名字有何含义？</p>
 <p><span class="label label-success">A</span> <code>Wixo</code> 意思是 A <strong>wi</strong>ki theme for he<strong>xo</strong> 。</p>
 <p><span class="label label-danger">Q</span> 如何指定某些页面生成 ToC(Table of Contents) ？</p>
@@ -390,7 +808,7 @@ $ npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="co
     <link href="http://wiki.printf.me/2014/03/16/tag-plugins/"/>
     <id>http://wiki.printf.me/2014/03/16/tag-plugins/</id>
     <published>2014-03-16T10:17:16.000Z</published>
-    <updated>2015-04-30T16:27:41.460Z</updated>
+    <updated>2015-05-01T08:21:53.410Z</updated>
     <content type="html"><![CDATA[<p>Like the <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> theme, you can use <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> to fully take advantages of Bootstrap. To use these tag plugins, you need to install it first. In your blog root folder, execute the following command:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
 <p>Then you can use these tag plugins in your blog, as easily as you normally do using hexo tag plugins. </p>
@@ -476,7 +894,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2014/03/16/tag-plugins-cn/"/>
     <id>http://wiki.printf.me/2014/03/16/tag-plugins-cn/</id>
     <published>2014-03-16T10:10:16.000Z</published>
-    <updated>2015-04-30T16:27:41.460Z</updated>
+    <updated>2015-05-01T08:21:53.410Z</updated>
     <content type="html"><![CDATA[<p>和 <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> 一样，你可以使用 <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> 来充分发挥 Bootstrap 的威力。在你的 Hexo 博客目录，执行下列命令：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
 <p>然后就可以像使用其他 hexo tag plugins 一样使用这些 Bootstrap tag plugins 了。</p>
@@ -537,7 +955,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2014/03/15/lorem-ipsum/"/>
     <id>http://wiki.printf.me/2014/03/15/lorem-ipsum/</id>
     <published>2014-03-15T20:17:16.000Z</published>
-    <updated>2015-04-30T16:27:41.460Z</updated>
+    <updated>2015-05-01T08:21:53.410Z</updated>
     <content type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <p><img src="/hexo-theme-wixo/images/lorem-ipsum/lorem-ipsum.jpg" alt="Lorem Ipsum"></p>
 <a id="more"></a>
@@ -558,7 +976,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2014/03/15/code-highlight/"/>
     <id>http://wiki.printf.me/2014/03/15/code-highlight/</id>
     <published>2014-03-15T20:17:16.000Z</published>
-    <updated>2015-04-30T16:27:41.460Z</updated>
+    <updated>2015-05-01T08:21:53.410Z</updated>
     <content type="html"><![CDATA[<h2 id="C">C</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="C++">C++</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World"</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -591,7 +1009,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2013/12/25/traditional-chinese-test/"/>
     <id>http://wiki.printf.me/2013/12/25/traditional-chinese-test/</id>
     <published>2013-12-25T21:17:16.000Z</published>
-    <updated>2015-04-30T16:27:41.464Z</updated>
+    <updated>2015-05-01T08:21:53.410Z</updated>
     <content type="html"><![CDATA[<p>觀自在菩薩，行深般若波羅蜜多時，照見五蘊皆空，度一切苦厄。</p>
 <p>舍利子，色不異空，空不異色；色即是空，空即是色。受、想、行、識，亦復如是。</p>
 <p>舍利子，是諸法空相，不生不滅，不垢不淨，不增不減，是故空中無色，無受、想、行、識；無眼、耳、鼻、舌、身、意；無色、聲、香、味、觸、法；無眼界，乃至無意識界；無無明，亦無無明盡；乃至無老死，亦無老死盡。無苦、集、滅、道，無智亦無得，以無所得故。</p>
@@ -619,7 +1037,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2013/12/25/simplified-chinese-test/"/>
     <id>http://wiki.printf.me/2013/12/25/simplified-chinese-test/</id>
     <published>2013-12-25T20:17:16.000Z</published>
-    <updated>2015-04-30T16:27:41.460Z</updated>
+    <updated>2015-05-01T08:21:53.410Z</updated>
     <content type="html"><![CDATA[<p>观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。</p>
 <p>舍利子，色不异空，空不异色；色即是空，空即是色。受、想、行、识，亦复如是。</p>
 <p>舍利子，是诸法空相，不生不灭，不垢不净，不增不减，是故空中无色，无受、想、行、识；无眼、耳、鼻、舌、身、意；无色、声、香、味、触、法；无眼界，乃至无意识界；无无明，亦无无明尽；乃至无老死，亦无老死尽。无苦、集、灭、道，无智亦无得，以无所得故。</p>
