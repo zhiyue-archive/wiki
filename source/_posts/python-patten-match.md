@@ -39,7 +39,7 @@ Python 自带了re模块，它提供了对正则表达式的支持。主要用�
 
 ``` python 
 #返回pattern对象
-re.compile(string[,flag])  
+re.compile(string[,flag])
 #以下为匹配所用函数
 re.match(pattern, string[, flags])
 re.search(pattern, string[, flags])
