@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Python标准库 数学与随机数 (math包，random包) | Wiki</title>
+  <meta name="author" content="zhiyue">
+  
+  <meta name="description" content="整理 记录 分享">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Python标准库 数学与随机数 (math包，random包)"/>
+  <meta property="og:site_name" content="Wiki"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Wiki" type="application/atom+xml">
+  
+  
+    <link href="/favicon.ico" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">Wiki</a><span class="split"></span><span class="title">Python标准库 数学与随机数 (math包，random包)</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2015-05-09</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <p>时间点：</p>
+<ul>
+<li>2015-05-09 第一次编辑， 增加 <a href="http://www.cnblogs.com/vamei/" target="_blank" rel="external">Vamei</a>的文章</li>
+</ul>
+<p>todo:</p>
+<ul>
+<li>整合文章内容</li>
+</ul>
+<hr>
+<p>我们已经在<a href="http://www.cnblogs.com/vamei/archive/2012/05/29/2524376.html" target="_blank" rel="external">Python运算中</a>看到Python最基本的数学运算功能。此外，<strong>math</strong>包补充了更多的函数。当然，如果想要更加高级的数学功能，可以考虑选择标准库之外的<strong>numpy</strong>和<strong>scipy</strong>项目，它们不但支持数组和矩阵运算，还有丰富的数学和物理方程可供使用。</p>
+<p>此外，<strong>random包</strong>可以用来生成<strong>随机数</strong>。随机数不仅可以用于数学用途，还经常被嵌入到算法中，用以提高算法效率，并提高程序的安全性。</p>
+<h2 id="math包">math包</h2><hr>
+<p>math包主要处理数学相关的运算。math包定义了两个常数:</p>
+<pre><code>math.<span class="literal">e</span>   <span class="comment"># 自然常数e</span>
+math.<span class="literal">pi</span>  <span class="comment"># 圆周率pi</span>
+</code></pre><p>此外，math包还有各种运算函数 (下面函数的功能可以参考数学手册)：</p>
+<pre><code>math.<span class="built_in">ceil</span>(x)       <span class="preprocessor"># 对x向上取整，比如x=1.2，返回2</span>
+math.<span class="built_in">floor</span>(x)      <span class="preprocessor"># 对x向下取整，比如x=1.2，返回1</span>
+math.<span class="built_in">pow</span>(x,y)      <span class="preprocessor"># 指数运算，得到x的y次方</span>
+math.<span class="built_in">log</span>(x)        <span class="preprocessor"># 对数，默认基底为e。可以使用base参数，来改变对数的基地。比如math.log(100,base=10)</span>
+math.<span class="built_in">sqrt</span>(x)       <span class="preprocessor"># 平方根</span>
+</code></pre><p>三角函数: <code>math.sin(x), math.cos(x), math.tan(x), math.asin(x), math.acos(x), math.atan(x)</code></p>
+<p>这些函数都接收一个弧度(radian)为单位的x作为参数。</p>
+<p>角度和弧度互换: <code>math.degrees(x), math.radians(x)</code></p>
+<p>双曲函数: <code>math.sinh(x), math.cosh(x), math.tanh(x), math.asinh(x), math.acosh(x), math.atanh(x)</code></p>
+<p>特殊函数： <code>math.erf(x), math.gamma(x)</code></p>
+<h2 id="random包">random包</h2><hr>
+<p>如果你已经了解伪随机数(psudo-random number)的原理，那么你可以使用如下:</p>
+<pre><code>random.<span class="function"><span class="title">seed</span><span class="params">(x)</span></span>
+</code></pre><p>来改变随机数生成器的种子seed。<strong>如果你不了解其原理，你不必特别去设定seed，Python会帮你选择seed</strong>。</p>
+<ul>
+<li>随机挑选和排序</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">random.choice(seq)   <span class="comment">#从序列的元素中随机挑选一个元素，比如random.choice(range(10))，从0到9中随机挑选一个整数。</span></span><br><span class="line">random.sample(seq,k) <span class="comment"># 从序列中随机挑选k个元素</span></span><br><span class="line">random.shuffle(seq)  <span class="comment"># 将序列的所有元素随机排序</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>随机生成实数</li>
+</ul>
+<p>下面生成的实数符合均匀分布(uniform distribution)，意味着某个范围内的每个数字出现的概率相等:</p>
+<pre><code><span class="built_in">random</span>.<span class="built_in">random</span>()          <span class="comment"># 随机生成下一个实数，它在[0,1)范围内。</span>
+<span class="built_in">random</span>.uniform(<span class="operator">a</span>,b)      <span class="comment"># 随机生成下一个实数，它在[a,b]范围内。</span>
+</code></pre><p>下面生成的实数符合其它的分布 (你可以参考一些统计方面的书籍来了解这些分布):</p>
+<pre><code><span class="built_in">random</span>.gauss(mu,sigma)    <span class="comment"># 随机生成符合高斯分布的随机数，mu,sigma为高斯分布的两个参数。 </span>
+<span class="built_in">random</span>.expovariate(lambd) <span class="comment"># 随机生成符合指数分布的随机数，lambd为指数分布的参数。</span>
+</code></pre><p>此外还有对数分布，正态分布，Pareto分布，Weibull分布，可参考下面链接:<br><a href="http://docs.python.org/library/random.html" target="_blank" rel="external">http://docs.python.org/library/random.html</a></p>
+<p>假设我们有一群人参加舞蹈比赛，为了公平起见，我们要随机排列他们的出场顺序。我们下面利用random包实现：</p>
+<pre><code>import random
+all_people = [<span class="string">'Tom'</span>, <span class="string">'Vivian'</span>, <span class="string">'Paul'</span>, <span class="string">'Liya'</span>, <span class="string">'Manu'</span>, <span class="string">'Daniel'</span>, <span class="string">'Shawn'</span>]
+random.<span class="function"><span class="title">shuffle</span><span class="params">(all_people)</span></span>
+<span class="keyword">for</span> <span class="tag">i</span>,name <span class="keyword">in</span> <span class="function"><span class="title">enumerate</span><span class="params">(all_people)</span></span>:
+    <span class="function"><span class="title">print</span><span class="params">(i,<span class="string">':'</span>+name)</span></span>
+</code></pre><h3 id="练习">练习</h3><hr>
+<p>设计下面两种彩票号码生成器:</p>
+<ol>
+<li><p>从1到22中随机抽取5个整数 （这5个数字不重复）</p>
+</li>
+<li><p>随机产生一个8位数字，每位数字都可以是1到6中的任意一个整数。 </p>
+</li>
+</ol>
+<h2 id="总结">总结</h2><hr>
+<pre><code>math.<span class="function"><span class="title">floor</span><span class="params">()</span></span>, math.<span class="function"><span class="title">sqrt</span><span class="params">()</span></span>, math.<span class="function"><span class="title">sin</span><span class="params">()</span></span>, math.<span class="function"><span class="title">degrees</span><span class="params">()</span></span>
+
+random.<span class="function"><span class="title">random</span><span class="params">()</span></span>, random.<span class="function"><span class="title">choice</span><span class="params">()</span></span>, random.<span class="function"><span class="title">shuffle</span><span class="params">()</span></span>
+</code></pre><p>原文：<a href="http://www.cnblogs.com/vamei/archive/2012/10/26/2741702.html" target="_blank" rel="external">Python标准库12 数学与随机数 (math包，random包)</a></p>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+		<li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2015/05/01/python-patten-match/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2015 zhiyue
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

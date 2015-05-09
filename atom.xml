@@ -4,7 +4,7 @@
   <subtitle><![CDATA[整理 记录 分享]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wiki.printf.me/"/>
-  <updated>2015-05-01T09:07:27.634Z</updated>
+  <updated>2015-05-09T07:56:56.259Z</updated>
   <id>http://wiki.printf.me/</id>
   
   <author>
@@ -15,11 +15,93 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Python标准库 数学与随机数 (math包，random包)]]></title>
+    <link href="http://wiki.printf.me/2015/05/09/python-standard-library-of-math-and-random/"/>
+    <id>http://wiki.printf.me/2015/05/09/python-standard-library-of-math-and-random/</id>
+    <published>2015-05-09T15:44:47.000Z</published>
+    <updated>2015-05-09T07:56:56.259Z</updated>
+    <content type="html"><![CDATA[<p>时间点：</p>
+<ul>
+<li>2015-05-09 第一次编辑， 增加 <a href="http://www.cnblogs.com/vamei/" target="_blank" rel="external">Vamei</a>的文章</li>
+</ul>
+<p>todo:</p>
+<ul>
+<li>整合文章内容</li>
+</ul>
+<hr>
+<p>我们已经在<a href="http://www.cnblogs.com/vamei/archive/2012/05/29/2524376.html" target="_blank" rel="external">Python运算中</a>看到Python最基本的数学运算功能。此外，<strong>math</strong>包补充了更多的函数。当然，如果想要更加高级的数学功能，可以考虑选择标准库之外的<strong>numpy</strong>和<strong>scipy</strong>项目，它们不但支持数组和矩阵运算，还有丰富的数学和物理方程可供使用。</p>
+<p>此外，<strong>random包</strong>可以用来生成<strong>随机数</strong>。随机数不仅可以用于数学用途，还经常被嵌入到算法中，用以提高算法效率，并提高程序的安全性。</p>
+<h2 id="math包">math包</h2><hr>
+<p>math包主要处理数学相关的运算。math包定义了两个常数:</p>
+<pre><code>math.<span class="literal">e</span>   <span class="comment"># 自然常数e</span>
+math.<span class="literal">pi</span>  <span class="comment"># 圆周率pi</span>
+</code></pre><p>此外，math包还有各种运算函数 (下面函数的功能可以参考数学手册)：</p>
+<pre><code>math.<span class="built_in">ceil</span>(x)       <span class="preprocessor"># 对x向上取整，比如x=1.2，返回2</span>
+math.<span class="built_in">floor</span>(x)      <span class="preprocessor"># 对x向下取整，比如x=1.2，返回1</span>
+math.<span class="built_in">pow</span>(x,y)      <span class="preprocessor"># 指数运算，得到x的y次方</span>
+math.<span class="built_in">log</span>(x)        <span class="preprocessor"># 对数，默认基底为e。可以使用base参数，来改变对数的基地。比如math.log(100,base=10)</span>
+math.<span class="built_in">sqrt</span>(x)       <span class="preprocessor"># 平方根</span>
+</code></pre><p>三角函数: <code>math.sin(x), math.cos(x), math.tan(x), math.asin(x), math.acos(x), math.atan(x)</code></p>
+<p>这些函数都接收一个弧度(radian)为单位的x作为参数。</p>
+<p>角度和弧度互换: <code>math.degrees(x), math.radians(x)</code></p>
+<p>双曲函数: <code>math.sinh(x), math.cosh(x), math.tanh(x), math.asinh(x), math.acosh(x), math.atanh(x)</code></p>
+<p>特殊函数： <code>math.erf(x), math.gamma(x)</code></p>
+<h2 id="random包">random包</h2><hr>
+<p>如果你已经了解伪随机数(psudo-random number)的原理，那么你可以使用如下:</p>
+<pre><code>random.<span class="function"><span class="title">seed</span><span class="params">(x)</span></span>
+</code></pre><p>来改变随机数生成器的种子seed。<strong>如果你不了解其原理，你不必特别去设定seed，Python会帮你选择seed</strong>。</p>
+<ul>
+<li>随机挑选和排序</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">random.choice(seq)   <span class="comment">#从序列的元素中随机挑选一个元素，比如random.choice(range(10))，从0到9中随机挑选一个整数。</span></span><br><span class="line">random.sample(seq,k) <span class="comment"># 从序列中随机挑选k个元素</span></span><br><span class="line">random.shuffle(seq)  <span class="comment"># 将序列的所有元素随机排序</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>随机生成实数</li>
+</ul>
+<p>下面生成的实数符合均匀分布(uniform distribution)，意味着某个范围内的每个数字出现的概率相等:</p>
+<pre><code><span class="built_in">random</span>.<span class="built_in">random</span>()          <span class="comment"># 随机生成下一个实数，它在[0,1)范围内。</span>
+<span class="built_in">random</span>.uniform(<span class="operator">a</span>,b)      <span class="comment"># 随机生成下一个实数，它在[a,b]范围内。</span>
+</code></pre><p>下面生成的实数符合其它的分布 (你可以参考一些统计方面的书籍来了解这些分布):</p>
+<pre><code><span class="built_in">random</span>.gauss(mu,sigma)    <span class="comment"># 随机生成符合高斯分布的随机数，mu,sigma为高斯分布的两个参数。 </span>
+<span class="built_in">random</span>.expovariate(lambd) <span class="comment"># 随机生成符合指数分布的随机数，lambd为指数分布的参数。</span>
+</code></pre><p>此外还有对数分布，正态分布，Pareto分布，Weibull分布，可参考下面链接:<br><a href="http://docs.python.org/library/random.html" target="_blank" rel="external">http://docs.python.org/library/random.html</a></p>
+<p>假设我们有一群人参加舞蹈比赛，为了公平起见，我们要随机排列他们的出场顺序。我们下面利用random包实现：</p>
+<pre><code>import random
+all_people = [<span class="string">'Tom'</span>, <span class="string">'Vivian'</span>, <span class="string">'Paul'</span>, <span class="string">'Liya'</span>, <span class="string">'Manu'</span>, <span class="string">'Daniel'</span>, <span class="string">'Shawn'</span>]
+random.<span class="function"><span class="title">shuffle</span><span class="params">(all_people)</span></span>
+<span class="keyword">for</span> <span class="tag">i</span>,name <span class="keyword">in</span> <span class="function"><span class="title">enumerate</span><span class="params">(all_people)</span></span>:
+    <span class="function"><span class="title">print</span><span class="params">(i,<span class="string">':'</span>+name)</span></span>
+</code></pre><h3 id="练习">练习</h3><hr>
+<p>设计下面两种彩票号码生成器:</p>
+<ol>
+<li><p>从1到22中随机抽取5个整数 （这5个数字不重复）</p>
+</li>
+<li><p>随机产生一个8位数字，每位数字都可以是1到6中的任意一个整数。 </p>
+</li>
+</ol>
+<h2 id="总结">总结</h2><hr>
+<pre><code>math.<span class="function"><span class="title">floor</span><span class="params">()</span></span>, math.<span class="function"><span class="title">sqrt</span><span class="params">()</span></span>, math.<span class="function"><span class="title">sin</span><span class="params">()</span></span>, math.<span class="function"><span class="title">degrees</span><span class="params">()</span></span>
+
+random.<span class="function"><span class="title">random</span><span class="params">()</span></span>, random.<span class="function"><span class="title">choice</span><span class="params">()</span></span>, random.<span class="function"><span class="title">shuffle</span><span class="params">()</span></span>
+</code></pre><p>原文：<a href="http://www.cnblogs.com/vamei/archive/2012/10/26/2741702.html" target="_blank" rel="external">Python标准库12 数学与随机数 (math包，random包)</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>时间点：</p>
+<ul>
+<li>2015-05-09 第一次编辑， 增加 <a href="http://www.cnblogs.com/vamei/" target="_blank" rel="external">Vamei</a>的文章</li>
+</ul>
+<p>]]>
+    </summary>
+    
+      <category term="Python" scheme="http://wiki.printf.me/categories/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Python入门之正则表达式]]></title>
     <link href="http://wiki.printf.me/2015/05/01/python-patten-match/"/>
     <id>http://wiki.printf.me/2015/05/01/python-patten-match/</id>
     <published>2015-05-01T16:59:38.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<p>在前面我们已经搞定了怎样获取页面的内容，不过还差一步，这么多杂乱的代码夹杂文字我们怎样把它提取出来整理呢？下面就开始介绍一个十分强大的工具，正则表达式！</p>
 <h2 id="0x01了解正则表达式">0x01了解正则表达式</h2><blockquote>
 <p>正则表达式是对字符串操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。</p>
@@ -125,7 +207,7 @@
     <link href="http://wiki.printf.me/2015/05/01/google-python-styleguide/"/>
     <id>http://wiki.printf.me/2015/05/01/google-python-styleguide/</id>
     <published>2015-05-01T01:36:25.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <ul>
 <li><p>Python是一种对代码风格很重视的语言，从缩进就能看出这一点，Python强调易于理解。最近在负责代码重构的工作，为了统一大家的代码风格，制订规范，学习了一下网上这份Google的Python风格指南。</p>
@@ -543,7 +625,7 @@
     <link href="http://wiki.printf.me/2015/04/30/Hexo%E6%90%AD%E5%BB%BAWiki/"/>
     <id>http://wiki.printf.me/2015/04/30/Hexo搭建Wiki/</id>
     <published>2015-04-30T04:09:41.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<ul>
 <li>2015-4-30 第一次编写</li>
 </ul>
@@ -776,7 +858,7 @@ $ npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="co
     <link href="http://wiki.printf.me/2015/04/28/test-mathjax/"/>
     <id>http://wiki.printf.me/2015/04/28/test-mathjax/</id>
     <published>2015-04-28T22:26:19.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<p>$$<br>\frac{\partial u}{\partial t} = h^2 \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}\right)<br>$$</p>
 ]]></content>
     <summary type="html">
@@ -792,7 +874,7 @@ $ npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="co
     <link href="http://wiki.printf.me/2015/03/12/Hexo%E5%86%99%E4%BD%9C%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/"/>
     <id>http://wiki.printf.me/2015/03/12/Hexo写作平台搭建/</id>
     <published>2015-03-12T14:17:16.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<p>2015-3-12 更新  完成使用GitHub搭建Hexo博客的记录</p>
 <hr>
 <h3 id="GitHub_篇"><strong>GitHub 篇</strong></h3><p>使用GitHub Pages 搭建 独立博客，就是利用GitHub上对于每个单独的项目都可以设置演示与介绍的页面，简单来说就是创立 <code>gh-pages</code> 的分支。</p>
@@ -848,7 +930,7 @@ $ npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="co
     <link href="http://wiki.printf.me/2014/06/09/hexo-%E5%A4%9A%E6%A0%87%E7%AD%BE/"/>
     <id>http://wiki.printf.me/2014/06/09/hexo-多标签/</id>
     <published>2014-06-09T16:21:56.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<p>刚开始使用hexo记录一下使用过程遇到的问题.<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用多标签要在括号内<span class="keyword">*</span><span class="keyword">*</span>[,]<span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line">在括号内用逗号分隔开.</span><br></pre></td></tr></table></figure></p>
 ]]></content>
     <summary type="html">
@@ -864,7 +946,7 @@ $ npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="co
     <link href="http://wiki.printf.me/2014/03/16/qna/"/>
     <id>http://wiki.printf.me/2014/03/16/qna/</id>
     <published>2014-03-16T18:17:16.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<p><span class="label label-danger">Q</span> What does <code>Wixo</code> stands for?</p>
 <p><span class="label label-success">A</span> <code>Wixo</code> means A <strong>wi</strong>ki theme for he<strong>xo</strong>.</p>
 <p><span class="label label-danger">Q</span> How to generate ToC(Table of Contents) in a certain page?</p>
@@ -889,7 +971,7 @@ $ npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="co
     <link href="http://wiki.printf.me/2014/03/16/qna-cn/"/>
     <id>http://wiki.printf.me/2014/03/16/qna-cn/</id>
     <published>2014-03-16T18:10:16.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<p><span class="label label-danger">Q</span> <code>Wixo</code> 这名字有何含义？</p>
 <p><span class="label label-success">A</span> <code>Wixo</code> 意思是 A <strong>wi</strong>ki theme for he<strong>xo</strong> 。</p>
 <p><span class="label label-danger">Q</span> 如何指定某些页面生成 ToC(Table of Contents) ？</p>
@@ -914,7 +996,7 @@ $ npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="co
     <link href="http://wiki.printf.me/2014/03/16/tag-plugins/"/>
     <id>http://wiki.printf.me/2014/03/16/tag-plugins/</id>
     <published>2014-03-16T10:17:16.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<p>Like the <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> theme, you can use <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> to fully take advantages of Bootstrap. To use these tag plugins, you need to install it first. In your blog root folder, execute the following command:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
 <p>Then you can use these tag plugins in your blog, as easily as you normally do using hexo tag plugins. </p>
@@ -1000,7 +1082,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2014/03/16/tag-plugins-cn/"/>
     <id>http://wiki.printf.me/2014/03/16/tag-plugins-cn/</id>
     <published>2014-03-16T10:10:16.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<p>和 <a href="http://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Freemind</a> 一样，你可以使用 <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> 来充分发挥 Bootstrap 的威力。在你的 Hexo 博客目录，执行下列命令：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-tag-bootstrap <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
 <p>然后就可以像使用其他 hexo tag plugins 一样使用这些 Bootstrap tag plugins 了。</p>
@@ -1061,7 +1143,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2014/03/15/lorem-ipsum/"/>
     <id>http://wiki.printf.me/2014/03/15/lorem-ipsum/</id>
     <published>2014-03-15T20:17:16.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <p><img src="/hexo-theme-wixo/images/lorem-ipsum/lorem-ipsum.jpg" alt="Lorem Ipsum"></p>
 <a id="more"></a>
@@ -1082,7 +1164,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2014/03/15/code-highlight/"/>
     <id>http://wiki.printf.me/2014/03/15/code-highlight/</id>
     <published>2014-03-15T20:17:16.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<h2 id="C">C</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="C++">C++</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World"</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -1115,7 +1197,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2013/12/25/traditional-chinese-test/"/>
     <id>http://wiki.printf.me/2013/12/25/traditional-chinese-test/</id>
     <published>2013-12-25T21:17:16.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<p>觀自在菩薩，行深般若波羅蜜多時，照見五蘊皆空，度一切苦厄。</p>
 <p>舍利子，色不異空，空不異色；色即是空，空即是色。受、想、行、識，亦復如是。</p>
 <p>舍利子，是諸法空相，不生不滅，不垢不淨，不增不減，是故空中無色，無受、想、行、識；無眼、耳、鼻、舌、身、意；無色、聲、香、味、觸、法；無眼界，乃至無意識界；無無明，亦無無明盡；乃至無老死，亦無老死盡。無苦、集、滅、道，無智亦無得，以無所得故。</p>
@@ -1143,7 +1225,7 @@ Inserts alert messages with text and specified color.
     <link href="http://wiki.printf.me/2013/12/25/simplified-chinese-test/"/>
     <id>http://wiki.printf.me/2013/12/25/simplified-chinese-test/</id>
     <published>2013-12-25T20:17:16.000Z</published>
-    <updated>2015-05-01T09:07:27.634Z</updated>
+    <updated>2015-05-09T07:56:56.259Z</updated>
     <content type="html"><![CDATA[<p>观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。</p>
 <p>舍利子，色不异空，空不异色；色即是空，空即是色。受、想、行、识，亦复如是。</p>
 <p>舍利子，是诸法空相，不生不灭，不垢不净，不增不减，是故空中无色，无受、想、行、识；无眼、耳、鼻、舌、身、意；无色、声、香、味、触、法；无眼界，乃至无意识界；无无明，亦无无明尽；乃至无老死，亦无老死尽。无苦、集、灭、道，无智亦无得，以无所得故。</p>
