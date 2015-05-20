@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Questions and Answers（中文） | Wiki</title>
+  <title>使用prose.io编辑Blog | Wiki</title>
   <meta name="author" content="zhiyue">
   
   <meta name="description" content="整理 记录 分享">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Questions and Answers（中文）"/>
+  <meta property="og:title" content="使用prose.io编辑Blog"/>
   <meta property="og:site_name" content="Wiki"/>
 
   
@@ -45,7 +45,7 @@
   <div class="container" id="container">
 	<div class="content">
 	  <div class="page-header">		
-  <h1><a class="brand" href="/">Wiki</a><span class="split"></span><span class="title">Questions and Answers（中文）</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2014-03-16</span></h1>
+  <h1><a class="brand" href="/">Wiki</a><span class="split"></span><span class="title">使用prose.io编辑Blog</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2015-05-20</span></h1>
 </div>		
 
 <div class="row page">
@@ -58,15 +58,14 @@
 	  
 
 	  <!-- content -->
-	  <p><span class="label label-danger">Q</span> <code>Wixo</code> 这名字有何含义？</p>
-<p><span class="label label-success">A</span> <code>Wixo</code> 意思是 A <strong>wi</strong>ki theme for he<strong>xo</strong> 。</p>
-<p><span class="label label-danger">Q</span> 如何指定某些页面生成 ToC(Table of Contents) ？</p>
-<p><span class="label label-success">A</span> 在<a href="https://github.com/wzpan/hexo-theme-freemind#front-matter" target="_blank" rel="external">文章头部</a>添加 <code>toc: true</code> 。</p>
-<p><span class="label label-danger">Q</span> 从哪里可以找到你的这几篇文档的 Markdown 源码？</p>
-<p><span class="label label-success">A</span> 在项目的 <a href="https://github.com/wzpan/hexo-theme-wixo/tree/source" target="_blank" rel="external">source</a> 分支。</p>
-<p><span class="label label-danger">Q</span> 为啥我在插入 bootstrap 插件后总是自动折行？</p>
-<p><span class="label label-success">A</span> 这个问题是你的 Markdown 设置引起的。解决办法是在你的 Hexo 的 _config.yml 文件中禁用 Markdown 的 <code>breaks</code> 选项：</p>
-<script src="https://gist.github.com/wzpan/9967986.js"></script>
+	  <p>目前使用Hexo搭建了个人的静态Blog，然后把Blog托管在了GitHub提供的Page服务上，总体上是目前比较满意的方案了。但是这里面还是存在一个问题，那就是文章的更新问题。我希望做到的是能够随时随地的更新文章，但是现行的方案有一个缺陷就是，如果你想更新Blog，你想写一篇文章，你换了一台电脑，那么你就首先必须下载Git，然后把写好的<code>md</code>文件放到source文件夹下，然后再push到GitHub，这一套流程下来其实还是挺麻烦的，成本也挺大。对于我这种懒人来说，这样可能就造成我不想写的后果了。这其实已经是简化后的流程了，因为之前使用travis-ci自动化构建静态网站，不然的话，你还必须部署一个NodeJs的开发环境然后再安装Hexo，再使用Hexo的Deploy到GitHub上去。幸好这一部分的工作有travis-ci帮我们完成了。那么有什么方法可以使我随时打开浏览器就可以更新，而无需部署写作环境呢？</p>
+<p>那么现在就要介绍今天的主角<a href="http://prose.io/" target="_blank" rel="external">prose.io</a> 通过它就可以随时随地的更新或者写文章了。步骤也很简单，就是打开这个网站然后绑定好你的GitHub账户。然后你就可以开始写你的东西了。这篇文章也是使用这种方式写成了。</p>
+<h2 id=""><img src="http://zhiyue.qiniudn.com/15-5-20/91201759.jpg" alt=""></h2><h3 id="更新日志">更新日志</h3><ul>
+<li>2015-05-20 第一次写</li>
+</ul>
+<h3 id="todo">todo</h3><ul>
+<li>更新prose.io的一些细节</li>
+</ul>
 	  
 
 	  <div>
@@ -79,13 +78,8 @@
 	
 	
 		
-	
-		
-	
-		
-	
-		
-	
+			
+			
 		
 	
 		
@@ -96,17 +90,14 @@
 	
 		
 			
-		
-	
-		
 			
 			
 		
 	
 		
 			
-			
-			
+		
+	
 		
 			
 		
@@ -119,12 +110,20 @@
 	
 		
 	
+		
 	
-		<li class="prev"><a href="/2014/03/16/qna/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+		
+	
+		
+	
+		
+	
+	
+		<li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
 	
 	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
 	
-		<li class="next"><a href="/2014/03/16/tag-plugins/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+		<li class="next"><a href="/2015/04/30/Hexo搭建Wiki/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
 	
 </ul>
 </div>
