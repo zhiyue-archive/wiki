@@ -29,14 +29,14 @@ install:
 #- npm install hexo-renderer-stylus@0.1.0 --save
 #- npm install hexo-generator-feed@0.2.1 --save
 #- npm install hexo-generator-sitemap@0.2.0 --save
-#- npm install hexo-tag-bootstrap@0.0.6 --save
+#- npm install hexo-tag-bootstrap@0.0.6 --save 
 - npm install
 
 
 script:
   - "git submodule init"
   - "git submodule update"
-  - "git submodule foreach git pull"
+  - "git submodule foreach git pull origin master"
   - "hexo generate "
   
 after_success:
