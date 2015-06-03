@@ -44,7 +44,7 @@ class helloWorld
 
 ## Assembler ##
 
-``` assembler
+```assembler
 #include <stdio.h>
 
 char format[] = "%s %s\n";
